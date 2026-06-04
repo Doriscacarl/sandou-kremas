@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coconut Cream | Sandou Kremas</title>
+<link rel="icon" type="image/png" href="SAndouKremas%20logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = { darkMode:"class", theme:{ extend:{ colors:{ "on-primary-container":"#716f66","inverse-primary":"#cac6bc","surface-container-high":"#ffe2d5","on-background":"#28180f","on-tertiary-container":"#896a29","surface-tint":"#615e56","secondary":"#675e41","on-surface":"#28180f","on-secondary-fixed":"#221b05","surface-bright":"#fff8f6","on-error":"#ffffff","surface-variant":"#fcdccd","inverse-surface":"#3f2c22","secondary-fixed-dim":"#d3c6a2","secondary-container":"#f0e2bd","tertiary-fixed":"#ffdea2","primary-fixed":"#e7e2d7","outline":"#7a776e","on-secondary-fixed-variant":"#4f462b","inverse-on-surface":"#ffede6","on-primary-fixed-variant":"#49473f","background":"#fff8f6","error":"#ba1a1a","primary-container":"#f8f3e8","tertiary":"#765a1a","error-container":"#ffdad6","on-error-container":"#93000a","primary-fixed-dim":"#cac6bc","on-tertiary-fixed-variant":"#5c4201","on-secondary-container":"#6e6446","surface":"#fff8f6","surface-container-low":"#fff1eb","tertiary-container":"#fff2e0","surface-dim":"#f3d4c5","tertiary-fixed-dim":"#e7c177","on-primary-fixed":"#1d1c15","primary":"#615e56","outline-variant":"#cac6bc","on-primary":"#ffffff","surface-container-highest":"#fcdccd","secondary-fixed":"#f0e2bd","on-secondary":"#ffffff","surface-container":"#ffeae0","on-surface-variant":"#49473f","on-tertiary":"#ffffff","on-tertiary-fixed":"#261900","surface-container-lowest":"#ffffff" }, borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}, spacing:{"margin-mobile":"20px","margin-desktop":"80px","gutter":"24px","base":"8px","section-gap":"120px"}, fontFamily:{"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Montserrat"],"body-lg":["Montserrat"],"headline-sm":["Playfair Display"],"label-caps":["Montserrat"],"display-lg":["Playfair Display"]}, fontSize:{"headline-md":["32px",{lineHeight:"1.3",fontWeight:"600"}],"display-lg-mobile":["40px",{lineHeight:"1.2",fontWeight:"700"}],"body-md":["16px",{lineHeight:"1.6",letterSpacing:"0.02em",fontWeight:"400"}],"body-lg":["18px",{lineHeight:"1.6",letterSpacing:"0.03em",fontWeight:"300"}],"headline-sm":["24px",{lineHeight:"1.4",fontWeight:"600"}],"label-caps":["12px",{lineHeight:"1.0",letterSpacing:"0.15em",fontWeight:"600"}],"display-lg":["64px",{lineHeight:"1.1",letterSpacing:"-0.02em",fontWeight:"700"}]} } } }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;}
+  .glass-effect{backdrop-filter:blur(20px);background:rgba(248,243,232,0.5);border:1px solid rgba(216,179,106,0.25);box-shadow:0 8px 32px 0 rgba(44,27,18,0.1);}
+  .btn-luxury{transition:letter-spacing 0.6s cubic-bezier(0.16,1,0.3,1),opacity 0.3s ease,transform 0.2s ease;position:relative;overflow:hidden;}
+  .btn-luxury:hover{letter-spacing:0.25em;}.btn-luxury:active{transform:scale(0.97);}
+  @keyframes subtleZoom{from{transform:scale(1);}to{transform:scale(1.08);}}
+  .cinematic-zoom{animation:subtleZoom 60s ease-out forwards;}
+  @keyframes ambientLight{0%,100%{opacity:0.3;transform:translate(-10%,-10%) scale(1);}50%{opacity:0.6;transform:translate(10%,10%) scale(1.2);}}
+  .ambient-glow{position:absolute;width:150%;height:150%;background:radial-gradient(circle,rgba(216,179,106,0.18) 0%,transparent 70%);animation:ambientLight 20s ease-in-out infinite;pointer-events:none;z-index:1;}
+  @keyframes gleam{0%{mask-position:-200%;}100%{mask-position:200%;}}
+  .shimmer-gleam{mask-image:linear-gradient(65deg,rgba(0,0,0,1) 40%,rgba(0,0,0,0.45) 50%,rgba(0,0,0,1) 60%);mask-size:200% 100%;animation:gleam 4s infinite linear;}
+  .js-ready .reveal-soft{opacity:0;filter:blur(10px);transform:translateY(36px);transition:opacity 2s cubic-bezier(0.16,1,0.3,1),filter 2s cubic-bezier(0.16,1,0.3,1),transform 2s cubic-bezier(0.16,1,0.3,1);}
+  .js-ready .reveal-soft.active{opacity:1;filter:blur(0);transform:translateY(0);}
+  .passpartout-frame{border:1px solid #D8B36A;padding:16px;background:white;}
+  .text-underline-expand{position:relative;}.text-underline-expand::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:1px;background:#D8B36A;transition:all 0.5s ease;transform:translateX(-50%);}.text-underline-expand:hover::after{width:100%;}
+  @keyframes conciergeFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .concierge-float{animation:conciergeFloat 4s ease-in-out infinite;}
+  .concierge-modal{transition:all 0.8s cubic-bezier(0.16,1,0.3,1);transform:scale(0.92) translateY(20px);opacity:0;pointer-events:none;}
+  .concierge-modal.active{transform:scale(1) translateY(0);opacity:1;pointer-events:auto;}
+  @keyframes backgroundPulse{0%,100%{background-color:#fff8f6;}50%{background-color:#fffcfb;}}
+  .pulse-bg{animation:backgroundPulse 8s ease-in-out infinite;}
+  #global-dust-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100;opacity:0.35;}
+  #concierge-dust-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6;border-radius:inherit;}
+  .mobile-menu{transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.16,1,0.3,1);opacity:0;transform:translateY(-20px);pointer-events:none;}
+  .mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .brand-logo{mix-blend-mode:multiply;display:block;}
+  #loading-screen{position:fixed;inset:0;z-index:300;background:#fff8f6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),visibility 0.9s cubic-bezier(0.16,1,0.3,1);}
+  #loading-screen.fade-out{opacity:0;visibility:hidden;pointer-events:none;}
+  #page-transition{position:fixed;inset:0;z-index:250;background:#fff8f6;opacity:0;pointer-events:none;transition:opacity 0.22s ease;}
+  #page-transition.leaving{opacity:1;pointer-events:all;}
+  @keyframes logoReveal{from{opacity:0;transform:scale(0.82) translateY(12px);}to{opacity:1;transform:scale(1) translateY(0);}}
+  @keyframes lineExpand{from{width:0;opacity:0;}to{width:64px;opacity:1;}}
+  #loading-logo{animation:logoReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both;}
+  #loading-line{height:1px;background:#D8B36A;animation:lineExpand 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s both;}
+  .note-card{transition:transform 0.5s cubic-bezier(0.16,1,0.3,1),box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);}
+  .note-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -8px rgba(97,94,86,0.14);}
+  @media(prefers-reduced-motion:reduce){.cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float{animation:none !important;transition:none !important;transform:none !important;opacity:1 !important;filter:none !important;}#loading-logo,#loading-line{animation:none !important;opacity:1 !important;}}
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
+  <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width:min(520px,80vw);mix-blend-mode:multiply;display:block;height:auto;"/>
+  <div id="loading-line" style="width:64px;height:1px;background:#D8B36A;"></div>
+  <p style="font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:#49473f;opacity:0;animation:logoReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.9s both;">Crafted Tradition. Bottled Elegance.</p>
+</div>
+<div id="page-transition" aria-hidden="true"></div>
+<canvas id="global-dust-canvas" aria-hidden="true"></canvas>
+<div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[70] concierge-float">
+  <div class="relative group">
+    <div class="absolute inset-0 bg-[#D8B36A]/10 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    <button id="concierge-trigger" aria-label="Sandou Concierge" class="glass-effect relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full hover:border-[#D8B36A] transition-all duration-500 min-h-[44px]">
+      <span class="material-symbols-outlined text-tertiary text-xl">stylus_note</span>
+      <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase hidden sm:block">Sandou Concierge</span>
+    </button>
+  </div>
+</div>
+<div id="concierge-modal" class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4 sm:p-6 bg-black/20 backdrop-blur-sm concierge-modal" role="dialog" aria-modal="true" aria-label="Sandou Concierge">
+  <div class="absolute inset-0" onclick="toggleConcierge()" aria-hidden="true"></div>
+  <div class="glass-effect relative w-full max-w-lg p-8 sm:p-12 rounded-xl overflow-hidden">
+    <canvas id="concierge-dust-canvas" aria-hidden="true"></canvas>
+    <button aria-label="Close" class="absolute top-4 right-4 text-on-surface-variant hover:text-tertiary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" onclick="toggleConcierge()"><span class="material-symbols-outlined">close</span></button>
+    <div class="space-y-6 relative z-10">
+      <div class="text-center space-y-3">
+        <img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-16 w-auto mx-auto"/>
+        <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.4em] block">Order Now</span>
+        <h3 class="font-headline-md text-2xl text-on-background" style="font-family:'Playfair Display',serif;font-style:italic;">Reserve Coconut Cream today.</h3>
+      </div>
+      <div class="space-y-5">
+        <div class="border-b border-[#D8B36A]/20 pb-4">
+          <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Order a Bottle</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Bulk Orders</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Gift Enquiry</button>
+          </div>
+        </div>
+        <textarea class="w-full bg-transparent border border-[#D8B36A]/25 p-4 font-body-md text-sm focus:ring-0 focus:border-tertiary transition-colors placeholder:italic placeholder:text-on-surface-variant/40 resize-none rounded-sm" placeholder="Your name, quantity, and delivery address…" rows="3"></textarea>
+        <button class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">Send Your Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="fixed top-0 w-full z-[60] bg-surface/40 backdrop-blur-xl border-b border-outline-variant/10" role="navigation">
+  <div class="flex justify-between items-center w-full px-5 md:px-[80px] py-5 max-w-screen-2xl mx-auto">
+    <a href="index.html" class="flex items-center flex-shrink-0"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-12 md:h-16 w-auto"/></a>
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="our-story.html">Story</a>
+      <a class="text-tertiary border-b border-tertiary pb-1 font-label-caps text-label-caps uppercase tracking-widest" href="collection.html">Collection</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="the-experience.html">Experience</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="gallery.html">Gallery</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="bg-[#2C1B12] text-[#F8F3E8] px-6 md:px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hidden sm:block" onclick="toggleConcierge()">Order Now</button>
+      <a href="account.html" class="sk-account-link relative text-on-surface-variant hover:text-tertiary transition-all duration-300 min-w-[44px] min-h-[44px] hidden sm:flex items-center justify-center" aria-label="Account">
+        <span class="material-symbols-outlined text-xl">person</span>
+        <span class="sk-auth-dot hidden absolute top-2 right-2 w-2 h-2 bg-[#D8B36A] rounded-full"></span>
+      </a>
+      <button id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden flex flex-col gap-[5px] p-2 min-w-[44px] min-h-[44px] items-center justify-center" onclick="toggleMobileMenu()">
+        <span class="w-6 h-[1.5px] bg-on-surface block" id="ham-1"></span><span class="w-6 h-[1.5px] bg-on-surface block" id="ham-2"></span><span class="w-6 h-[1.5px] bg-on-surface block" id="ham-3"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-lg px-5 py-6 flex flex-col gap-5">
+    <div class="flex justify-center pb-4 border-b border-outline-variant/20"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-20 w-auto"/></div>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="our-story.html" onclick="toggleMobileMenu()">Story</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-tertiary py-2 min-h-[44px] flex items-center" href="collection.html" onclick="toggleMobileMenu()">Collection</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="the-experience.html" onclick="toggleMobileMenu()">Experience</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="gallery.html" onclick="toggleMobileMenu()">Gallery</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center gap-2" href="account.html" onclick="toggleMobileMenu()">
+      <span class="material-symbols-outlined text-base">person</span>Account
+    </a>
+    <button class="bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] mt-2" onclick="toggleMobileMenu();toggleConcierge();">Order Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative h-[85vh] min-h-[600px] w-full flex items-end justify-center overflow-hidden pb-20">
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="ambient-glow"></div>
+    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image:url('https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
+  </div>
+  <div class="relative z-10 text-white px-5 md:px-[80px] max-w-screen-xl mx-auto w-full">
+    <a href="collection.html" class="inline-flex items-center gap-2 text-[#D8B36A] font-label-caps text-[10px] uppercase tracking-[0.3em] mb-8 hover:opacity-70 transition-opacity"><span class="material-symbols-outlined text-sm">arrow_back</span> The Collection</a>
+    <div class="max-w-3xl">
+      <span class="font-label-caps text-[10px] tracking-[0.55em] uppercase text-[#D8B36A] block mb-2">Alexandra's Favorite</span>
+      <h1 class="font-display-lg leading-none mb-4 shimmer-gleam" style="font-size:clamp(48px,8vw,100px);font-family:'Playfair Display',serif;letter-spacing:-0.02em;">Coconut<br/>Cream</h1>
+      <p class="font-body-lg text-body-lg max-w-xl opacity-80 mb-8" style="font-style:italic;">Alexandra's signature expression. The flavor she returns to, every time.</p>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 border border-[#D8B36A]/30 font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A]">Tropical Coconut</span>
+        <span class="px-4 py-2 border border-[#D8B36A]/30 font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A]">Silky Cream</span>
+        <span class="px-4 py-2 border border-[#D8B36A]/30 font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A]">Warm Vanilla</span>
+        <span class="px-4 py-2 border border-[#D8B36A]/30 font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A]">Gentle Spice</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY + BOTTLE -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto pulse-bg">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <div class="lg:col-span-5 order-1 reveal-soft">
+      <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+        <img alt="Coconut Cream" class="w-full h-[460px] sm:h-[580px] object-cover transition-transform duration-[3s] group-hover:scale-105" loading="lazy" src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"/>
+        <div class="absolute top-4 right-4 text-white px-4 py-2 text-center" style="background:linear-gradient(135deg,#D8B36A,#765a1a);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Founder's<br/>Favorite</div>
+      </div>
+    </div>
+    <div class="lg:col-span-7 order-2 space-y-8 reveal-soft">
+      <div class="space-y-3">
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block">The Flavor Story</span>
+        <h2 class="font-display-lg leading-tight text-on-background" style="font-size:clamp(32px,4vw,52px);font-family:'Playfair Display',serif;">The Flavor That<br/>Started Everything</h2>
+      </div>
+      <div class="space-y-5">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Coconut Cream is more than a flavor — it is the moment Alexandra knew she had created something extraordinary. When she first perfected this expression, she understood that Sandou was ready for the world.</p>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Lush tropical coconut opens immediately, warm and enveloping. Silky cream carries it through. Whispers of vanilla and gentle spice trail behind — a finish that lingers like a beautiful memory refusing to leave.</p>
+      </div>
+      <blockquote class="border-l-2 border-tertiary pl-6 py-2" style="font-family:'Playfair Display',serif;font-style:italic;font-size:20px;line-height:1.7;color:#49473f;">"Coconut Cream is the one I return to. Every sip takes me back to the moment I knew Sandou was real."</blockquote>
+      <p class="font-body-md text-sm text-on-surface-variant">— Alexandra Louis, Founder</p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-4">
+        <button onclick="toggleConcierge()" class="bg-[#2C1B12] text-[#F8F3E8] px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px]">Order Now</button>
+        <button onclick="toggleConcierge()" class="border border-tertiary text-tertiary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px] hover:bg-tertiary hover:text-white transition-colors duration-300">Reserve a Bottle</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TASTING NOTES -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] bg-surface-container-low reveal-soft">
+  <div class="max-w-screen-2xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">Tasting Notes</span>
+      <h2 class="font-headline-md text-headline-md text-on-background">The Flavor Profile</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="note-card bg-white border border-[#F4E6C1] p-8 text-center"><div class="w-12 h-12 border border-[#D8B36A]/30 flex items-center justify-center mx-auto mb-5"><span class="material-symbols-outlined text-tertiary text-2xl">water_drop</span></div><span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">Opening</span><p class="font-headline-sm text-lg mb-2" style="font-family:'Playfair Display',serif;">Lush Coconut</p><p class="font-body-md text-sm text-on-surface-variant">Rich tropical coconut milk — immediately luxurious and enveloping.</p></div>
+      <div class="note-card bg-primary-container border border-[#F4E6C1] p-8 text-center"><div class="w-12 h-12 border border-[#D8B36A]/30 flex items-center justify-center mx-auto mb-5"><span class="material-symbols-outlined text-tertiary text-2xl">spa</span></div><span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">Heart</span><p class="font-headline-sm text-lg mb-2" style="font-family:'Playfair Display',serif;">Silky Cream</p><p class="font-body-md text-sm text-on-surface-variant">A velvety, creamy texture that coats the palate in pure elegance.</p></div>
+      <div class="note-card bg-white border border-[#F4E6C1] p-8 text-center"><div class="w-12 h-12 border border-[#D8B36A]/30 flex items-center justify-center mx-auto mb-5"><span class="material-symbols-outlined text-tertiary text-2xl">local_florist</span></div><span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">Mid</span><p class="font-headline-sm text-lg mb-2" style="font-family:'Playfair Display',serif;">Warm Vanilla</p><p class="font-body-md text-sm text-on-surface-variant">Soft vanilla rounds the experience with sweetness without weight.</p></div>
+      <div class="note-card bg-primary-container border border-[#F4E6C1] p-8 text-center"><div class="w-12 h-12 border border-[#D8B36A]/30 flex items-center justify-center mx-auto mb-5"><span class="material-symbols-outlined text-tertiary text-2xl">favorite</span></div><span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">Finish</span><p class="font-headline-sm text-lg mb-2" style="font-family:'Playfair Display',serif;">Lingering Warmth</p><p class="font-body-md text-sm text-on-surface-variant">A long, gentle finish of spice and cream that stays beautifully.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA DARK -->
+<section class="py-[80px] md:py-[100px] overflow-hidden relative reveal-soft" style="background:linear-gradient(135deg,#1A0F08 0%,#2C1B12 60%,#1A0F08 100%);">
+  <div class="absolute inset-0 pointer-events-none"><div style="position:absolute;width:60%;height:60%;top:20%;left:-10%;background:radial-gradient(circle,rgba(216,179,106,0.07) 0%,transparent 70%);"></div></div>
+  <div class="relative z-10 px-5 md:px-[80px] max-w-screen-2xl mx-auto text-center">
+    <span class="font-label-caps text-[10px] uppercase tracking-[0.5em] block mb-6" style="color:#D8B36A;">Alexandra's Favorite</span>
+    <h2 class="font-display-lg leading-tight mb-6" style="font-size:clamp(32px,5vw,60px);font-family:'Playfair Display',serif;color:#F4E6C1;">Taste What She Loves Most.</h2>
+    <p class="font-body-lg text-body-lg mb-10" style="color:rgba(255,248,246,0.65);">Order Coconut Cream — the expression that started everything.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button onclick="toggleConcierge()" class="bg-[#D8B36A] text-[#1A0F08] px-10 py-4 font-label-caps text-[10px] uppercase tracking-[0.25em] font-semibold min-h-[52px] hover:bg-[#F4E6C1] transition-colors duration-300">Order Now</button>
+      <a href="collection.html" class="border border-[#D8B36A]/40 text-[#D8B36A] px-10 py-4 font-label-caps text-[10px] uppercase tracking-[0.25em] min-h-[52px] inline-flex items-center justify-center hover:border-[#D8B36A] transition-colors duration-500">Explore All Flavors</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-background w-full py-[80px] md:py-[120px] border-t border-outline-variant/20 pulse-bg">
+  <div class="grid grid-cols-2 md:grid-cols-12 px-5 md:px-[80px] gap-6 w-full mx-auto max-w-screen-2xl">
+    <div class="col-span-2 md:col-span-4 mb-8 md:mb-0"><a href="index.html"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-24 md:h-28 w-auto mb-2"/></a><p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A legacy of Haitian craftsmanship, delivered to the global epicurean.</p></div>
+    <div class="col-span-1 md:col-span-2"><h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Explore</h4><ul class="space-y-3 font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="our-story.html">Our Story</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="collection.html">Collection</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="the-experience.html">Experience</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="gallery.html">Gallery</a></li></ul></div>
+    <div class="col-span-1 md:col-span-2"><h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Support</h4><ul class="space-y-3 font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="shipping-faq.html">Shipping & FAQ</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="contact.html">Contact</a></li></ul></div>
+    <div class="col-span-2 md:col-span-4 flex flex-col md:items-end"><p class="font-body-md text-body-md text-on-surface-variant italic">© 2025 Sandou Kremas. Crafted with Heritage.</p></div>
+  </div>
+</footer>
+<script>
+  (function(){const loader=document.getElementById('loading-screen');if(sessionStorage.getItem('sk_visited')){if(loader&&loader.parentNode)loader.parentNode.removeChild(loader);}else{function dismissLoader(){sessionStorage.setItem('sk_visited','1');loader.classList.add('fade-out');setTimeout(()=>{if(loader&&loader.parentNode)loader.parentNode.removeChild(loader);},950);}if(document.readyState==='complete'){setTimeout(dismissLoader,1400);}else{window.addEventListener('load',()=>setTimeout(dismissLoader,1400));}}})();
+  (function(){const overlay=document.getElementById('page-transition');document.addEventListener('click',function(e){const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(!href||href[0]==='#'||href.includes('://')||href.startsWith('mailto:')||href.startsWith('tel:'))return;e.preventDefault();overlay.classList.add('leaving');setTimeout(()=>{window.location.href=href;},220);});})();
+  document.body.classList.add('js-ready');
+  const conciergeModal=document.getElementById('concierge-modal');
+  function toggleConcierge(){const open=conciergeModal.classList.toggle('active');document.body.style.overflow=open?'hidden':'';if(open)initConciergeParticles();}
+  document.getElementById('concierge-trigger').addEventListener('click',toggleConcierge);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&conciergeModal.classList.contains('active'))toggleConcierge();});
+  let mobileMenuOpen=false;
+  function toggleMobileMenu(){mobileMenuOpen=!mobileMenuOpen;document.getElementById('mobile-menu').classList.toggle('open',mobileMenuOpen);document.getElementById('mobile-menu-btn').setAttribute('aria-expanded',mobileMenuOpen);document.getElementById('ham-1').style.transform=mobileMenuOpen?'rotate(45deg) translate(5px, 5px)':'';document.getElementById('ham-2').style.opacity=mobileMenuOpen?'0':'1';document.getElementById('ham-3').style.transform=mobileMenuOpen?'rotate(-45deg) translate(5px, -5px)':'';}
+  const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('active');});},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal-soft').forEach(el=>revealObserver.observe(el));
+  const globalCanvas=document.getElementById('global-dust-canvas');const gCtx=globalCanvas.getContext('2d');const globalParticles=[];
+  function resizeGlobalCanvas(){globalCanvas.width=window.innerWidth;globalCanvas.height=window.innerHeight;}
+  class GlobalParticle{constructor(){this.reset();}reset(){this.x=Math.random()*globalCanvas.width;this.y=Math.random()*globalCanvas.height;this.size=Math.random()*1.4+0.2;this.speedX=(Math.random()-0.5)*0.2;this.speedY=Math.random()*0.25+0.08;this.opacity=Math.random()*0.28+0.04;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.y>globalCanvas.height){this.y=-10;this.x=Math.random()*globalCanvas.width;}if(this.x<0||this.x>globalCanvas.width)this.reset();}draw(){gCtx.fillStyle=`rgba(216,179,106,${this.opacity})`;gCtx.beginPath();gCtx.arc(this.x,this.y,this.size,0,Math.PI*2);gCtx.fill();}}
+  resizeGlobalCanvas();for(let i=0;i<55;i++)globalParticles.push(new GlobalParticle());
+  function animateGlobal(){gCtx.clearRect(0,0,globalCanvas.width,globalCanvas.height);globalParticles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animateGlobal);}animateGlobal();
+  window.addEventListener('resize',resizeGlobalCanvas,{passive:true});
+  const cCanvas=document.getElementById('concierge-dust-canvas');const cCtx=cCanvas.getContext('2d');let cParticles=[];
+  function initConciergeParticles(){cParticles=[];cCanvas.width=cCanvas.parentElement.offsetWidth;cCanvas.height=cCanvas.parentElement.offsetHeight;for(let i=0;i<28;i++){cParticles.push({x:Math.random()*cCanvas.width,y:Math.random()*cCanvas.height,size:Math.random()*1.2+0.2,speedX:(Math.random()-0.5)*0.2,speedY:Math.random()*0.3+0.1,opacity:Math.random()*0.3+0.05});}animateConcierge();}
+  function animateConcierge(){if(!conciergeModal.classList.contains('active'))return;cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);cParticles.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.y>cCanvas.height){p.y=-5;p.x=Math.random()*cCanvas.width;}cCtx.fillStyle=`rgba(216,179,106,${p.opacity})`;cCtx.beginPath();cCtx.arc(p.x,p.y,p.size,0,Math.PI*2);cCtx.fill();});requestAnimationFrame(animateConcierge);}
+  document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shipping & FAQ | Sandou Kremas</title>
+<link rel="icon" type="image/png" href="SAndouKremas%20logo.png"/>
+<link rel="apple-touch-icon" href="SAndouKremas%20logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = { darkMode:"class", theme:{ extend:{ colors:{"on-primary-container":"#716f66","inverse-primary":"#cac6bc","surface-container-high":"#ffe2d5","on-background":"#28180f","on-tertiary-container":"#896a29","surface-tint":"#615e56","secondary":"#675e41","on-surface":"#28180f","on-secondary-fixed":"#221b05","surface-bright":"#fff8f6","on-error":"#ffffff","surface-variant":"#fcdccd","inverse-surface":"#3f2c22","secondary-fixed-dim":"#d3c6a2","secondary-container":"#f0e2bd","tertiary-fixed":"#ffdea2","primary-fixed":"#e7e2d7","outline":"#7a776e","on-secondary-fixed-variant":"#4f462b","inverse-on-surface":"#ffede6","on-primary-fixed-variant":"#49473f","background":"#fff8f6","error":"#ba1a1a","primary-container":"#f8f3e8","tertiary":"#765a1a","error-container":"#ffdad6","on-error-container":"#93000a","primary-fixed-dim":"#cac6bc","on-tertiary-fixed-variant":"#5c4201","on-secondary-container":"#6e6446","surface":"#fff8f6","surface-container-low":"#fff1eb","tertiary-container":"#fff2e0","surface-dim":"#f3d4c5","tertiary-fixed-dim":"#e7c177","on-primary-fixed":"#1d1c15","primary":"#615e56","outline-variant":"#cac6bc","on-primary":"#ffffff","surface-container-highest":"#fcdccd","secondary-fixed":"#f0e2bd","on-secondary":"#ffffff","surface-container":"#ffeae0","on-surface-variant":"#49473f","on-tertiary":"#ffffff","on-tertiary-fixed":"#261900","surface-container-lowest":"#ffffff"}, borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}, spacing:{"margin-mobile":"20px","margin-desktop":"80px","gutter":"24px","base":"8px","section-gap":"120px"}, fontFamily:{"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Montserrat"],"body-lg":["Montserrat"],"headline-sm":["Playfair Display"],"label-caps":["Montserrat"],"display-lg":["Playfair Display"]}, fontSize:{"headline-md":["32px",{lineHeight:"1.3",fontWeight:"600"}],"display-lg-mobile":["40px",{lineHeight:"1.2",fontWeight:"700"}],"body-md":["16px",{lineHeight:"1.6",letterSpacing:"0.02em",fontWeight:"400"}],"body-lg":["18px",{lineHeight:"1.6",letterSpacing:"0.03em",fontWeight:"300"}],"headline-sm":["24px",{lineHeight:"1.4",fontWeight:"600"}],"label-caps":["12px",{lineHeight:"1.0",letterSpacing:"0.15em",fontWeight:"600"}],"display-lg":["64px",{lineHeight:"1.1",letterSpacing:"-0.02em",fontWeight:"700"}]} } } }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+  .glass-effect { backdrop-filter: blur(20px); background: rgba(248,243,232,0.5); border: 1px solid rgba(216,179,106,0.25); box-shadow: 0 8px 32px 0 rgba(44,27,18,0.1); }
+  .btn-luxury { transition: letter-spacing 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, transform 0.2s ease; position: relative; overflow: hidden; }
+  .btn-luxury:hover { letter-spacing: 0.25em; } .btn-luxury:active { transform: scale(0.97); }
+  .card-lift { transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), box-shadow 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .card-lift:hover { transform: translateY(-8px); box-shadow: 0 24px 48px -8px rgba(97,94,86,0.15); }
+  @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+  .cinematic-zoom { animation: subtleZoom 60s ease-out forwards; }
+  @keyframes ambientLight { 0%,100% { opacity: 0.3; transform: translate(-10%,-10%) scale(1); } 50% { opacity: 0.6; transform: translate(10%,10%) scale(1.2); } }
+  .ambient-glow { position: absolute; width: 150%; height: 150%; background: radial-gradient(circle, rgba(216,179,106,0.18) 0%, transparent 70%); animation: ambientLight 20s ease-in-out infinite; pointer-events: none; z-index: 1; }
+  @keyframes gleam { 0% { mask-position: -200%; } 100% { mask-position: 200%; } }
+  .shimmer-gleam { mask-image: linear-gradient(65deg, rgba(0,0,0,1) 40%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,1) 60%); mask-size: 200% 100%; animation: gleam 4s infinite linear; }
+  .js-ready .reveal-soft { opacity: 0; filter: blur(10px); transform: translateY(36px); transition: opacity 2s cubic-bezier(0.16,1,0.3,1), filter 2s cubic-bezier(0.16,1,0.3,1), transform 2s cubic-bezier(0.16,1,0.3,1); }
+  .js-ready .reveal-soft.active { opacity: 1; filter: blur(0); transform: translateY(0); }
+  .passpartout-frame { border: 1px solid #D8B36A; padding: 16px; background: white; }
+  .text-underline-expand { position: relative; }
+  .text-underline-expand::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1px; background: #D8B36A; transition: all 0.5s ease; transform: translateX(-50%); }
+  .text-underline-expand:hover::after { width: 100%; }
+  @keyframes conciergeFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .concierge-float { animation: conciergeFloat 4s ease-in-out infinite; }
+  .concierge-modal { transition: all 0.8s cubic-bezier(0.16,1,0.3,1); transform: scale(0.92) translateY(20px); opacity: 0; pointer-events: none; }
+  .concierge-modal.active { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto; }
+  @keyframes backgroundPulse { 0%,100% { background-color: #fff8f6; } 50% { background-color: #fffcfb; } }
+  .pulse-bg { animation: backgroundPulse 8s ease-in-out infinite; }
+  #global-dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; opacity: 0.35; }
+  #concierge-dust-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.6; border-radius: inherit; }
+  .mobile-menu { transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1); opacity: 0; transform: translateY(-20px); pointer-events: none; }
+  .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .brand-logo { mix-blend-mode: multiply; display: block; }
+  #loading-screen { position: fixed; inset: 0; z-index: 300; background: #fff8f6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), visibility 0.9s cubic-bezier(0.16,1,0.3,1); }
+  #loading-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+  #page-transition { position: fixed; inset: 0; z-index: 250; background: #fff8f6; opacity: 0; pointer-events: none; transition: opacity 0.22s ease; }
+  #page-transition.leaving { opacity: 1; pointer-events: all; }
+  @keyframes logoReveal { from { opacity: 0; transform: scale(0.82) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes lineExpand { from { width: 0; opacity: 0; } to { width: 64px; opacity: 1; } }
+  #loading-logo { animation: logoReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+  #loading-line { height: 1px; background: #D8B36A; animation: lineExpand 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
+  .crawling-light { background: linear-gradient(120deg, transparent 30%, rgba(216,179,106,0.04) 50%, transparent 70%); background-size: 200% 100%; animation: crawl 15s linear infinite; }
+  @keyframes crawl { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  /* FAQ accordion */
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease; opacity: 0; }
+  .faq-item.open .faq-answer { max-height: 300px; opacity: 1; }
+  .faq-icon { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  @media (prefers-reduced-motion: reduce) { .cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float,.crawling-light { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+
+<div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
+  <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"/>
+  <div id="loading-line" style="width: 64px; height: 1px; background: #D8B36A;"></div>
+  <p style="font-family: Montserrat, sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #49473f; opacity: 0; animation: logoReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.9s both;">Crafted Tradition. Bottled Elegance.</p>
+</div>
+<div id="page-transition" aria-hidden="true"></div>
+<canvas id="global-dust-canvas" aria-hidden="true"></canvas>
+
+<div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[70] concierge-float">
+  <div class="relative group">
+    <div class="absolute inset-0 bg-[#D8B36A]/10 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    <button id="concierge-trigger" aria-label="Speak with a concierge" class="glass-effect relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full hover:border-[#D8B36A] transition-all duration-500 min-h-[44px]">
+      <span class="material-symbols-outlined text-tertiary text-xl">stylus_note</span>
+      <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase hidden sm:block">Speak with a Concierge</span>
+    </button>
+  </div>
+</div>
+
+<div id="concierge-modal" class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4 sm:p-6 bg-black/20 backdrop-blur-sm concierge-modal" role="dialog" aria-modal="true" aria-label="Sandou Concierge">
+  <div class="absolute inset-0" onclick="toggleConcierge()" aria-hidden="true"></div>
+  <div class="glass-effect relative w-full max-w-lg p-8 sm:p-12 rounded-xl overflow-hidden">
+    <canvas id="concierge-dust-canvas" aria-hidden="true"></canvas>
+    <button aria-label="Close concierge" class="absolute top-4 right-4 text-on-surface-variant hover:text-tertiary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" onclick="toggleConcierge()"><span class="material-symbols-outlined">close</span></button>
+    <div class="space-y-6 relative z-10">
+      <div class="text-center space-y-3"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-16 w-auto mx-auto"/><span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.4em] block">Personal Hospitality</span><h3 class="font-headline-md text-2xl text-on-background" style="font-family:'Playfair Display',serif;font-style:italic;">Welcome to our cellar. How may I guide your celebration today?</h3></div>
+      <div class="space-y-5"><div class="border-b border-[#D8B36A]/20 pb-4"><p class="font-label-caps text-[10px] uppercase text-on-surface-variant mb-3">I am interested in…</p><div class="flex flex-wrap gap-2"><button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Private Tastings</button><button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Bulk Reserves</button><button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">The Heritage Story</button></div></div><textarea class="w-full bg-transparent border border-[#D8B36A]/25 p-4 font-body-md text-sm focus:ring-0 focus:border-tertiary transition-colors placeholder:italic placeholder:text-on-surface-variant/40 resize-none rounded-sm" placeholder="Whisper your request here…" rows="3"></textarea><button class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">Send to the Cellar Master</button></div>
+    </div>
+  </div>
+</div>
+
+<nav class="fixed top-0 w-full z-[60] bg-surface/40 backdrop-blur-xl border-b border-outline-variant/10" role="navigation">
+  <div class="flex justify-between items-center w-full px-5 md:px-[80px] py-5 max-w-screen-2xl mx-auto">
+    <a href="index.html" class="flex items-center flex-shrink-0"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-12 md:h-16 w-auto"/></a>
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="our-story.html">Story</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="collection.html">Collection</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="the-experience.html">Experience</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="gallery.html">Gallery</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="bg-[#2C1B12] text-[#F8F3E8] px-6 md:px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hidden sm:block" onclick="toggleConcierge()">Reserve</button>
+      <a href="account.html" class="sk-account-link relative text-on-surface-variant hover:text-tertiary transition-all duration-300 min-w-[44px] min-h-[44px] hidden sm:flex items-center justify-center" aria-label="Account">
+        <span class="material-symbols-outlined text-xl">person</span>
+        <span class="sk-auth-dot hidden absolute top-2 right-2 w-2 h-2 bg-[#D8B36A] rounded-full"></span>
+      </a>
+      <button id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden flex flex-col gap-[5px] p-2 min-w-[44px] min-h-[44px] items-center justify-center" onclick="toggleMobileMenu()">
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-1"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-2"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-3"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-lg px-5 py-6 flex flex-col gap-5">
+    <div class="flex justify-center pb-4 border-b border-outline-variant/20"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-20 w-auto"/></div>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="our-story.html" onclick="toggleMobileMenu()">Story</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="collection.html" onclick="toggleMobileMenu()">Collection</a>
+    <a class="font-label-caps text-label-calls uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="the-experience.html" onclick="toggleMobileMenu()">Experience</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="gallery.html" onclick="toggleMobileMenu()">Gallery</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-tertiary py-2 min-h-[44px] flex items-center" href="shipping-faq.html" onclick="toggleMobileMenu()">Shipping & FAQ</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="contact.html" onclick="toggleMobileMenu()">Contact</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center gap-2" href="account.html" onclick="toggleMobileMenu()">
+      <span class="material-symbols-outlined text-base">person</span>Account
+    </a>
+    <button class="bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] mt-2" onclick="toggleMobileMenu(); toggleConcierge();">Reserve</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="pt-40 pb-20 md:pt-52 md:pb-28 px-5 md:px-[80px] max-w-screen-2xl mx-auto text-center">
+  <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.5em] block mb-6">Delivery & Support</span>
+  <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">We Ship Nationwide</h1>
+  <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto reveal-soft" style="font-style:italic;">From our cellar to your door. Every bottle delivered with the same care it was crafted with.</p>
+</section>
+
+<!-- ═══ SHIPPING HIGHLIGHTS ═══ -->
+<section class="pb-[80px] md:pb-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white border border-[#F4E6C1] p-10 text-center card-lift">
+      <span class="material-symbols-outlined text-tertiary text-5xl mb-5 block">local_shipping</span>
+      <h3 class="font-headline-sm text-headline-sm mb-3">Nationwide Shipping</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant">We ship Sandou Kremas to all 50 states across America. Wherever you are, we can reach you.</p>
+    </div>
+    <div class="bg-[#2C1B12] border border-[#2C1B12] p-10 text-center card-lift">
+      <span class="material-symbols-outlined text-[#D8B36A] text-5xl mb-5 block">inventory_2</span>
+      <h3 class="font-headline-sm text-headline-sm mb-3 text-[#F4E6C1]">Secure Packaging</h3>
+      <p class="font-body-md text-body-md" style="color:rgba(244,230,193,0.7);">Every bottle is carefully packaged to ensure it arrives in perfect condition — ready to be opened and enjoyed.</p>
+    </div>
+    <div class="bg-white border border-[#F4E6C1] p-10 text-center card-lift">
+      <span class="material-symbols-outlined text-tertiary text-5xl mb-5 block">verified</span>
+      <h3 class="font-headline-sm text-headline-sm mb-3">Delivered With Care</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant">Your order is treated with the same attention to detail that goes into crafting every bottle of Sandou.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT CARE ═══ -->
+<section class="py-[80px] md:py-[100px] bg-surface-container-low crawling-light reveal-soft">
+  <div class="px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div>
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">Product Care</span>
+        <h2 class="font-display-lg leading-tight text-on-background mb-8" style="font-size:clamp(28px,3.5vw,44px); font-family:'Playfair Display',serif;">Caring for Your Sandou</h2>
+        <div class="space-y-6">
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 border border-[#D8B36A]/40 flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="material-symbols-outlined text-tertiary text-xl">ac_unit</span>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-lg mb-2">Refrigerate After Opening</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Once opened, store your Sandou Kremas in the refrigerator. It keeps best between 35–40°F and will maintain its quality for up to 3 months after opening.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 border border-[#D8B36A]/40 flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="material-symbols-outlined text-tertiary text-xl">light_mode</span>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-lg mb-2">Store Away from Light</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Keep unopened bottles in a cool, dark place. Direct sunlight can affect the delicate balance of flavors — treat it like you'd treat a fine spirit.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 border border-[#D8B36A]/40 flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="material-symbols-outlined text-tertiary text-xl">rotate_left</span>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-lg mb-2">Shake Gently Before Serving</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Natural ingredients may settle over time. Give your bottle a gentle shake before pouring to ensure every pour delivers the full, rich flavor experience.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 border border-[#D8B36A]/40 flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="material-symbols-outlined text-tertiary text-xl">timer</span>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-lg mb-2">Best Within 12 Months</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Unopened bottles are best enjoyed within 12 months of purchase. Though with Sandou, we doubt a bottle stays unopened that long.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Ordering steps -->
+      <div>
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">Ordering</span>
+        <h2 class="font-display-lg leading-tight text-on-background mb-8" style="font-size:clamp(28px,3.5vw,44px); font-family:'Playfair Display',serif;">How to Place Your Order</h2>
+        <div class="space-y-0">
+          <div class="flex gap-6 items-start pb-8 relative">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 bg-[#2C1B12] text-[#F8F3E8] flex items-center justify-center font-label-caps text-[11px] font-semibold flex-shrink-0">01</div>
+              <div class="w-px flex-1 bg-[#D8B36A]/20 mt-2"></div>
+            </div>
+            <div class="pb-4">
+              <h4 class="font-headline-sm text-lg mb-2">Browse the Collection</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Explore our six expressions and discover which flavor calls to you. Each one has its own story, its own character.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start pb-8 relative">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 bg-[#2C1B12] text-[#F8F3E8] flex items-center justify-center font-label-caps text-[11px] font-semibold flex-shrink-0">02</div>
+              <div class="w-px flex-1 bg-[#D8B36A]/20 mt-2"></div>
+            </div>
+            <div class="pb-4">
+              <h4 class="font-headline-sm text-lg mb-2">Reserve Your Bottle</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Click "Reserve" or "Speak with a Concierge" to place your order. Our team will confirm availability and shipping details promptly.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 bg-[#D8B36A] text-white flex items-center justify-center font-label-caps text-[11px] font-semibold flex-shrink-0">03</div>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-lg mb-2">Delivered to Your Door</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Your Sandou Kremas is carefully packaged and shipped directly to you. Enjoy nationwide delivery across all 50 states.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10">
+          <button onclick="toggleConcierge()" class="bg-[#2C1B12] text-[#F8F3E8] px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px] w-full sm:w-auto">Place Your Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft">
+  <div class="text-center mb-16">
+    <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">Questions</span>
+    <h2 class="font-headline-md text-headline-md text-on-background">Frequently Asked Questions</h2>
+  </div>
+  <div class="max-w-3xl mx-auto space-y-0" id="faq-list">
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>How do I place an order?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">You can place an order by clicking the "Reserve" button or "Speak with a Concierge" on any page. Our team will reach out to confirm your order, preferred flavors, and shipping details.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>Do you ship to all 50 states?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Yes. Sandou Kremas ships nationwide across all 50 states. Please note that shipping alcohol is subject to state regulations. Our team will confirm availability in your state when you place your order.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>How long does shipping take?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Standard shipping typically takes 5–10 business days, depending on your location. We'll provide tracking information once your order is dispatched so you can follow every step of your Sandou's journey.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>How should I store Sandou Kremas?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Unopened bottles should be stored in a cool, dark place. Once opened, refrigerate and consume within 3 months. Shake gently before serving as natural ingredients may settle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>What is the alcohol content of Sandou Kremas?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Sandou Kremas is a traditional Haitian cream liqueur that contains aged rum. The alcohol content varies by expression. Please contact us for specific ABV information on the flavor you are interested in.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>Can I order in bulk for events or parties?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Absolutely. We love helping make celebrations special. Contact us through the concierge or our contact page to discuss bulk orders, event quantities, and any special packaging options.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>Do you offer wholesale opportunities?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">Yes, we welcome wholesale inquiries from retailers, restaurants, and distributors who share our appreciation for premium Haitian craftsmanship. Please reach out through our Contact page and let us know about your business.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>Can I send Sandou Kremas as a gift?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">There is no finer gift. When placing your order, simply provide the recipient's address and let us know it's a gift. We can include a personalized message with your bottle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>What is your return policy?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">We stand behind the quality of every bottle we ship. If your order arrives damaged or there is an issue with your shipment, please contact us within 48 hours of delivery and we will make it right.</p>
+      </div>
+    </div>
+
+    <div class="faq-item border-b border-outline-variant/30">
+      <button class="w-full flex justify-between items-center py-6 text-left font-headline-sm text-lg text-on-background hover:text-tertiary transition-colors duration-300 min-h-[64px]" onclick="toggleFaq(this)">
+        <span>How can I contact Sandou Kremas?</span>
+        <span class="material-symbols-outlined faq-icon text-tertiary flex-shrink-0 ml-4">add</span>
+      </button>
+      <div class="faq-answer">
+        <p class="font-body-md text-body-md text-on-surface-variant pb-6 leading-relaxed">You can reach us through our <a href="contact.html" class="text-tertiary text-underline-expand">Contact page</a>, via the Concierge button on any page, or by email. We respond to all inquiries personally and promptly.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="py-[60px] md:py-[80px] px-5 md:px-[80px] max-w-screen-2xl mx-auto text-center reveal-soft">
+  <div class="max-w-xl mx-auto">
+    <h2 class="font-headline-md text-headline-md text-on-background mb-4">Still Have Questions?</h2>
+    <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Our team is here to help. Reach out through any channel and we'll respond personally.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="contact.html" class="bg-[#2C1B12] text-[#F8F3E8] px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px]">Contact Us</a>
+      <button onclick="toggleConcierge()" class="border border-tertiary text-tertiary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px] hover:bg-tertiary hover:text-white transition-colors duration-300">Speak with a Concierge</button>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-background w-full py-[80px] md:py-[120px] border-t border-outline-variant/20 pulse-bg">
+  <div class="grid grid-cols-2 md:grid-cols-12 px-5 md:px-[80px] gap-6 w-full mx-auto max-w-screen-2xl">
+    <div class="col-span-2 md:col-span-4 mb-8 md:mb-0"><a href="index.html"><img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-24 md:h-28 w-auto mb-2"/></a><p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A legacy of Haitian craftsmanship, delivered to the global epicurean.</p></div>
+    <div class="col-span-1 md:col-span-2"><h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Explore</h4><ul class="space-y-3 font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="our-story.html">Our Story</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="collection.html">Collection</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="the-experience.html">Experience</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="gallery.html">Gallery</a></li></ul></div>
+    <div class="col-span-1 md:col-span-2"><h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Support</h4><ul class="space-y-3 font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="shipping-faq.html">Shipping & FAQ</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="contact.html">Contact</a></li><li><a class="hover:text-on-surface transition-colors text-underline-expand" href="#">Privacy</a></li></ul></div>
+    <div class="col-span-2 md:col-span-4 flex flex-col md:items-end justify-between gap-6"><div class="flex gap-6"><a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a><a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Instagram"><span class="material-symbols-outlined">camera_indoor</span></a></div><p class="font-body-md text-body-md text-on-surface-variant italic">© 2025 Sandou Kremas. Crafted with Heritage.</p></div>
+  </div>
+</footer>
+
+<script>
+  (function() { const loader = document.getElementById('loading-screen'); if (sessionStorage.getItem('sk_visited')) { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); } else { function dismissLoader() { sessionStorage.setItem('sk_visited','1'); loader.classList.add('fade-out'); setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 950); } if (document.readyState === 'complete') { setTimeout(dismissLoader, 1400); } else { window.addEventListener('load', () => setTimeout(dismissLoader, 1400)); } } })();
+  (function() { const overlay = document.getElementById('page-transition'); document.addEventListener('click', function(e) { const link = e.target.closest('a[href]'); if (!link) return; const href = link.getAttribute('href'); if (!href || href[0] === '#' || href.includes('://') || href.startsWith('mailto:') || href.startsWith('tel:')) return; e.preventDefault(); overlay.classList.add('leaving'); setTimeout(() => { window.location.href = href; }, 220); }); })();
+  document.body.classList.add('js-ready');
+  const conciergeModal = document.getElementById('concierge-modal');
+  function toggleConcierge() { const open = conciergeModal.classList.toggle('active'); document.body.style.overflow = open ? 'hidden' : ''; if (open) initConciergeParticles(); }
+  document.getElementById('concierge-trigger').addEventListener('click', toggleConcierge);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && conciergeModal.classList.contains('active')) toggleConcierge(); });
+  let mobileMenuOpen = false;
+  function toggleMobileMenu() { mobileMenuOpen = !mobileMenuOpen; document.getElementById('mobile-menu').classList.toggle('open', mobileMenuOpen); document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', mobileMenuOpen); document.getElementById('ham-1').style.transform = mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : ''; document.getElementById('ham-2').style.opacity = mobileMenuOpen ? '0' : '1'; document.getElementById('ham-3').style.transform = mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : ''; }
+  function toggleFaq(btn) { const item = btn.parentElement; const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); }
+  const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal-soft').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('section:first-of-type .reveal-soft').forEach(el => { setTimeout(() => el.classList.add('active'), 600); });
+  const globalCanvas = document.getElementById('global-dust-canvas'); const gCtx = globalCanvas.getContext('2d'); const globalParticles = [];
+  function resizeGlobalCanvas() { globalCanvas.width = window.innerWidth; globalCanvas.height = window.innerHeight; }
+  class GlobalParticle { constructor() { this.reset(); } reset() { this.x = Math.random() * globalCanvas.width; this.y = Math.random() * globalCanvas.height; this.size = Math.random() * 1.4 + 0.2; this.speedX = (Math.random() - 0.5) * 0.2; this.speedY = Math.random() * 0.25 + 0.08; this.opacity = Math.random() * 0.28 + 0.04; } update() { this.x += this.speedX; this.y += this.speedY; if (this.y > globalCanvas.height) { this.y = -10; this.x = Math.random() * globalCanvas.width; } if (this.x < 0 || this.x > globalCanvas.width) this.reset(); } draw() { gCtx.fillStyle = `rgba(216,179,106,${this.opacity})`; gCtx.beginPath(); gCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); gCtx.fill(); } }
+  resizeGlobalCanvas(); for (let i = 0; i < 55; i++) globalParticles.push(new GlobalParticle());
+  function animateGlobal() { gCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height); globalParticles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateGlobal); } animateGlobal();
+  window.addEventListener('resize', resizeGlobalCanvas, { passive: true });
+  const cCanvas = document.getElementById('concierge-dust-canvas'); const cCtx = cCanvas.getContext('2d'); let cParticles = [];
+  function initConciergeParticles() { cParticles = []; cCanvas.width = cCanvas.parentElement.offsetWidth; cCanvas.height = cCanvas.parentElement.offsetHeight; for (let i = 0; i < 28; i++) { cParticles.push({ x: Math.random() * cCanvas.width, y: Math.random() * cCanvas.height, size: Math.random() * 1.2 + 0.2, speedX: (Math.random() - 0.5) * 0.2, speedY: Math.random() * 0.3 + 0.1, opacity: Math.random() * 0.3 + 0.05 }); } animateConcierge(); }
+  function animateConcierge() { if (!conciergeModal.classList.contains('active')) return; cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); cParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; } cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; cCtx.beginPath(); cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); cCtx.fill(); }); requestAnimationFrame(animateConcierge); }
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>

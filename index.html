@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sandou Kremas | Every Bottle Tells A Story</title>
+<link rel="icon" type="image/png" href="SAndouKremas%20logo.png"/>
+<link rel="apple-touch-icon" href="SAndouKremas%20logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-container": "#716f66",
+          "inverse-primary": "#cac6bc",
+          "surface-container-high": "#ffe2d5",
+          "on-background": "#28180f",
+          "on-tertiary-container": "#896a29",
+          "surface-tint": "#615e56",
+          "secondary": "#675e41",
+          "on-surface": "#28180f",
+          "on-secondary-fixed": "#221b05",
+          "surface-bright": "#fff8f6",
+          "on-error": "#ffffff",
+          "surface-variant": "#fcdccd",
+          "inverse-surface": "#3f2c22",
+          "secondary-fixed-dim": "#d3c6a2",
+          "secondary-container": "#f0e2bd",
+          "tertiary-fixed": "#ffdea2",
+          "primary-fixed": "#e7e2d7",
+          "outline": "#7a776e",
+          "on-secondary-fixed-variant": "#4f462b",
+          "inverse-on-surface": "#ffede6",
+          "on-primary-fixed-variant": "#49473f",
+          "background": "#fff8f6",
+          "error": "#ba1a1a",
+          "primary-container": "#f8f3e8",
+          "tertiary": "#765a1a",
+          "error-container": "#ffdad6",
+          "on-error-container": "#93000a",
+          "primary-fixed-dim": "#cac6bc",
+          "on-tertiary-fixed-variant": "#5c4201",
+          "on-secondary-container": "#6e6446",
+          "surface": "#fff8f6",
+          "surface-container-low": "#fff1eb",
+          "tertiary-container": "#fff2e0",
+          "surface-dim": "#f3d4c5",
+          "tertiary-fixed-dim": "#e7c177",
+          "on-primary-fixed": "#1d1c15",
+          "primary": "#615e56",
+          "outline-variant": "#cac6bc",
+          "on-primary": "#ffffff",
+          "surface-container-highest": "#fcdccd",
+          "secondary-fixed": "#f0e2bd",
+          "on-secondary": "#ffffff",
+          "surface-container": "#ffeae0",
+          "on-surface-variant": "#49473f",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed": "#261900",
+          "surface-container-lowest": "#ffffff"
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        spacing: {
+          "margin-mobile": "20px",
+          "margin-desktop": "80px",
+          "gutter": "24px",
+          "base": "8px",
+          "section-gap": "120px"
+        },
+        fontFamily: {
+          "headline-md": ["Playfair Display"],
+          "display-lg-mobile": ["Playfair Display"],
+          "body-md": ["Montserrat"],
+          "body-lg": ["Montserrat"],
+          "headline-sm": ["Playfair Display"],
+          "label-caps": ["Montserrat"],
+          "display-lg": ["Playfair Display"]
+        },
+        fontSize: {
+          "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+          "display-lg-mobile": ["40px", { lineHeight: "1.2", fontWeight: "700" }],
+          "body-md": ["16px", { lineHeight: "1.6", letterSpacing: "0.02em", fontWeight: "400" }],
+          "body-lg": ["18px", { lineHeight: "1.6", letterSpacing: "0.03em", fontWeight: "300" }],
+          "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+          "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.15em", fontWeight: "600" }],
+          "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  /* ── Icon defaults ── */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+
+  /* ── Glass utility ── */
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(248, 243, 232, 0.5);
+    border: 1px solid rgba(216, 179, 106, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(44, 27, 18, 0.1);
+  }
+
+  /* ── Button luxury (letter-spacing expand on hover) ── */
+  .btn-luxury {
+    transition: letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-luxury:hover { letter-spacing: 0.25em; }
+  .btn-luxury:active { transform: scale(0.97); }
+
+  /* ── Card lift (bento cards) ── */
+  .card-lift {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 28px 56px -12px rgba(97, 94, 86, 0.18);
+  }
+
+  /* ── Cinematic hero zoom ── */
+  @keyframes subtleZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+  }
+  .cinematic-zoom { animation: subtleZoom 60s ease-out forwards; }
+
+  /* ── Ambient gold glow (hero) ── */
+  @keyframes ambientLight {
+    0%,100% { opacity: 0.3; transform: translate(-10%, -10%) scale(1); }
+    50%     { opacity: 0.6; transform: translate(10%,  10%) scale(1.2); }
+  }
+  .ambient-glow {
+    position: absolute;
+    width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(216,179,106,0.18) 0%, transparent 70%);
+    animation: ambientLight 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── Shimmer gleam (hero headline) ── */
+  @keyframes gleam {
+    0%   { mask-position: -200%; }
+    100% { mask-position:  200%; }
+  }
+  .shimmer-gleam {
+    mask-image: linear-gradient(65deg, rgba(0,0,0,1) 40%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,1) 60%);
+    mask-size: 200% 100%;
+    animation: gleam 4s infinite linear;
+  }
+
+  /* ── Bottle shimmer sweep ── */
+  .bottle-shimmer { position: relative; }
+  .bottle-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.18), transparent);
+    transform: skewX(-20deg);
+    animation: bottleGleam 8s infinite linear;
+  }
+  @keyframes bottleGleam {
+    0%      { left: -150%; }
+    20%,100%{ left:  150%; }
+  }
+
+  /* ── Soft blur scroll reveal — JS activates the hidden state ── */
+  .js-ready .reveal-soft {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(36px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js-ready .reveal-soft.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  /* ── Signature SVG draw ── */
+  .signature-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 3s ease-out;
+  }
+  .signature-draw.active { stroke-dashoffset: 0; }
+
+  /* ── Crawling light (experience section bg) ── */
+  .crawling-light {
+    background: linear-gradient(120deg, transparent 30%, rgba(216,179,106,0.04) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: crawl 15s linear infinite;
+  }
+  @keyframes crawl {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ── Passpartout frame ── */
+  .passpartout-frame {
+    border: 1px solid #D8B36A;
+    padding: 16px;
+    background: white;
+  }
+
+  /* ── Gold underline link ── */
+  .text-underline-expand { position: relative; }
+  .text-underline-expand::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 50%;
+    width: 0; height: 1px;
+    background: #D8B36A;
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
+  }
+  .text-underline-expand:hover::after { width: 100%; }
+
+  /* ── Floating concierge button bob ── */
+  @keyframes conciergeFloat {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-8px); }
+  }
+  .concierge-float { animation: conciergeFloat 4s ease-in-out infinite; }
+
+  /* ── Concierge modal ── */
+  .concierge-modal {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.92) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .concierge-modal.active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ── Pulse background ── */
+  @keyframes backgroundPulse {
+    0%,100% { background-color: #fff8f6; }
+    50%     { background-color: #fffcfb; }
+  }
+  .pulse-bg { animation: backgroundPulse 8s ease-in-out infinite; }
+
+  /* ── Global dust canvas (fixed overlay) ── */
+  #global-dust-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+  }
+
+  /* ── Art section canvas (local, mouse-reactive) ── */
+  #art-dust-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ── Concierge modal canvas ── */
+  #concierge-dust-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    border-radius: inherit;
+  }
+
+  /* ── Mobile menu overlay ── */
+  .mobile-menu {
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* ── Logo — remove white bg on all surfaces ── */
+  .brand-logo {
+    mix-blend-mode: multiply;
+    display: block;
+  }
+
+  /* ── Loading screen ── */
+  #loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: #fff8f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #page-transition { position: fixed; inset: 0; z-index: 250; background: #fff8f6; opacity: 0; pointer-events: none; transition: opacity 0.22s ease; }
+  #page-transition.leaving { opacity: 1; pointer-events: all; }
+  @keyframes logoReveal {
+    from { opacity: 0; transform: scale(0.82) translateY(12px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0); }
+  }
+  @keyframes lineExpand {
+    from { width: 0; opacity: 0; }
+    to   { width: 64px; opacity: 1; }
+  }
+  #loading-logo {
+    animation: logoReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  #loading-line {
+    height: 1px;
+    background: #D8B36A;
+    animation: lineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .cinematic-zoom, .ambient-glow, .shimmer-gleam,
+    .reveal-soft, .bottle-shimmer::after,
+    .concierge-float, .crawling-light {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+    #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+
+<!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+═══════════════════════════════════════════ -->
+<div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
+  <img
+    id="loading-logo"
+    src="SAndouKremas%20logo.png"
+    alt="Sandou Kremas"
+    style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"
+  />
+  <div id="loading-line" style="width: 64px; height: 1px; background: #D8B36A;"></div>
+  <p style="font-family: Montserrat, sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #49473f; opacity: 0; animation: logoReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.9s both;">
+    Crafted Tradition. Bottled Elegance.
+  </p>
+</div>
+<div id="page-transition" aria-hidden="true"></div>
+
+<!-- Global gold dust particles -->
+<canvas id="global-dust-canvas" aria-hidden="true"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     FLOATING CONCIERGE BUTTON
+═══════════════════════════════════════════ -->
+<div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[70] concierge-float">
+  <div class="relative group">
+    <div class="absolute inset-0 bg-[#D8B36A]/10 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    <button
+      id="concierge-trigger"
+      aria-label="Speak with a concierge"
+      class="glass-effect relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full hover:border-[#D8B36A] transition-all duration-500 min-h-[44px]"
+    >
+      <span class="material-symbols-outlined text-tertiary text-xl">stylus_note</span>
+      <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase hidden sm:block">Sandou Concierge</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONCIERGE MODAL
+═══════════════════════════════════════════ -->
+<div
+  id="concierge-modal"
+  class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4 sm:p-6 bg-black/20 backdrop-blur-sm concierge-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Sandou Concierge"
+>
+  <div class="absolute inset-0" onclick="toggleConcierge()" aria-hidden="true"></div>
+  <div class="glass-effect relative w-full max-w-lg p-8 sm:p-12 rounded-xl overflow-hidden">
+    <canvas id="concierge-dust-canvas" aria-hidden="true"></canvas>
+    <button
+      aria-label="Close concierge"
+      class="absolute top-4 right-4 text-on-surface-variant hover:text-tertiary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+      onclick="toggleConcierge()"
+    >
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="space-y-6 relative z-10">
+      <div class="text-center space-y-3">
+        <img
+          src="SAndouKremas%20logo.png"
+          alt="Sandou Kremas"
+          class="brand-logo h-16 w-auto mx-auto"
+        />
+        <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.4em] block">Personal Hospitality</span>
+        <h3 class="font-headline-md text-2xl text-on-background" style="font-family:'Playfair Display',serif;font-style:italic;">
+          Welcome to our cellar. How may I guide your celebration today?
+        </h3>
+      </div>
+      <div class="space-y-5">
+        <div class="border-b border-[#D8B36A]/20 pb-4">
+          <p class="font-label-caps text-[10px] uppercase text-on-surface-variant mb-3">I am interested in…</p>
+          <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Private Tastings</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Bulk Reserves</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">The Heritage Story</button>
+          </div>
+        </div>
+        <textarea
+          id="concierge-message"
+          class="w-full bg-transparent border border-[#D8B36A]/25 p-4 font-body-md text-sm focus:ring-0 focus:border-tertiary transition-colors placeholder:italic placeholder:text-on-surface-variant/40 resize-none rounded-sm"
+          placeholder="Whisper your request here…"
+          rows="3"
+        ></textarea>
+        <div id="concierge-form-area">
+          <button id="concierge-submit-btn" onclick="handleConciergeSubmit(event)" class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">
+            Send to the Cellar Master
+          </button>
+        </div>
+        <div id="concierge-success" class="hidden text-center py-4">
+          <span class="material-symbols-outlined text-tertiary text-3xl block mb-2">check_circle</span>
+          <p class="font-body-md text-sm text-on-surface-variant">Your request has been received. We will be in touch shortly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav class="fixed top-0 w-full z-[60] bg-surface/40 backdrop-blur-xl border-b border-outline-variant/10" role="navigation">
+  <div class="flex justify-between items-center w-full px-5 md:px-[80px] py-5 max-w-screen-2xl mx-auto">
+    <!-- Logo -->
+    <a href="#" class="flex items-center flex-shrink-0" aria-label="Sandou Kremas — home">
+      <img
+        src="SAndouKremas%20logo.png"
+        alt="Sandou Kremas"
+        class="brand-logo h-12 md:h-16 w-auto"
+      />
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="our-story.html">Story</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="collection.html">Collection</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="the-experience.html">Experience</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        class="bg-[#2C1B12] text-[#F8F3E8] px-6 md:px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hidden sm:block"
+        onclick="toggleConcierge()"
+      >
+        Reserve
+      </button>
+      <a href="account.html" class="sk-account-link relative text-on-surface-variant hover:text-tertiary transition-all duration-300 min-w-[44px] min-h-[44px] hidden sm:flex items-center justify-center" aria-label="Account">
+        <span class="material-symbols-outlined text-xl">person</span>
+        <span class="sk-auth-dot hidden absolute top-2 right-2 w-2 h-2 bg-[#D8B36A] rounded-full"></span>
+      </a>
+      <!-- Hamburger -->
+      <button
+        id="mobile-menu-btn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        class="md:hidden flex flex-col gap-[5px] p-2 min-w-[44px] min-h-[44px] items-center justify-center"
+        onclick="toggleMobileMenu()"
+      >
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-1"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-2"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div id="mobile-menu" class="mobile-menu md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-lg px-5 py-6 flex flex-col gap-5">
+    <!-- Mobile logo -->
+    <div class="flex justify-center pb-4 border-b border-outline-variant/20">
+      <img
+        src="SAndouKremas%20logo.png"
+        alt="Sandou Kremas"
+        class="brand-logo h-20 w-auto"
+      />
+    </div>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="our-story.html" onclick="toggleMobileMenu()">Story</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="collection.html" onclick="toggleMobileMenu()">Collection</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="the-experience.html" onclick="toggleMobileMenu()">Experience</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="gallery.html" onclick="toggleMobileMenu()">Gallery</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="shipping-faq.html" onclick="toggleMobileMenu()">Shipping & FAQ</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="contact.html" onclick="toggleMobileMenu()">Contact</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center gap-2" href="account.html" onclick="toggleMobileMenu()">
+      <span class="material-symbols-outlined text-base">person</span>Account
+    </a>
+    <button
+      class="bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] mt-2"
+      onclick="toggleMobileMenu(); toggleConcierge();"
+    >
+      Reserve
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════ -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="ambient-glow"></div>
+    <div
+      class="w-full h-full cinematic-zoom bg-center bg-cover"
+      style="background-image: url('Luxury_cinematic_photography_f_Nano_Banana_2_04748.png');"
+    ></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60"></div>
+  </div>
+
+  <div class="relative z-10 text-center text-white px-5 md:px-0 max-w-4xl mx-auto">
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight shimmer-gleam">
+      Every Bottle Tells A Story
+    </h1>
+    <p class="font-body-lg text-body-lg max-w-2xl mx-auto mb-10 md:mb-12 opacity-90 reveal-soft">
+      Crafted from family tradition. Shared through every celebration.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center reveal-soft">
+      <a href="collection.html" class="bg-[#2C1B12] text-[#F8F3E8] px-8 sm:px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury w-full sm:w-auto sm:min-w-[220px] min-h-[52px] text-center block">
+        Explore Collection
+      </a>
+      <a href="our-story.html" class="border border-[#D8B36A] text-white px-8 sm:px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury w-full sm:w-auto sm:min-w-[220px] min-h-[52px] text-center block">
+        Our Story
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
+    <span class="material-symbols-outlined text-white text-4xl">keyboard_double_arrow_down</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER SECTION  (from cinematic/hospitality)
+═══════════════════════════════════════════ -->
+<section id="story" class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft pulse-bg">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <!-- Text -->
+    <div class="lg:col-span-6 space-y-8 order-2 lg:order-1">
+      <div class="space-y-3">
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block">The Founder</span>
+        <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md leading-tight text-on-background" style="font-size:clamp(28px,4vw,56px);">
+          Meet Alexandra Louis
+        </h2>
+      </div>
+      <div class="space-y-6">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Sandou Kremas was born from Alexandra Louis's vision — a kitchen in Port-au-Prince filled with the scent of toasted coconut and warm nutmeg. For Alexandra, this isn't just a beverage — it's a bottled memory of Haiti's most cherished celebrations.
+        </p>
+        <blockquote class="font-body-md text-body-md text-on-surface-variant/80 italic border-l-2 border-tertiary pl-6 md:pl-8">
+          "I wanted to create something that people had never tasted before. Every bottle tells a story — and that story begins in Port-au-Prince."
+        </blockquote>
+      </div>
+      <div class="pt-4 space-y-6">
+        <div class="relative inline-block">
+          <svg class="w-48 md:w-64 h-16 md:h-24 text-tertiary opacity-80" fill="none" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="signature-draw" d="M10,40 Q30,10 50,40 T90,40 T130,20 T170,40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <p class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant mt-1">Alexandra Louis</p>
+          <p class="font-body-md text-sm italic opacity-60">Founder &amp; Master Blender</p>
+        </div>
+        <div>
+          <a href="our-story.html" class="inline-flex items-center gap-3 border border-tertiary text-tertiary px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-tertiary hover:text-white transition-colors duration-300">
+            Read Her Full Story
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Portrait -->
+    <div class="lg:col-span-6 order-1 lg:order-2">
+      <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+        <img
+          alt="Sandou Dessalines, Founder"
+          class="w-full h-[360px] sm:h-[500px] lg:h-[700px] object-cover transition-transform duration-[3s] group-hover:scale-105"
+          loading="lazy"
+          src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EXPERIENCE — BENTO GRID  (from home/home-animated)
+═══════════════════════════════════════════ -->
+<section id="experience" class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto crawling-light">
+  <div class="text-center mb-16 md:mb-24 reveal-soft">
+    <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.3em] block mb-4">The Craft</span>
+    <h2 class="font-headline-md text-headline-md text-on-background">The Sandou Experience</h2>
+  </div>
+
+  <!-- Bento grid: 1-col mobile → 12-col desktop -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:h-[700px] reveal-soft">
+    <!-- Card A: Authentic Ingredients -->
+    <div class="md:col-span-4 bg-white p-8 sm:p-12 flex flex-col justify-end border border-[#F4E6C1] card-lift group min-h-[280px]">
+      <span class="material-symbols-outlined text-tertiary text-4xl mb-6">workspace_premium</span>
+      <h3 class="font-headline-sm text-headline-sm mb-3">Authentic Ingredients</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant opacity-80">
+        Only the finest organic coconuts and premium aged spirits touch our copper vats.
+      </p>
+    </div>
+
+    <!-- Card B: Family Tradition (passpartout centrepiece) -->
+    <div class="md:col-span-4 bg-primary-container p-8 sm:p-12 flex flex-col items-center justify-center border border-[#F4E6C1] relative overflow-hidden card-lift group min-h-[360px]">
+      <div class="passpartout-frame w-full h-full flex flex-col justify-center items-center text-center py-8 px-4">
+        <span class="material-symbols-outlined text-tertiary text-5xl mb-6">family_history</span>
+        <h3 class="font-headline-sm text-headline-sm mb-4">Family Tradition</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          A secret recipe preserved across four generations of Haitian excellence.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card C: Two stacked cards -->
+    <div class="md:col-span-4 grid grid-rows-2 gap-6">
+      <div class="bg-white p-8 border border-[#F4E6C1] flex flex-col justify-center card-lift min-h-[200px]">
+        <h3 class="font-headline-sm text-headline-sm mb-2">Haitian Heritage</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Celebrating the spirit of Saint-Marc in every chilled pour.
+        </p>
+      </div>
+      <div class="bg-[#2C1B12] p-8 text-white flex flex-col justify-center card-lift min-h-[200px]">
+        <h3 class="font-headline-sm text-headline-sm mb-2 text-[#E7E2D7]">Crafted With Care</h3>
+        <p class="font-body-md text-body-md opacity-70">
+          Small-batch production ensures the luxury of precision in every bottle.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ART OF KREMAS — INGREDIENT SPLIT  (from home/home-animated)
+     + mouse-reactive gold dust canvas
+═══════════════════════════════════════════ -->
+<section id="art-section" class="py-[80px] md:py-[120px] bg-surface-container-low overflow-hidden relative reveal-soft">
+  <canvas id="art-dust-canvas" aria-hidden="true"></canvas>
+  <div class="px-5 md:px-[80px] max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20 relative z-20">
+    <!-- Image -->
+    <div class="w-full lg:w-1/2">
+      <div class="passpartout-frame">
+        <img
+          alt="Artisan kremas ingredients: coconuts, cinnamon, vanilla, spices"
+          class="w-full h-[300px] sm:h-[450px] lg:h-[600px] object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
+          loading="lazy"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"
+        />
+      </div>
+    </div>
+    <!-- Text + ingredient list -->
+    <div class="w-full lg:w-1/2 space-y-10 md:space-y-12">
+      <div>
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.3em] block mb-4">The Alchemist's Palette</span>
+        <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md mb-6 md:mb-8">The Art of Kremas</h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Our process is a quiet symphony of natural elements. We begin with the milk of sun-drenched coconuts, balanced by the warmth of hand-ground spices and the depth of premium cane spirits.
+        </p>
+      </div>
+      <ul class="space-y-5 md:space-y-6">
+        <li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+          <span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors duration-300">Pure Coconut</span>
+          <span class="font-body-md text-body-md italic text-on-surface-variant">The Foundation</span>
+        </li>
+        <li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+          <span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors duration-300">Madagascar Vanilla</span>
+          <span class="font-body-md text-body-md italic text-on-surface-variant">The Soul</span>
+        </li>
+        <li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+          <span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors duration-300">Cinnamon &amp; Nutmeg</span>
+          <span class="font-body-md text-body-md italic text-on-surface-variant">The Warmth</span>
+        </li>
+        <li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+          <span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors duration-300">Premium Aged Rum</span>
+          <span class="font-body-md text-body-md italic text-on-surface-variant">The Spirit</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MOMENTS IN TIME — GALLERY  (from cinematic/hospitality)
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft" id="gallery-section">
+  <div class="text-center mb-16 md:mb-24">
+    <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md">Moments In Time</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <div class="md:col-span-8 overflow-hidden passpartout-frame relative" data-parallax-depth="0.1">
+      <img
+        alt="Family celebrating with Sandou Kremas"
+        class="w-full h-[250px] sm:h-[380px] md:h-[500px] object-cover transition-transform duration-1000 hover:scale-105"
+        loading="lazy"
+        src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFG2dKPylFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"
+      />
+    </div>
+    <div class="md:col-span-4 overflow-hidden passpartout-frame relative md:-translate-y-20" data-parallax-depth="0.3">
+      <img
+        alt="Kremas production process"
+        class="w-full h-[250px] sm:h-[380px] md:h-[600px] object-cover"
+        loading="lazy"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLB1WdxI3sdGUf_Ir6m8Wk04FtuY_EgCJMUKBJrTjlwnaLxEbpLejgBWTWZVartffBxW8YE0uAr7Ca-9mrw7Ay0vcOfrQYRHsZU8GzToKFncRuP8_d6MX3ZWe-Lnexgt2YBhbILDLq9HXYhWLC_H-05q1H39e03HHz3eoU2MYC_uDdjKr04Rr7mn1kV3H101RO6naqyq-gZSkpKXodBJSTIRu2qZS8z35G9eUT4iDa5xAh3CDu-K3tW5UmrmyneUzYXOA78Lix9VzF"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT REVEAL
+═══════════════════════════════════════════ -->
+<section class="relative min-h-[90vh] flex items-center justify-center bg-white overflow-hidden reveal-soft" id="bottle-section">
+  <!-- Watermark background text -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden">
+    <span
+      id="bg-text-parallax"
+      class="font-display-lg whitespace-nowrap select-none"
+      style="font-size:clamp(80px,20vw,400px);"
+    >SANDOU KREMAS</span>
+  </div>
+
+  <div class="max-w-screen-xl mx-auto px-5 md:px-[80px] grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-16 relative z-10 py-[80px]">
+    <!-- Text -->
+    <div class="order-2 md:order-1 text-center md:text-left">
+      <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4">
+        Smooth. Rich.<br class="hidden md:block"/> Authentic.
+      </h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 md:mb-12">
+        The definitive expression of Haitian luxury. Designed to be sipped, shared, and celebrated in the company of those who matter most.
+      </p>
+      <button
+        class="bg-[#2C1B12] text-[#F8F3E8] px-10 md:px-12 py-5 font-label-caps text-label-caps uppercase tracking-widest shadow-xl btn-luxury min-h-[52px]"
+        onclick="toggleConcierge()"
+      >
+        Reserve Your Bottle
+      </button>
+    </div>
+    <!-- Bottle -->
+    <div class="order-1 md:order-2 flex justify-center">
+      <div class="relative w-full max-w-[360px] sm:max-w-[460px] md:max-w-[500px] bottle-shimmer" id="bottle-container">
+        <img
+          alt="Sandou Kremas premium bottle"
+          class="w-full h-auto drop-shadow-[0_35px_35px_rgba(44,27,18,0.2)]"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"
+        />
+        <!-- Atmospheric pings -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div class="absolute w-2 h-2 bg-[#765a1a] rounded-full blur-sm animate-ping" style="top:20%;left:10%;"></div>
+          <div class="absolute w-1 h-1 bg-[#765a1a] rounded-full blur-sm animate-ping" style="top:70%;right:15%;animation-delay:1s;"></div>
+          <div class="absolute w-3 h-3 bg-[#675e41] rounded-full blur-sm animate-ping" style="bottom:10%;left:30%;animation-delay:2s;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     THE ART OF SANDOU — SIGNATURE WOW SECTION
+═══════════════════════════════════════════ -->
+<section id="art-of-sandou" class="relative py-[120px] md:py-[180px] overflow-hidden" style="background: #0F0805;">
+  <!-- Deep radial atmosphere -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div style="position:absolute;width:80%;height:80%;top:-20%;left:-20%;background:radial-gradient(ellipse,rgba(216,179,106,0.06) 0%,transparent 65%);"></div>
+    <div style="position:absolute;width:70%;height:70%;bottom:-15%;right:-10%;background:radial-gradient(ellipse,rgba(116,90,26,0.08) 0%,transparent 65%);"></div>
+    <div style="position:absolute;width:50%;height:100%;top:0;left:25%;background:radial-gradient(ellipse,rgba(216,179,106,0.04) 0%,transparent 70%);"></div>
+  </div>
+
+  <!-- Gold dust canvas for this section -->
+  <canvas id="art-dust-canvas" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:0.5;"></canvas>
+
+  <!-- SVG cream ribbons -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true" style="z-index:1;">
+    <svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full opacity-[0.06]">
+      <path d="M-100,450 Q200,200 500,400 T1000,350 T1540,420" stroke="#D8B36A" stroke-width="120" fill="none" style="animation:ribbonDrift1 18s ease-in-out infinite alternate;"/>
+      <path d="M-100,550 Q300,750 700,500 T1200,600 T1540,480" stroke="#F4E6C1" stroke-width="80" fill="none" style="animation:ribbonDrift2 22s ease-in-out infinite alternate;"/>
+      <path d="M300,0 Q400,300 200,600 T350,900" stroke="#D8B36A" stroke-width="40" fill="none" opacity="0.5" style="animation:ribbonDrift3 26s ease-in-out infinite alternate;"/>
+    </svg>
+  </div>
+
+  <div class="relative z-10 px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <!-- Editorial eyebrow -->
+    <div class="text-center mb-16 md:mb-24 reveal-soft">
+      <div class="flex items-center justify-center gap-6 mb-8">
+        <div class="h-px bg-gradient-to-r from-transparent to-[#D8B36A]" style="width:clamp(40px,8vw,100px);"></div>
+        <span class="font-label-caps text-[9px] tracking-[0.6em] uppercase" style="color:#D8B36A;">The Sandou Experience</span>
+        <div class="h-px bg-gradient-to-l from-transparent to-[#D8B36A]" style="width:clamp(40px,8vw,100px);"></div>
+      </div>
+      <h2 class="font-display-lg leading-none mb-6" style="font-size:clamp(44px,7vw,96px); font-family:'Playfair Display',serif; color:#F4E6C1; letter-spacing:-0.02em; font-style:italic;">
+        The Art of<br/><span style="color:#D8B36A;">Sandou</span>
+      </h2>
+      <p class="font-body-lg max-w-xl mx-auto" style="color:rgba(244,230,193,0.55); font-size:16px; line-height:1.8; letter-spacing:0.04em;">
+        A decade of craft. A continent of heritage. One extraordinary bottle.
+      </p>
+    </div>
+
+    <!-- Cinematic bottle reveal -->
+    <div class="relative flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 reveal-soft">
+
+      <!-- Left pillar -->
+      <div class="hidden lg:flex flex-col gap-10 text-right max-w-[260px]">
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.2s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Origin</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Port-au-Prince,<br/>Haiti</p>
+          <div class="w-8 h-px bg-[#D8B36A] ml-auto opacity-40"></div>
+        </div>
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.4s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Crafted By</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Alexandra<br/>Louis</p>
+          <div class="w-8 h-px bg-[#D8B36A] ml-auto opacity-40"></div>
+        </div>
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.6s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Character</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Smooth. Rich.<br/>Authentic.</p>
+          <div class="w-8 h-px bg-[#D8B36A] ml-auto opacity-40"></div>
+        </div>
+      </div>
+
+      <!-- Central bottle -->
+      <div class="relative flex items-center justify-center" style="width:min(420px,90vw);">
+        <!-- Atmospheric glow rings -->
+        <div class="absolute rounded-full" style="width:110%;height:110%;background:radial-gradient(circle,rgba(216,179,106,0.12) 0%,transparent 70%);animation:glowPulse 4s ease-in-out infinite;"></div>
+        <div class="absolute rounded-full" style="width:140%;height:140%;background:radial-gradient(circle,rgba(216,179,106,0.05) 0%,transparent 70%);animation:glowPulse 4s ease-in-out infinite 1s;"></div>
+        <!-- Floating gold particles around bottle (decorative dots) -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div style="position:absolute;top:8%;left:5%;width:3px;height:3px;background:#D8B36A;border-radius:50%;opacity:0.7;animation:particleFloat1 5s ease-in-out infinite;"></div>
+          <div style="position:absolute;top:20%;right:8%;width:2px;height:2px;background:#D8B36A;border-radius:50%;opacity:0.5;animation:particleFloat2 7s ease-in-out infinite 1.5s;"></div>
+          <div style="position:absolute;top:60%;left:3%;width:4px;height:4px;background:#F4E6C1;border-radius:50%;opacity:0.4;animation:particleFloat3 6s ease-in-out infinite 0.5s;"></div>
+          <div style="position:absolute;top:75%;right:5%;width:2px;height:2px;background:#D8B36A;border-radius:50%;opacity:0.6;animation:particleFloat1 8s ease-in-out infinite 2s;"></div>
+          <div style="position:absolute;top:45%;left:-5%;width:3px;height:3px;background:#F4E6C1;border-radius:50%;opacity:0.3;animation:particleFloat2 9s ease-in-out infinite 3s;"></div>
+          <div style="position:absolute;top:30%;right:-3%;width:5px;height:5px;background:#D8B36A;border-radius:50%;opacity:0.25;animation:particleFloat3 11s ease-in-out infinite 1s;"></div>
+          <div style="position:absolute;top:85%;left:15%;width:2px;height:2px;background:#D8B36A;border-radius:50%;opacity:0.5;animation:particleFloat1 6.5s ease-in-out infinite 2.5s;"></div>
+          <div style="position:absolute;top:10%;right:20%;width:3px;height:3px;background:#F4E6C1;border-radius:50%;opacity:0.4;animation:particleFloat2 8.5s ease-in-out infinite 0.8s;"></div>
+        </div>
+        <!-- Bottle image with cinematic treatment -->
+        <div class="relative bottle-shimmer" style="filter:drop-shadow(0 40px 80px rgba(216,179,106,0.15)) drop-shadow(0 0 40px rgba(44,27,18,0.8));">
+          <img
+            alt="Sandou Kremas — The Art of Sandou"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"
+            style="width:min(380px,85vw); height:auto; display:block; animation:bottleFloat 6s ease-in-out infinite;"
+          />
+        </div>
+      </div>
+
+      <!-- Right pillar -->
+      <div class="hidden lg:flex flex-col gap-10 max-w-[260px]">
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.3s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Since</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Over a Decade<br/>of Tradition</p>
+          <div class="w-8 h-px bg-[#D8B36A] opacity-40"></div>
+        </div>
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.5s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Expressions</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Six Flavors.<br/>One Heritage.</p>
+          <div class="w-8 h-px bg-[#D8B36A] opacity-40"></div>
+        </div>
+        <div class="space-y-3 reveal-soft" style="transition-delay:0.7s;">
+          <span class="font-label-caps text-[8px] uppercase tracking-[0.4em] block" style="color:rgba(216,179,106,0.5);">Available</span>
+          <p class="font-headline-sm text-lg leading-snug" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Nationwide<br/>Across America</p>
+          <div class="w-8 h-px bg-[#D8B36A] opacity-40"></div>
+        </div>
+      </div>
+
+      <!-- Mobile pillars (stacked below bottle) -->
+      <div class="lg:hidden grid grid-cols-2 gap-x-8 gap-y-6 w-full max-w-sm text-center">
+        <div class="space-y-1"><span class="font-label-caps text-[8px] uppercase tracking-[0.35em] block" style="color:rgba(216,179,106,0.5);">Origin</span><p class="font-headline-sm text-base" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Port-au-Prince</p></div>
+        <div class="space-y-1"><span class="font-label-caps text-[8px] uppercase tracking-[0.35em] block" style="color:rgba(216,179,106,0.5);">Crafted By</span><p class="font-headline-sm text-base" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Alexandra Louis</p></div>
+        <div class="space-y-1"><span class="font-label-caps text-[8px] uppercase tracking-[0.35em] block" style="color:rgba(216,179,106,0.5);">Expressions</span><p class="font-headline-sm text-base" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Six Flavors</p></div>
+        <div class="space-y-1"><span class="font-label-caps text-[8px] uppercase tracking-[0.35em] block" style="color:rgba(216,179,106,0.5);">Available</span><p class="font-headline-sm text-base" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Nationwide</p></div>
+      </div>
+    </div>
+
+    <!-- Central quote -->
+    <div class="text-center mt-20 md:mt-28 reveal-soft">
+      <blockquote class="font-body-lg leading-relaxed max-w-2xl mx-auto mb-10" style="font-family:'Playfair Display',serif; font-style:italic; color:rgba(244,230,193,0.7); font-size:clamp(18px,2.5vw,26px); line-height:1.7;">
+        "I wanted people to taste something and say — I've never had Kremas like this before."
+      </blockquote>
+      <p class="font-label-caps text-[10px] uppercase tracking-[0.4em] mb-12" style="color:rgba(216,179,106,0.6);">Alexandra Louis, Founder</p>
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+        <a href="collection.html" class="bg-[#D8B36A] text-[#1A0F08] px-10 py-4 font-label-caps text-[10px] uppercase tracking-[0.25em] font-semibold min-h-[52px] inline-flex items-center justify-center hover:bg-[#F4E6C1] transition-colors duration-500 w-full sm:w-auto sm:min-w-[220px]">
+          Shop The Collection
+        </a>
+        <a href="our-story.html" class="border border-[#D8B36A]/40 text-[#D8B36A] px-10 py-4 font-label-caps text-[10px] uppercase tracking-[0.25em] min-h-[52px] inline-flex items-center justify-center hover:border-[#D8B36A] transition-colors duration-500 w-full sm:w-auto sm:min-w-[220px]">
+          Alexandra's Story
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes ribbonDrift1 { from { d:path("M-100,450 Q200,200 500,400 T1000,350 T1540,420"); } to { d:path("M-100,480 Q180,250 520,380 T980,400 T1540,390"); } }
+@keyframes ribbonDrift2 { from { d:path("M-100,550 Q300,750 700,500 T1200,600 T1540,480"); } to { d:path("M-100,520 Q320,700 680,540 T1220,560 T1540,510"); } }
+@keyframes ribbonDrift3 { from { d:path("M300,0 Q400,300 200,600 T350,900"); } to { d:path("M320,0 Q420,280 220,620 T370,900"); } }
+@keyframes glowPulse { 0%,100% { opacity:0.6; transform:scale(1); } 50% { opacity:1; transform:scale(1.06); } }
+@keyframes bottleFloat { 0%,100% { transform:translateY(0px); } 50% { transform:translateY(-16px); } }
+@keyframes particleFloat1 { 0%,100% { transform:translate(0,0); opacity:0.7; } 33% { transform:translate(8px,-12px); opacity:1; } 66% { transform:translate(-5px,8px); opacity:0.4; } }
+@keyframes particleFloat2 { 0%,100% { transform:translate(0,0); opacity:0.5; } 40% { transform:translate(-10px,-8px); opacity:0.8; } 70% { transform:translate(6px,10px); opacity:0.3; } }
+@keyframes particleFloat3 { 0%,100% { transform:translate(0,0) scale(1); opacity:0.4; } 50% { transform:translate(12px,-6px) scale(1.5); opacity:0.7; } }
+</style>
+
+<!-- ═══════════════════════════════════════════
+     JOIN THE SANDOU CIRCLE
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] overflow-hidden relative reveal-soft" style="background: linear-gradient(135deg, #1A0F08 0%, #2C1B12 60%, #1A0F08 100%);">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div style="position:absolute;width:60%;height:60%;top:20%;left:-10%;background:radial-gradient(circle,rgba(216,179,106,0.07) 0%,transparent 70%);"></div>
+    <div style="position:absolute;width:50%;height:50%;bottom:10%;right:-5%;background:radial-gradient(circle,rgba(116,90,26,0.08) 0%,transparent 70%);"></div>
+  </div>
+  <div class="max-w-screen-2xl mx-auto relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <span class="font-label-caps text-label-caps uppercase tracking-[0.5em] block mb-6" style="color:#D8B36A;">An Exclusive Community</span>
+      <h2 class="font-display-lg leading-tight mb-6" style="font-size:clamp(32px,5vw,60px); font-family:'Playfair Display',serif; color:#F4E6C1;">
+        Join The Sandou Circle
+      </h2>
+      <p class="font-body-lg text-body-lg mb-10 leading-relaxed" style="color:rgba(255,248,246,0.7);">
+        Reserve your place in an intimate community of Sandou admirers. Be the first to know about new flavors, limited releases, holiday collections, and messages directly from Alexandra.
+      </p>
+      <div class="flex flex-wrap justify-center gap-6 mb-12">
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-[#D8B36A] text-xl">new_releases</span><span class="font-label-caps text-[10px] uppercase tracking-[0.2em]" style="color:rgba(244,230,193,0.7);">New Flavors</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-[#D8B36A] text-xl">star</span><span class="font-label-caps text-[10px] uppercase tracking-[0.2em]" style="color:rgba(244,230,193,0.7);">Limited Editions</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-[#D8B36A] text-xl">park</span><span class="font-label-caps text-[10px] uppercase tracking-[0.2em]" style="color:rgba(244,230,193,0.7);">Holiday Collections</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-[#D8B36A] text-xl">mail</span><span class="font-label-caps text-[10px] uppercase tracking-[0.2em]" style="color:rgba(244,230,193,0.7);">Founder Messages</span></div>
+      </div>
+      <div id="home-circle-form" class="max-w-md mx-auto">
+        <form class="flex flex-col sm:flex-row gap-0" onsubmit="handleHomeCircleSubmit(event)">
+          <input type="email" id="home-circle-email" placeholder="Your email address…" required style="background:rgba(255,248,246,0.06);border:1px solid rgba(216,179,106,0.25);color:#F4E6C1;width:100%;padding:14px 20px;font-family:Montserrat,sans-serif;font-size:14px;outline:none;"/>
+          <button type="submit" class="bg-[#D8B36A] text-[#1A0F08] px-8 py-4 font-label-caps text-[10px] uppercase tracking-[0.2em] font-semibold min-h-[52px] flex-shrink-0 hover:bg-[#F4E6C1] transition-colors duration-300">Join The Circle</button>
+        </form>
+        <p class="font-body-md text-[11px] mt-4" style="color:rgba(244,230,193,0.4);">We respect your privacy. One beautiful message at a time.</p>
+      </div>
+      <div id="home-circle-success" class="hidden max-w-md mx-auto text-center py-6">
+        <span class="material-symbols-outlined text-[#D8B36A] text-4xl block mb-3">celebration</span>
+        <p class="font-body-lg text-body-lg" style="color:#F4E6C1;">Welcome to the Sandou Circle. We're honored to have you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="bg-background w-full py-[80px] md:py-[120px] border-t border-outline-variant/20 pulse-bg">
+  <div class="grid grid-cols-2 md:grid-cols-12 px-5 md:px-[80px] gap-6 w-full mx-auto max-w-screen-2xl">
+    <div class="col-span-2 md:col-span-4 mb-8 md:mb-0">
+      <a href="#" aria-label="Sandou Kremas — home">
+        <img
+          src="SAndouKremas%20logo.png"
+          alt="Sandou Kremas"
+          class="brand-logo h-24 md:h-28 w-auto mb-2"
+        />
+      </a>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+        A legacy of Haitian craftsmanship, delivered to the global epicurean.
+      </p>
+    </div>
+    <div class="col-span-1 md:col-span-2">
+      <h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Explore</h4>
+      <ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="our-story.html">Our Story</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="collection.html">Collection</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="the-experience.html">Experience</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="col-span-1 md:col-span-2">
+      <h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Support</h4>
+      <ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="shipping-faq.html">Shipping & FAQ</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="contact.html">Contact</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="#">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="col-span-2 md:col-span-4 flex flex-col md:items-end justify-between gap-6">
+      <div class="flex gap-6">
+        <a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Share">
+          <span class="material-symbols-outlined">share</span>
+        </a>
+        <a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Instagram">
+          <span class="material-symbols-outlined">camera_indoor</span>
+        </a>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant italic">© 2025 Sandou Kremas. Crafted with Heritage.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script>
+  // ── Loading screen — first visit only ──────
+  (function() {
+    const loader = document.getElementById('loading-screen');
+    if (sessionStorage.getItem('sk_visited')) {
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    } else {
+      function dismissLoader() {
+        sessionStorage.setItem('sk_visited', '1');
+        loader.classList.add('fade-out');
+        setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 950);
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(dismissLoader, 1400);
+      } else {
+        window.addEventListener('load', () => setTimeout(dismissLoader, 1400));
+      }
+    }
+  })();
+
+  // ── Smooth page transitions ─────────────────
+  (function() {
+    const overlay = document.getElementById('page-transition');
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href[0] === '#' || href.includes('://') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      e.preventDefault();
+      overlay.classList.add('leaving');
+      setTimeout(() => { window.location.href = href; }, 220);
+    });
+  })();
+
+  // ── Activate JS-driven reveal states ───────
+  document.body.classList.add('js-ready');
+
+  // ── Concierge modal toggle ──────────────────
+  const conciergeModal = document.getElementById('concierge-modal');
+  function toggleConcierge() {
+    const open = conciergeModal.classList.toggle('active');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) initConciergeParticles();
+  }
+  document.getElementById('concierge-trigger').addEventListener('click', toggleConcierge);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && conciergeModal.classList.contains('active')) toggleConcierge();
+  });
+
+  // ── Mobile menu toggle ──────────────────────
+  let mobileMenuOpen = false;
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('mobile-menu-btn');
+    menu.classList.toggle('open', mobileMenuOpen);
+    btn.setAttribute('aria-expanded', mobileMenuOpen);
+    // Animate hamburger → X
+    document.getElementById('ham-1').style.transform = mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
+    document.getElementById('ham-2').style.opacity = mobileMenuOpen ? '0' : '1';
+    document.getElementById('ham-3').style.transform = mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
+  }
+
+  // ── Scroll Reveal (IntersectionObserver) ───
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // Trigger signature draw
+        entry.target.querySelectorAll('.signature-draw').forEach(el => el.classList.add('active'));
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal-soft').forEach(el => revealObserver.observe(el));
+
+  // Force-reveal hero children immediately
+  document.querySelectorAll('section:first-of-type .reveal-soft').forEach(el => {
+    setTimeout(() => el.classList.add('active'), 600);
+  });
+
+  // ── Scroll Parallax ─────────────────────────
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+
+    // Bottle section: background text + bottle float
+    const bottleSection = document.getElementById('bottle-section');
+    const bgText = document.getElementById('bg-text-parallax');
+    const bottle = document.getElementById('bottle-container');
+    if (bottleSection && bgText) {
+      const rect = bottleSection.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const dist = scrolled - bottleSection.offsetTop;
+        bgText.style.transform = `translateX(${dist * 0.15}px)`;
+        if (bottle) bottle.style.transform = `translateY(${dist * 0.05}px)`;
+      }
+    }
+
+    // Gallery layered parallax
+    document.querySelectorAll('[data-parallax-depth]').forEach(item => {
+      const depth = parseFloat(item.dataset.parallaxDepth);
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const move = (window.innerHeight / 2 - rect.top) * depth;
+        item.style.transform = `translateY(${move}px)`;
+      }
+    });
+  }, { passive: true });
+
+  // ── GLOBAL GOLD DUST ─────────────────────────
+  const globalCanvas = document.getElementById('global-dust-canvas');
+  const gCtx = globalCanvas.getContext('2d');
+  const globalParticles = [];
+
+  function resizeGlobalCanvas() {
+    globalCanvas.width = window.innerWidth;
+    globalCanvas.height = window.innerHeight;
+  }
+
+  class GlobalParticle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * globalCanvas.width;
+      this.y = Math.random() * globalCanvas.height;
+      this.size = Math.random() * 1.4 + 0.2;
+      this.speedX = (Math.random() - 0.5) * 0.2;
+      this.speedY = Math.random() * 0.25 + 0.08;
+      this.opacity = Math.random() * 0.28 + 0.04;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.y > globalCanvas.height) { this.y = -10; this.x = Math.random() * globalCanvas.width; }
+      if (this.x < 0 || this.x > globalCanvas.width) this.reset();
+    }
+    draw() {
+      gCtx.fillStyle = `rgba(216,179,106,${this.opacity})`;
+      gCtx.beginPath();
+      gCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      gCtx.fill();
+    }
+  }
+
+  resizeGlobalCanvas();
+  for (let i = 0; i < 55; i++) globalParticles.push(new GlobalParticle());
+
+  function animateGlobal() {
+    gCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height);
+    globalParticles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateGlobal);
+  }
+  animateGlobal();
+  window.addEventListener('resize', resizeGlobalCanvas, { passive: true });
+
+  // ── MOUSE-REACTIVE ART SECTION DUST ─────────
+  const artCanvas = document.getElementById('art-dust-canvas');
+  const artSection = artCanvas.closest('section');
+  const aCtx = artCanvas.getContext('2d');
+  const artParticles = [];
+  let artMouse = { x: -300, y: -300 };
+
+  function resizeArtCanvas() {
+    artCanvas.width = artSection.offsetWidth;
+    artCanvas.height = artSection.offsetHeight;
+  }
+
+  class ArtParticle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * artCanvas.width;
+      this.y = Math.random() * artCanvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.speedY = (Math.random() - 0.5) * 0.5;
+      this.opacity = Math.random() * 0.45 + 0.1;
+    }
+    update() {
+      const dx = artMouse.x - this.x;
+      const dy = artMouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 220) {
+        this.x += dx * 0.006;
+        this.y += dy * 0.006;
+        this.opacity = Math.min(0.75, this.opacity + 0.015);
+      } else {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.opacity = Math.max(0.1, this.opacity - 0.005);
+      }
+      if (this.x < 0 || this.x > artCanvas.width || this.y < 0 || this.y > artCanvas.height) this.reset();
+    }
+    draw() {
+      aCtx.fillStyle = `rgba(216,179,106,${this.opacity})`;
+      aCtx.beginPath();
+      aCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      aCtx.fill();
+    }
+  }
+
+  resizeArtCanvas();
+  for (let i = 0; i < 40; i++) artParticles.push(new ArtParticle());
+
+  function animateArt() {
+    aCtx.clearRect(0, 0, artCanvas.width, artCanvas.height);
+    artParticles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateArt);
+  }
+  animateArt();
+
+  artSection.addEventListener('mousemove', e => {
+    const rect = artSection.getBoundingClientRect();
+    artMouse.x = e.clientX - rect.left;
+    artMouse.y = e.clientY - rect.top;
+  });
+  artSection.addEventListener('mouseleave', () => { artMouse.x = -300; artMouse.y = -300; });
+  window.addEventListener('resize', resizeArtCanvas, { passive: true });
+
+  // ── CONCIERGE MODAL DUST ─────────────────────
+  const cCanvas = document.getElementById('concierge-dust-canvas');
+  const cCtx = cCanvas.getContext('2d');
+  let cParticles = [];
+
+  function initConciergeParticles() {
+    cParticles = [];
+    cCanvas.width = cCanvas.parentElement.offsetWidth;
+    cCanvas.height = cCanvas.parentElement.offsetHeight;
+    for (let i = 0; i < 28; i++) {
+      cParticles.push({
+        x: Math.random() * cCanvas.width,
+        y: Math.random() * cCanvas.height,
+        size: Math.random() * 1.2 + 0.2,
+        speedX: (Math.random() - 0.5) * 0.2,
+        speedY: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.3 + 0.05
+      });
+    }
+    animateConcierge();
+  }
+
+  function animateConcierge() {
+    if (!conciergeModal.classList.contains('active')) return;
+    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    cParticles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; }
+      cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`;
+      cCtx.beginPath();
+      cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      cCtx.fill();
+    });
+    requestAnimationFrame(animateConcierge);
+  }
+
+  // ── Prevent dummy link navigation ───────────
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+  // ── Supabase form handlers ────────────────────
+  async function handleHomeCircleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    const email = document.getElementById('home-circle-email').value;
+    const error = await saveSubscriber(email, 'home-page');
+    if (error && error.code !== '23505') {
+      btn.disabled = false;
+      btn.textContent = 'Join The Circle';
+      alert('Something went wrong. Please try again.');
+      return;
+    }
+    document.getElementById('home-circle-form').classList.add('hidden');
+    document.getElementById('home-circle-success').classList.remove('hidden');
+  }
+
+  async function handleConciergeSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('concierge-submit-btn');
+    const selected = [...document.querySelectorAll('#concierge-modal .border.border-\\[\\#D8B36A\\]\\/30')].filter(b => b.style.background || b.classList.contains('bg-\\[\\#D8B36A\\]')).map(b => b.textContent.trim()).join(', ');
+    const message = document.getElementById('concierge-message').value;
+    if (!message.trim()) return;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    const error = await saveInquiry({
+      name: 'Concierge Request',
+      email: 'concierge@sandoukremas.com',
+      subject: 'Concierge: ' + (selected || 'General'),
+      message,
+      inquiryType: 'Reservation'
+    });
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = 'Send to the Cellar Master';
+      return;
+    }
+    document.getElementById('concierge-form-area').classList.add('hidden');
+    document.getElementById('concierge-success').classList.remove('hidden');
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="supabase-init.js"></script>
+</body>
+</html>

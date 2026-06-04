@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story | Sandou Kremas</title>
+<link rel="icon" type="image/png" href="SAndouKremas%20logo.png"/>
+<link rel="apple-touch-icon" href="SAndouKremas%20logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-container": "#716f66",
+          "inverse-primary": "#cac6bc",
+          "surface-container-high": "#ffe2d5",
+          "on-background": "#28180f",
+          "on-tertiary-container": "#896a29",
+          "surface-tint": "#615e56",
+          "secondary": "#675e41",
+          "on-surface": "#28180f",
+          "on-secondary-fixed": "#221b05",
+          "surface-bright": "#fff8f6",
+          "on-error": "#ffffff",
+          "surface-variant": "#fcdccd",
+          "inverse-surface": "#3f2c22",
+          "secondary-fixed-dim": "#d3c6a2",
+          "secondary-container": "#f0e2bd",
+          "tertiary-fixed": "#ffdea2",
+          "primary-fixed": "#e7e2d7",
+          "outline": "#7a776e",
+          "on-secondary-fixed-variant": "#4f462b",
+          "inverse-on-surface": "#ffede6",
+          "on-primary-fixed-variant": "#49473f",
+          "background": "#fff8f6",
+          "error": "#ba1a1a",
+          "primary-container": "#f8f3e8",
+          "tertiary": "#765a1a",
+          "error-container": "#ffdad6",
+          "on-error-container": "#93000a",
+          "primary-fixed-dim": "#cac6bc",
+          "on-tertiary-fixed-variant": "#5c4201",
+          "on-secondary-container": "#6e6446",
+          "surface": "#fff8f6",
+          "surface-container-low": "#fff1eb",
+          "tertiary-container": "#fff2e0",
+          "surface-dim": "#f3d4c5",
+          "tertiary-fixed-dim": "#e7c177",
+          "on-primary-fixed": "#1d1c15",
+          "primary": "#615e56",
+          "outline-variant": "#cac6bc",
+          "on-primary": "#ffffff",
+          "surface-container-highest": "#fcdccd",
+          "secondary-fixed": "#f0e2bd",
+          "on-secondary": "#ffffff",
+          "surface-container": "#ffeae0",
+          "on-surface-variant": "#49473f",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed": "#261900",
+          "surface-container-lowest": "#ffffff"
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        spacing: {
+          "margin-mobile": "20px",
+          "margin-desktop": "80px",
+          "gutter": "24px",
+          "base": "8px",
+          "section-gap": "120px"
+        },
+        fontFamily: {
+          "headline-md": ["Playfair Display"],
+          "display-lg-mobile": ["Playfair Display"],
+          "body-md": ["Montserrat"],
+          "body-lg": ["Montserrat"],
+          "headline-sm": ["Playfair Display"],
+          "label-caps": ["Montserrat"],
+          "display-lg": ["Playfair Display"]
+        },
+        fontSize: {
+          "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+          "display-lg-mobile": ["40px", { lineHeight: "1.2", fontWeight: "700" }],
+          "body-md": ["16px", { lineHeight: "1.6", letterSpacing: "0.02em", fontWeight: "400" }],
+          "body-lg": ["18px", { lineHeight: "1.6", letterSpacing: "0.03em", fontWeight: "300" }],
+          "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+          "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.15em", fontWeight: "600" }],
+          "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(248, 243, 232, 0.5);
+    border: 1px solid rgba(216, 179, 106, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(44, 27, 18, 0.1);
+  }
+  .btn-luxury {
+    transition: letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, transform 0.2s ease;
+    position: relative; overflow: hidden;
+  }
+  .btn-luxury:hover { letter-spacing: 0.25em; }
+  .btn-luxury:active { transform: scale(0.97); }
+  .card-lift {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-lift:hover { transform: translateY(-10px); box-shadow: 0 28px 56px -12px rgba(97, 94, 86, 0.18); }
+  @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+  .cinematic-zoom { animation: subtleZoom 60s ease-out forwards; }
+  @keyframes ambientLight {
+    0%,100% { opacity: 0.3; transform: translate(-10%, -10%) scale(1); }
+    50% { opacity: 0.6; transform: translate(10%, 10%) scale(1.2); }
+  }
+  .ambient-glow {
+    position: absolute; width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(216,179,106,0.18) 0%, transparent 70%);
+    animation: ambientLight 20s ease-in-out infinite;
+    pointer-events: none; z-index: 1;
+  }
+  @keyframes gleam { 0% { mask-position: -200%; } 100% { mask-position: 200%; } }
+  .shimmer-gleam {
+    mask-image: linear-gradient(65deg, rgba(0,0,0,1) 40%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,1) 60%);
+    mask-size: 200% 100%; animation: gleam 4s infinite linear;
+  }
+  .js-ready .reveal-soft {
+    opacity: 0; filter: blur(10px); transform: translateY(36px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), filter 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js-ready .reveal-soft.active { opacity: 1; filter: blur(0); transform: translateY(0); }
+  .signature-draw {
+    stroke-dasharray: 1000; stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 3s ease-out;
+  }
+  .signature-draw.active { stroke-dashoffset: 0; }
+  .passpartout-frame { border: 1px solid #D8B36A; padding: 16px; background: white; }
+  .text-underline-expand { position: relative; }
+  .text-underline-expand::after {
+    content: ''; position: absolute; bottom: -2px; left: 50%;
+    width: 0; height: 1px; background: #D8B36A;
+    transition: all 0.5s ease; transform: translateX(-50%);
+  }
+  .text-underline-expand:hover::after { width: 100%; }
+  @keyframes conciergeFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .concierge-float { animation: conciergeFloat 4s ease-in-out infinite; }
+  .concierge-modal {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.92) translateY(20px); opacity: 0; pointer-events: none;
+  }
+  .concierge-modal.active { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto; }
+  @keyframes backgroundPulse { 0%,100% { background-color: #fff8f6; } 50% { background-color: #fffcfb; } }
+  .pulse-bg { animation: backgroundPulse 8s ease-in-out infinite; }
+  #global-dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; opacity: 0.35; }
+  #concierge-dust-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.6; border-radius: inherit; }
+  .mobile-menu {
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0; transform: translateY(-20px); pointer-events: none;
+  }
+  .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .brand-logo { mix-blend-mode: multiply; display: block; }
+  #loading-screen {
+    position: fixed; inset: 0; z-index: 300; background: #fff8f6;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #loading-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+  #page-transition { position: fixed; inset: 0; z-index: 250; background: #fff8f6; opacity: 0; pointer-events: none; transition: opacity 0.22s ease; }
+  #page-transition.leaving { opacity: 1; pointer-events: all; }
+  @keyframes logoReveal { from { opacity: 0; transform: scale(0.82) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes lineExpand { from { width: 0; opacity: 0; } to { width: 64px; opacity: 1; } }
+  #loading-logo { animation: logoReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+  #loading-line { height: 1px; background: #D8B36A; animation: lineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+  .crawling-light {
+    background: linear-gradient(120deg, transparent 30%, rgba(216,179,106,0.04) 50%, transparent 70%);
+    background-size: 200% 100%; animation: crawl 15s linear infinite;
+  }
+  @keyframes crawl { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ── Timeline ── */
+  .timeline-line { position: relative; }
+  .timeline-line::before {
+    content: ''; position: absolute;
+    left: 50%; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, #D8B36A 10%, #D8B36A 90%, transparent);
+    transform: translateX(-50%);
+  }
+  @media (max-width: 768px) {
+    .timeline-line::before { left: 24px; transform: none; }
+  }
+  .timeline-dot {
+    width: 12px; height: 12px;
+    background: #D8B36A; border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(216,179,106,0.2);
+    flex-shrink: 0;
+  }
+
+  /* ── Journey map visual ── */
+  @keyframes pathDraw {
+    from { stroke-dashoffset: 800; }
+    to { stroke-dashoffset: 0; }
+  }
+  .journey-path {
+    stroke-dasharray: 800; stroke-dashoffset: 800;
+    transition: stroke-dashoffset 3s ease-out 0.5s;
+  }
+  .journey-path.active { stroke-dashoffset: 0; }
+
+  /* ── Accordion ── */
+  .vision-card { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .vision-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -8px rgba(97,94,86,0.15); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cinematic-zoom, .ambient-glow, .shimmer-gleam, .reveal-soft, .concierge-float, .crawling-light { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; }
+    #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
+  <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"/>
+  <div id="loading-line" style="width: 64px; height: 1px; background: #D8B36A;"></div>
+  <p style="font-family: Montserrat, sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #49473f; opacity: 0; animation: logoReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.9s both;">
+    Crafted Tradition. Bottled Elegance.
+  </p>
+</div>
+<div id="page-transition" aria-hidden="true"></div>
+
+<canvas id="global-dust-canvas" aria-hidden="true"></canvas>
+
+<!-- FLOATING CONCIERGE BUTTON -->
+<div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[70] concierge-float">
+  <div class="relative group">
+    <div class="absolute inset-0 bg-[#D8B36A]/10 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    <button id="concierge-trigger" aria-label="Speak with a concierge" class="glass-effect relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full hover:border-[#D8B36A] transition-all duration-500 min-h-[44px]">
+      <span class="material-symbols-outlined text-tertiary text-xl">stylus_note</span>
+      <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase hidden sm:block">Sandou Concierge</span>
+    </button>
+  </div>
+</div>
+
+<!-- CONCIERGE MODAL -->
+<div id="concierge-modal" class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4 sm:p-6 bg-black/20 backdrop-blur-sm concierge-modal" role="dialog" aria-modal="true" aria-label="Sandou Concierge">
+  <div class="absolute inset-0" onclick="toggleConcierge()" aria-hidden="true"></div>
+  <div class="glass-effect relative w-full max-w-lg p-8 sm:p-12 rounded-xl overflow-hidden">
+    <canvas id="concierge-dust-canvas" aria-hidden="true"></canvas>
+    <button aria-label="Close concierge" class="absolute top-4 right-4 text-on-surface-variant hover:text-tertiary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" onclick="toggleConcierge()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="space-y-6 relative z-10">
+      <div class="text-center space-y-3">
+        <img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-16 w-auto mx-auto"/>
+        <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.4em] block">Personal Hospitality</span>
+        <h3 class="font-headline-md text-2xl text-on-background" style="font-family:'Playfair Display',serif;font-style:italic;">
+          Welcome to our cellar. How may I guide your celebration today?
+        </h3>
+      </div>
+      <div class="space-y-5">
+        <div class="border-b border-[#D8B36A]/20 pb-4">
+          <p class="font-label-caps text-[10px] uppercase text-on-surface-variant mb-3">I am interested in…</p>
+          <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Private Tastings</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">Bulk Reserves</button>
+            <button class="px-4 py-2 border border-[#D8B36A]/30 font-body-md text-xs hover:bg-[#D8B36A]/8 transition-colors min-h-[44px] rounded-sm">The Heritage Story</button>
+          </div>
+        </div>
+        <textarea class="w-full bg-transparent border border-[#D8B36A]/25 p-4 font-body-md text-sm focus:ring-0 focus:border-tertiary transition-colors placeholder:italic placeholder:text-on-surface-variant/40 resize-none rounded-sm" placeholder="Whisper your request here…" rows="3"></textarea>
+        <button class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">Send to the Cellar Master</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-[60] bg-surface/40 backdrop-blur-xl border-b border-outline-variant/10" role="navigation">
+  <div class="flex justify-between items-center w-full px-5 md:px-[80px] py-5 max-w-screen-2xl mx-auto">
+    <a href="index.html" class="flex items-center flex-shrink-0" aria-label="Sandou Kremas — home">
+      <img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-12 md:h-16 w-auto"/>
+    </a>
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-tertiary border-b border-tertiary pb-1 font-label-caps text-label-caps uppercase tracking-widest" href="our-story.html">Story</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="collection.html">Collection</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="the-experience.html">Experience</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest text-underline-expand" href="gallery.html">Gallery</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="bg-[#2C1B12] text-[#F8F3E8] px-6 md:px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hidden sm:block" onclick="toggleConcierge()">Reserve</button>
+      <a href="account.html" class="sk-account-link relative text-on-surface-variant hover:text-tertiary transition-all duration-300 min-w-[44px] min-h-[44px] hidden sm:flex items-center justify-center" aria-label="Account">
+        <span class="material-symbols-outlined text-xl">person</span>
+        <span class="sk-auth-dot hidden absolute top-2 right-2 w-2 h-2 bg-[#D8B36A] rounded-full"></span>
+      </a>
+      <button id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden flex flex-col gap-[5px] p-2 min-w-[44px] min-h-[44px] items-center justify-center" onclick="toggleMobileMenu()">
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-1"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-2"></span>
+        <span class="w-6 h-[1.5px] bg-on-surface block transition-all duration-300" id="ham-3"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-lg px-5 py-6 flex flex-col gap-5">
+    <div class="flex justify-center pb-4 border-b border-outline-variant/20">
+      <img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-20 w-auto"/>
+    </div>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-tertiary py-2 min-h-[44px] flex items-center" href="our-story.html" onclick="toggleMobileMenu()">Story</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="collection.html" onclick="toggleMobileMenu()">Collection</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="the-experience.html" onclick="toggleMobileMenu()">Experience</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="gallery.html" onclick="toggleMobileMenu()">Gallery</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="shipping-faq.html" onclick="toggleMobileMenu()">Shipping & FAQ</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center" href="contact.html" onclick="toggleMobileMenu()">Contact</a>
+    <a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant py-2 min-h-[44px] flex items-center gap-2" href="account.html" onclick="toggleMobileMenu()">
+      <span class="material-symbols-outlined text-base">person</span>Account
+    </a>
+    <button class="bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] mt-2" onclick="toggleMobileMenu(); toggleConcierge();">Reserve</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO — MEET ALEXANDRA LOUIS
+═══════════════════════════════════════════ -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="ambient-glow"></div>
+    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70"></div>
+  </div>
+  <div class="relative z-10 text-center text-white px-5 md:px-0 max-w-4xl mx-auto">
+    <span class="font-label-caps text-[10px] tracking-[0.5em] uppercase text-[#D8B36A] block mb-6 reveal-soft">The Founder</span>
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight shimmer-gleam">
+      Meet Alexandra Louis
+    </h1>
+    <p class="font-body-lg text-body-lg max-w-2xl mx-auto mb-4 opacity-90 reveal-soft" style="font-style:italic;">
+      Born in Port-au-Prince. Built with purpose. Bottled with love.
+    </p>
+    <div class="w-16 h-px bg-[#D8B36A] mx-auto mt-8 reveal-soft"></div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
+    <span class="material-symbols-outlined text-white text-4xl">keyboard_double_arrow_down</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER PORTRAIT + BIOGRAPHY
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto pulse-bg">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <!-- Portrait -->
+    <div class="lg:col-span-5 order-1 reveal-soft">
+      <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+        <img
+          alt="Alexandra Louis, Founder of Sandou Kremas"
+          class="w-full h-[420px] sm:h-[560px] lg:h-[720px] object-cover transition-transform duration-[3s] group-hover:scale-105"
+          loading="lazy"
+          src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+      </div>
+    </div>
+    <!-- Text -->
+    <div class="lg:col-span-7 order-2 space-y-8 reveal-soft">
+      <div class="space-y-3">
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block">Her Story</span>
+        <h2 class="font-display-lg leading-tight text-on-background" style="font-size:clamp(32px,4vw,56px); font-family:'Playfair Display',serif;">
+          She Didn't Inherit a Recipe.<br/>She Created One.
+        </h2>
+      </div>
+      <div class="space-y-6">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Alexandra Louis was born and raised in Port-au-Prince, Haiti — a city alive with color, music, and the deep aromas of Kremas flowing through celebrations of every kind. Kremas was everywhere. At every birthday, every holiday, every family gathering. But for Alexandra, it was more than a tradition. It was a calling.
+        </p>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          She taught herself. Through years of experimentation, intuition, and an unrelenting commitment to quality, she developed a recipe that stood apart from anything else. No family secret was passed down to her — she built the secret herself, ingredient by ingredient, until every pour was exactly right.
+        </p>
+        <blockquote class="font-body-md text-body-md text-on-surface-variant/80 italic border-l-2 border-tertiary pl-6 md:pl-8 py-2" style="font-family:'Playfair Display',serif; font-size: 20px; line-height: 1.7;">
+          "I wanted people to taste something and say — I've never had Kremas like this before. That was my goal from the very beginning."
+        </blockquote>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Customers have said exactly that. Again and again.
+        </p>
+      </div>
+      <!-- Signature -->
+      <div class="pt-4">
+        <div class="relative inline-block">
+          <svg class="w-56 md:w-72 h-16 md:h-20 text-tertiary opacity-80" fill="none" viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="signature-draw" d="M8,45 Q25,8 48,40 T88,38 Q110,36 125,20 T165,38 Q185,50 200,30 T230,42" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <p class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant mt-2">Alexandra Louis</p>
+          <p class="font-body-md text-sm italic opacity-60">Founder &amp; Master Blender, Sandou Kremas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TIMELINE — THE SANDOU JOURNEY
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] bg-surface-container-low crawling-light overflow-hidden">
+  <div class="px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <div class="text-center mb-16 md:mb-24 reveal-soft">
+      <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">The Journey</span>
+      <h2 class="font-headline-md text-headline-md text-on-background">A Legacy In The Making</h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-line relative max-w-4xl mx-auto reveal-soft">
+
+      <!-- 2013–2014 -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-16 md:mb-20">
+        <div class="md:w-1/2 md:text-right order-2 md:order-1">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">2013 — 2014</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">The First Batches</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            In Port-au-Prince, Haiti, Alexandra begins crafting Kremas in her kitchen. Late nights, careful measurements, and an unwavering vision of what this drink could become. Each batch better than the last.
+          </p>
+        </div>
+        <div class="flex items-center justify-center md:justify-center order-1 md:order-2">
+          <div class="relative flex items-center justify-center">
+            <div class="timeline-dot"></div>
+          </div>
+        </div>
+        <div class="md:w-1/2 order-3 hidden md:block"></div>
+      </div>
+
+      <!-- Laplaine -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-16 md:mb-20">
+        <div class="md:w-1/2 hidden md:block order-1"></div>
+        <div class="flex items-center justify-center order-2">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="md:w-1/2 order-3">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">First Sales</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">Laplaine, Haiti</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Word travels fast when something tastes extraordinary. Alexandra's first bottles sell in Laplaine — and people come back asking for more. The dream of a real brand begins to take shape.
+          </p>
+        </div>
+      </div>
+
+      <!-- Years of Refining -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-16 md:mb-20">
+        <div class="md:w-1/2 md:text-right order-2 md:order-1">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">The Craft Years</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">Perfecting the Recipe</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Alexandra spends years deepening her craft. Every ingredient is interrogated. Every balance reconsidered. The Sandou recipe is not rushed — it is earned through patience, passion, and relentless pursuit of excellence.
+          </p>
+        </div>
+        <div class="flex items-center justify-center order-1 md:order-2">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="md:w-1/2 order-3 hidden md:block"></div>
+      </div>
+
+      <!-- 2024 US Launch -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-16 md:mb-20">
+        <div class="md:w-1/2 hidden md:block order-1"></div>
+        <div class="flex items-center justify-center order-2">
+          <div class="w-5 h-5 bg-[#D8B36A] rounded-full box-shadow" style="box-shadow: 0 0 0 6px rgba(216,179,106,0.25), 0 0 20px rgba(216,179,106,0.3);"></div>
+        </div>
+        <div class="md:w-1/2 order-3">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">2024 — The Relaunch</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">Sandou Kremas Arrives in America</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            With years of craft and conviction behind her, Alexandra officially launches Sandou Kremas in the United States. The same recipe. A new chapter. A brand ready to introduce the world to authentic Haitian luxury.
+          </p>
+        </div>
+      </div>
+
+      <!-- Today -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-16 md:mb-20">
+        <div class="md:w-1/2 md:text-right order-2 md:order-1">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">Today</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">Shipping Across the Nation</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Sandou Kremas now ships to homes across the United States. Every bottle carries the same care, the same integrity, and the same story that began in a kitchen in Port-au-Prince. The celebration continues.
+          </p>
+        </div>
+        <div class="flex items-center justify-center order-1 md:order-2">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="md:w-1/2 order-3 hidden md:block"></div>
+      </div>
+
+      <!-- Future -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
+        <div class="md:w-1/2 hidden md:block order-1"></div>
+        <div class="flex items-center justify-center order-2">
+          <div class="w-4 h-4 border-2 border-[#D8B36A] rounded-full bg-transparent" style="box-shadow: 0 0 0 4px rgba(216,179,106,0.15);"></div>
+        </div>
+        <div class="md:w-1/2 order-3">
+          <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-2">The Vision</span>
+          <h3 class="font-headline-sm text-headline-sm mb-3 text-on-background">Building a Legacy</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Alexandra's vision is clear: to build one of the most respected Haitian-owned Kremas brands in the world. To make Haitian craftsmanship celebrated globally. The story has only just begun.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FROM HAITI TO AMERICA
+═══════════════════════════════════════════ -->
+<section class="relative py-[80px] md:py-[120px] overflow-hidden reveal-soft" style="background: #1A0F08;">
+  <!-- Ambient glow -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div style="position:absolute; width:60%; height:60%; top:20%; left:-10%; background: radial-gradient(circle, rgba(216,179,106,0.07) 0%, transparent 70%);"></div>
+    <div style="position:absolute; width:50%; height:50%; bottom:10%; right:-5%; background: radial-gradient(circle, rgba(116,90,26,0.08) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="relative z-10 px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <div class="text-center mb-16 md:mb-20">
+      <span class="font-label-caps text-label-caps uppercase text-[#D8B36A] tracking-[0.5em] block mb-4">The Journey</span>
+      <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-white mb-6" style="font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,60px);">
+        From Haiti To America
+      </h2>
+      <p class="font-body-lg text-body-lg max-w-2xl mx-auto" style="color: rgba(255,248,246,0.7);">
+        A story of passion, perseverance, and the power of one woman's dream to share her culture with the world.
+      </p>
+    </div>
+
+    <!-- Journey cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
+      <div class="border border-[#D8B36A]/20 p-8 relative" style="background: rgba(255,248,246,0.04);">
+        <div class="w-10 h-px bg-[#D8B36A] mb-6"></div>
+        <h3 class="font-headline-sm text-headline-sm mb-4" style="color:#F4E6C1; font-family:'Playfair Display',serif;">Port-au-Prince</h3>
+        <p class="font-body-md text-body-md leading-relaxed" style="color: rgba(255,248,246,0.65);">
+          Where it all began. The aromas, the celebrations, the culture of Kremas flowing through every gathering. Alexandra's city gave her the dream.
+        </p>
+      </div>
+      <div class="border border-[#D8B36A]/20 p-8 relative" style="background: rgba(216,179,106,0.06);">
+        <div class="w-10 h-px bg-[#D8B36A] mb-6"></div>
+        <h3 class="font-headline-sm text-headline-sm mb-4" style="color:#F4E6C1; font-family:'Playfair Display',serif;">Laplaine, Haiti</h3>
+        <p class="font-body-md text-body-md leading-relaxed" style="color: rgba(255,248,246,0.65);">
+          The first bottles sold. The first customers who came back asking for more. The first proof that something truly special had been created.
+        </p>
+      </div>
+      <div class="border border-[#D8B36A]/20 p-8 relative md:col-span-2 lg:col-span-1" style="background: rgba(255,248,246,0.04);">
+        <div class="w-10 h-px bg-[#D8B36A] mb-6"></div>
+        <h3 class="font-headline-sm text-headline-sm mb-4" style="color:#F4E6C1; font-family:'Playfair Display',serif;">Across America</h3>
+        <p class="font-body-md text-body-md leading-relaxed" style="color: rgba(255,248,246,0.65);">
+          2024. A new country. A new beginning. Sandou Kremas launches in the United States, bringing authentic Haitian luxury to homes from coast to coast.
+        </p>
+      </div>
+    </div>
+
+    <!-- Central quote -->
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="w-px h-16 bg-[#D8B36A]/40 mx-auto mb-8"></div>
+      <blockquote class="font-display-lg text-display-lg-mobile md:text-headline-md leading-tight mb-6" style="font-family:'Playfair Display',serif; color:#F4E6C1; font-style:italic; font-size:clamp(24px,4vw,44px);">
+        "From Port-au-Prince to homes across America."
+      </blockquote>
+      <p class="font-label-caps text-label-caps uppercase tracking-[0.4em]" style="color: rgba(216,179,106,0.7);">Alexandra Louis, Founder</p>
+      <div class="w-px h-16 bg-[#D8B36A]/40 mx-auto mt-8"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER VISION + CUSTOMER VOICES
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <div class="space-y-8">
+      <div class="space-y-3">
+        <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block">The Vision</span>
+        <h2 class="font-display-lg leading-tight text-on-background" style="font-size:clamp(28px,3.5vw,48px); font-family:'Playfair Display',serif;">
+          Haitian Craftsmanship Deserves to be Celebrated
+        </h2>
+      </div>
+      <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+        Alexandra believes deeply that the artistry, culture, and flavor tradition of Haiti deserves a seat at the world's finest tables. Sandou Kremas is not just a product — it is a statement. A declaration that Haitian excellence belongs in every celebration, in every home, across every border.
+      </p>
+      <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+        Every bottle of Sandou Kremas is Alexandra's invitation to the world: taste what we are made of. Taste the pride, the craft, and the love that flows from Port-au-Prince into every pour.
+      </p>
+      <div class="pt-2">
+        <a href="collection.html" class="inline-flex items-center gap-3 bg-[#2C1B12] text-[#F8F3E8] px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px]">
+          Explore the Collection
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+    <!-- Customer voices -->
+    <div class="space-y-6">
+      <p class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-8">What People Say</p>
+      <div class="border border-[#D8B36A]/20 p-8 bg-white card-lift">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed italic mb-6" style="font-family:'Playfair Display',serif;">
+          "I've tasted Kremas before, but never like this. There's something in it that I can only describe as love."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-px bg-[#D8B36A]"></div>
+          <span class="font-label-caps text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">A Customer, New York</span>
+        </div>
+      </div>
+      <div class="border border-[#D8B36A]/20 p-8 bg-primary-container card-lift">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed italic mb-6" style="font-family:'Playfair Display',serif;">
+          "This is the real thing. This is what Kremas is supposed to taste like. I ordered two more bottles the same day."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-px bg-[#D8B36A]"></div>
+          <span class="font-label-caps text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">A Customer, Florida</span>
+        </div>
+      </div>
+      <div class="border border-[#D8B36A]/20 p-8 bg-white card-lift">
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed italic mb-6" style="font-family:'Playfair Display',serif;">
+          "We served Sandou at our family reunion and it was the highlight of the evening. Everybody wanted to know where it came from."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-px bg-[#D8B36A]"></div>
+          <span class="font-label-caps text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">A Customer, Georgia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PERSONAL FOUNDER MESSAGE — A LETTER FROM ALEXANDRA
+═══════════════════════════════════════════ -->
+<section class="relative py-[100px] md:py-[160px] overflow-hidden" style="background: linear-gradient(160deg, #1A0F08 0%, #2C1B12 50%, #1A0F08 100%);">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div style="position:absolute;width:70%;height:70%;top:10%;left:-10%;background:radial-gradient(ellipse,rgba(216,179,106,0.06) 0%,transparent 65%);"></div>
+    <div style="position:absolute;width:50%;height:50%;bottom:5%;right:-5%;background:radial-gradient(ellipse,rgba(116,90,26,0.08) 0%,transparent 65%);"></div>
+  </div>
+  <div class="relative z-10 px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <div class="max-w-3xl mx-auto text-center reveal-soft">
+      <div class="flex items-center justify-center gap-6 mb-10">
+        <div class="h-px bg-gradient-to-r from-transparent to-[#D8B36A]" style="width:60px;"></div>
+        <span class="font-label-caps text-[9px] tracking-[0.55em] uppercase" style="color:#D8B36A;">A Message From Alexandra</span>
+        <div class="h-px bg-gradient-to-l from-transparent to-[#D8B36A]" style="width:60px;"></div>
+      </div>
+      <h2 class="font-display-lg leading-tight mb-12" style="font-size:clamp(32px,5vw,60px); font-family:'Playfair Display',serif; color:#F4E6C1; font-style:italic;">
+        "From My Heart<br/>to Your Home"
+      </h2>
+
+      <!-- Letter card -->
+      <div class="text-left relative" style="background:rgba(255,248,246,0.04); border:1px solid rgba(216,179,106,0.18); padding:clamp(40px,6vw,80px);">
+        <!-- Gold corner accents -->
+        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l" style="border-color:#D8B36A;"></div>
+        <div class="absolute top-0 right-0 w-8 h-8 border-t border-r" style="border-color:#D8B36A;"></div>
+        <div class="absolute bottom-0 left-0 w-8 h-8 border-b border-l" style="border-color:#D8B36A;"></div>
+        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r" style="border-color:#D8B36A;"></div>
+
+        <p class="font-body-lg text-body-lg leading-relaxed mb-8" style="color:rgba(244,230,193,0.8); font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(17px,2vw,22px);">
+          Dear Friend,
+        </p>
+        <div class="space-y-6 font-body-md text-body-md leading-relaxed" style="color:rgba(244,230,193,0.7); font-size:clamp(15px,1.4vw,17px); line-height:1.9;">
+          <p>
+            Every bottle of Sandou Kremas carries a piece of me in it. When I started making Kremas in Port-au-Prince, I didn't have a business plan. I had a vision, a kitchen, and an unwillingness to settle for anything ordinary.
+          </p>
+          <p>
+            Haiti gave me everything. The aromas, the celebrations, the spirit of a people who know how to savor life even in its most difficult moments. Kremas was always the drink that brought people together — at Christmas, at Easter, at birthdays, at reunions. It was the drink that said: <em>we are here, we are together, and this moment matters.</em>
+          </p>
+          <p>
+            When I came to America, I brought that spirit with me. Every recipe I refined, every batch I perfected, every bottle I poured — it was all in service of one thing: sharing something real. Something from the heart of Haiti, offered with love to homes across this country.
+          </p>
+          <p>
+            When you open a bottle of Sandou, I hope you feel that. I hope you taste the care, the culture, and the decade of dedication that went into every pour. And I hope it brings you and your loved ones the same kind of joy it brought me in those early mornings in my kitchen in Port-au-Prince, imagining a day when the world would taste what I had created.
+          </p>
+          <p>
+            That day is here. Thank you for being part of this journey.
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-6">
+          <div>
+            <svg class="w-44 md:w-56 h-14 md:h-16 text-[#D8B36A] opacity-80" fill="none" viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path class="signature-draw" d="M8,45 Q25,8 48,40 T88,38 Q110,36 125,20 T165,38 Q185,50 200,30 T230,42" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <p class="font-label-caps text-[10px] uppercase tracking-[0.3em]" style="color:rgba(216,179,106,0.7);">Alexandra Louis</p>
+            <p class="font-body-md text-xs italic mt-1" style="color:rgba(244,230,193,0.4);">Founder &amp; Master Blender, Sandou Kremas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER VALUES — WHAT ALEXANDRA BELIEVES
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft">
+  <div class="text-center mb-16 md:mb-20">
+    <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">The Principles</span>
+    <h2 class="font-headline-md text-headline-md text-on-background mb-4">What Alexandra Believes</h2>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">The values that shaped every decision — from the first bottle in Port-au-Prince to every pour in America.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Value 1 -->
+    <div class="relative p-8 md:p-10 bg-white border border-[#F4E6C1] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary block mb-3">01</span>
+      <h3 class="font-headline-sm text-xl mb-4 text-on-background" style="font-family:'Playfair Display',serif;">Heritage Is Everything</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Haiti's culture, history, and flavor tradition are not just inspirations — they are the foundation. Every ingredient, every decision, every pour is an act of cultural pride.
+      </p>
+    </div>
+    <!-- Value 2 -->
+    <div class="relative p-8 md:p-10 bg-primary-container border border-[#F4E6C1] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary block mb-3">02</span>
+      <h3 class="font-headline-sm text-xl mb-4 text-on-background" style="font-family:'Playfair Display',serif;">Never Compromise Quality</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Alexandra spent years perfecting her recipe because she refused to release anything that wasn't extraordinary. That commitment to excellence never wavers — not in the first batch, not in the thousandth.
+      </p>
+    </div>
+    <!-- Value 3 -->
+    <div class="relative p-8 md:p-10 bg-white border border-[#F4E6C1] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary block mb-3">03</span>
+      <h3 class="font-headline-sm text-xl mb-4 text-on-background" style="font-family:'Playfair Display',serif;">Make People Feel Something</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        A great drink doesn't just taste good — it takes you somewhere. It brings back a memory, creates a new one, or makes the people around you feel celebrated. Sandou exists for those moments.
+      </p>
+    </div>
+    <!-- Value 4 -->
+    <div class="relative p-8 md:p-10 bg-white border border-[#F4E6C1] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary block mb-3">04</span>
+      <h3 class="font-headline-sm text-xl mb-4 text-on-background" style="font-family:'Playfair Display',serif;">Haitian Excellence Belongs Everywhere</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        The finest Haitian craftsmanship deserves a seat at the world's most celebrated tables. Sandou Kremas is Alexandra's statement that Haitian luxury is real, refined, and ready for the world.
+      </p>
+    </div>
+    <!-- Value 5 -->
+    <div class="relative p-8 md:p-10 bg-primary-container border border-[#F4E6C1] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary block mb-3">05</span>
+      <h3 class="font-headline-sm text-xl mb-4 text-on-background" style="font-family:'Playfair Display',serif;">Build With Patience</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Great brands, like great Kremas, cannot be rushed. Alexandra took years to perfect her craft because she understood that anything worth building is worth building right.
+      </p>
+    </div>
+    <!-- Value 6 — dark accent -->
+    <div class="relative p-8 md:p-10 bg-[#2C1B12] border border-[#2C1B12] vision-card group">
+      <div class="w-10 h-px bg-[#D8B36A] mb-6 transition-all duration-500 group-hover:w-16"></div>
+      <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] block mb-3" style="color:rgba(216,179,106,0.6);">06</span>
+      <h3 class="font-headline-sm text-xl mb-4" style="font-family:'Playfair Display',serif; color:#F4E6C1;">Share Generously</h3>
+      <p class="font-body-md text-body-md leading-relaxed" style="color:rgba(244,230,193,0.65);">
+        Kremas was never meant to be kept to yourself. It exists to be poured, shared, and celebrated with the people who matter most. That is the spirit of Sandou — and the spirit of Haiti itself.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LOOKING AHEAD — THE FUTURE VISION
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] bg-surface-container-low reveal-soft crawling-light">
+  <div class="px-5 md:px-[80px] max-w-screen-2xl mx-auto">
+    <div class="text-center mb-16 md:mb-20">
+      <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block mb-4">The Future</span>
+      <h2 class="font-headline-md text-headline-md text-on-background mb-4">Looking Ahead</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+        Alexandra's ambition is as rich as her Kremas. The journey is only beginning.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white border border-[#F4E6C1] p-8 vision-card">
+        <span class="material-symbols-outlined text-tertiary text-4xl mb-5 block">language</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3">National Recognition</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Becoming a household name in Haitian Kremas across every state in America.</p>
+      </div>
+      <div class="bg-white border border-[#F4E6C1] p-8 vision-card">
+        <span class="material-symbols-outlined text-tertiary text-4xl mb-5 block">workspace_premium</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3">Haitian Excellence</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Proving that Haitian craftsmanship belongs among the world's finest premium beverages.</p>
+      </div>
+      <div class="bg-white border border-[#F4E6C1] p-8 vision-card">
+        <span class="material-symbols-outlined text-tertiary text-4xl mb-5 block">verified</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3">Premium Quality</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Never compromising. Every bottle, every batch — the same uncompromising standard of excellence.</p>
+      </div>
+      <div class="bg-white border border-[#F4E6C1] p-8 vision-card">
+        <span class="material-symbols-outlined text-tertiary text-4xl mb-5 block">diversity_3</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3">Community Impact</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Building something that uplifts the Haitian community and inspires the next generation of entrepreneurs.</p>
+      </div>
+      <div class="bg-white border border-[#F4E6C1] p-8 vision-card">
+        <span class="material-symbols-outlined text-tertiary text-4xl mb-5 block">trending_up</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3">Industry Leadership</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Leading by example — showing that luxury, culture, and entrepreneurship can all exist in one bottle.</p>
+      </div>
+      <div class="bg-[#2C1B12] border border-[#2C1B12] p-8 vision-card">
+        <span class="material-symbols-outlined text-[#D8B36A] text-4xl mb-5 block">favorite</span>
+        <h3 class="font-headline-sm text-headline-sm mb-3 text-[#F4E6C1]">Continued Growth</h3>
+        <p class="font-body-md text-body-md" style="color: rgba(244,230,193,0.7);">More flavors. More markets. More celebrations. The Sandou story grows with every bottle shared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER QUOTE CLOSER
+═══════════════════════════════════════════ -->
+<section class="py-[80px] md:py-[120px] px-5 md:px-[80px] max-w-screen-2xl mx-auto text-center reveal-soft">
+  <div class="max-w-3xl mx-auto">
+    <div class="w-px h-20 bg-[#D8B36A]/40 mx-auto mb-12"></div>
+    <span class="material-symbols-outlined text-[#D8B36A] text-5xl block mb-8">format_quote</span>
+    <blockquote class="font-display-lg leading-tight text-on-background mb-8" style="font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,52px); font-style:italic; letter-spacing: -0.02em;">
+      Every bottle tells a story.
+    </blockquote>
+    <p class="font-label-caps text-label-caps uppercase tracking-[0.4em] text-tertiary mb-12">Alexandra Louis</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="collection.html" class="bg-[#2C1B12] text-[#F8F3E8] px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px]">
+        Explore The Collection
+      </a>
+      <a href="the-experience.html" class="border border-tertiary text-tertiary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px] hover:bg-tertiary hover:text-white transition-colors duration-300">
+        The Experience
+      </a>
+    </div>
+    <div class="w-px h-20 bg-[#D8B36A]/40 mx-auto mt-12"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-background w-full py-[80px] md:py-[120px] border-t border-outline-variant/20 pulse-bg">
+  <div class="grid grid-cols-2 md:grid-cols-12 px-5 md:px-[80px] gap-6 w-full mx-auto max-w-screen-2xl">
+    <div class="col-span-2 md:col-span-4 mb-8 md:mb-0">
+      <a href="index.html" aria-label="Sandou Kremas — home">
+        <img src="SAndouKremas%20logo.png" alt="Sandou Kremas" class="brand-logo h-24 md:h-28 w-auto mb-2"/>
+      </a>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A legacy of Haitian craftsmanship, delivered to the global epicurean.</p>
+    </div>
+    <div class="col-span-1 md:col-span-2">
+      <h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Explore</h4>
+      <ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="our-story.html">Our Story</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="collection.html">Collection</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="the-experience.html">Experience</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="col-span-1 md:col-span-2">
+      <h4 class="font-label-caps text-label-caps uppercase mb-6 text-on-surface">Support</h4>
+      <ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="shipping-faq.html">Shipping & FAQ</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="contact.html">Contact</a></li>
+        <li><a class="hover:text-on-surface transition-colors text-underline-expand" href="#">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="col-span-2 md:col-span-4 flex flex-col md:items-end justify-between gap-6">
+      <div class="flex gap-6">
+        <a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
+        <a class="text-on-surface-variant hover:text-tertiary transition-all duration-500 min-w-[44px] min-h-[44px] flex items-center" href="#" aria-label="Instagram"><span class="material-symbols-outlined">camera_indoor</span></a>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant italic">© 2025 Sandou Kremas. Crafted with Heritage.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    const loader = document.getElementById('loading-screen');
+    if (sessionStorage.getItem('sk_visited')) {
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    } else {
+      function dismissLoader() { sessionStorage.setItem('sk_visited','1'); loader.classList.add('fade-out'); setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 950); }
+      if (document.readyState === 'complete') { setTimeout(dismissLoader, 1400); }
+      else { window.addEventListener('load', () => setTimeout(dismissLoader, 1400)); }
+    }
+  })();
+  (function() { const overlay = document.getElementById('page-transition'); document.addEventListener('click', function(e) { const link = e.target.closest('a[href]'); if (!link) return; const href = link.getAttribute('href'); if (!href || href[0] === '#' || href.includes('://') || href.startsWith('mailto:') || href.startsWith('tel:')) return; e.preventDefault(); overlay.classList.add('leaving'); setTimeout(() => { window.location.href = href; }, 220); }); })();
+
+  document.body.classList.add('js-ready');
+
+  const conciergeModal = document.getElementById('concierge-modal');
+  function toggleConcierge() {
+    const open = conciergeModal.classList.toggle('active');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) initConciergeParticles();
+  }
+  document.getElementById('concierge-trigger').addEventListener('click', toggleConcierge);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && conciergeModal.classList.contains('active')) toggleConcierge(); });
+
+  let mobileMenuOpen = false;
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+    document.getElementById('mobile-menu').classList.toggle('open', mobileMenuOpen);
+    document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', mobileMenuOpen);
+    document.getElementById('ham-1').style.transform = mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
+    document.getElementById('ham-2').style.opacity = mobileMenuOpen ? '0' : '1';
+    document.getElementById('ham-3').style.transform = mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
+  }
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        entry.target.querySelectorAll('.signature-draw, .journey-path').forEach(el => el.classList.add('active'));
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal-soft').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('section:first-of-type .reveal-soft').forEach(el => { setTimeout(() => el.classList.add('active'), 600); });
+
+  const globalCanvas = document.getElementById('global-dust-canvas');
+  const gCtx = globalCanvas.getContext('2d');
+  const globalParticles = [];
+  function resizeGlobalCanvas() { globalCanvas.width = window.innerWidth; globalCanvas.height = window.innerHeight; }
+  class GlobalParticle {
+    constructor() { this.reset(); }
+    reset() { this.x = Math.random() * globalCanvas.width; this.y = Math.random() * globalCanvas.height; this.size = Math.random() * 1.4 + 0.2; this.speedX = (Math.random() - 0.5) * 0.2; this.speedY = Math.random() * 0.25 + 0.08; this.opacity = Math.random() * 0.28 + 0.04; }
+    update() { this.x += this.speedX; this.y += this.speedY; if (this.y > globalCanvas.height) { this.y = -10; this.x = Math.random() * globalCanvas.width; } if (this.x < 0 || this.x > globalCanvas.width) this.reset(); }
+    draw() { gCtx.fillStyle = `rgba(216,179,106,${this.opacity})`; gCtx.beginPath(); gCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); gCtx.fill(); }
+  }
+  resizeGlobalCanvas();
+  for (let i = 0; i < 55; i++) globalParticles.push(new GlobalParticle());
+  function animateGlobal() { gCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height); globalParticles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateGlobal); }
+  animateGlobal();
+  window.addEventListener('resize', resizeGlobalCanvas, { passive: true });
+
+  const cCanvas = document.getElementById('concierge-dust-canvas');
+  const cCtx = cCanvas.getContext('2d');
+  let cParticles = [];
+  function initConciergeParticles() {
+    cParticles = []; cCanvas.width = cCanvas.parentElement.offsetWidth; cCanvas.height = cCanvas.parentElement.offsetHeight;
+    for (let i = 0; i < 28; i++) { cParticles.push({ x: Math.random() * cCanvas.width, y: Math.random() * cCanvas.height, size: Math.random() * 1.2 + 0.2, speedX: (Math.random() - 0.5) * 0.2, speedY: Math.random() * 0.3 + 0.1, opacity: Math.random() * 0.3 + 0.05 }); }
+    animateConcierge();
+  }
+  function animateConcierge() {
+    if (!conciergeModal.classList.contains('active')) return;
+    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    cParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; } cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; cCtx.beginPath(); cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); cCtx.fill(); });
+    requestAnimationFrame(animateConcierge);
+  }
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>

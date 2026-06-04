@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sandou Kremas | Every Bottle Tells A Story</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#716f66",
+                    "inverse-primary": "#cac6bc",
+                    "surface-container-high": "#ffe2d5",
+                    "on-background": "#28180f",
+                    "on-tertiary-container": "#896a29",
+                    "surface-tint": "#615e56",
+                    "secondary": "#675e41",
+                    "on-surface": "#28180f",
+                    "on-secondary-fixed": "#221b05",
+                    "surface-bright": "#fff8f6",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#fcdccd",
+                    "inverse-surface": "#3f2c22",
+                    "secondary-fixed-dim": "#d3c6a2",
+                    "secondary-container": "#f0e2bd",
+                    "tertiary-fixed": "#ffdea2",
+                    "primary-fixed": "#e7e2d7",
+                    "outline": "#7a776e",
+                    "on-secondary-fixed-variant": "#4f462b",
+                    "inverse-on-surface": "#ffede6",
+                    "on-primary-fixed-variant": "#49473f",
+                    "background": "#fff8f6",
+                    "error": "#ba1a1a",
+                    "primary-container": "#f8f3e8",
+                    "tertiary": "#765a1a",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#cac6bc",
+                    "on-tertiary-fixed-variant": "#5c4201",
+                    "on-secondary-container": "#6e6446",
+                    "surface": "#fff8f6",
+                    "surface-container-low": "#fff1eb",
+                    "tertiary-container": "#fff2e0",
+                    "surface-dim": "#f3d4c5",
+                    "tertiary-fixed-dim": "#e7c177",
+                    "on-primary-fixed": "#1d1c15",
+                    "primary": "#615e56",
+                    "outline-variant": "#cac6bc",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#fcdccd",
+                    "secondary-fixed": "#f0e2bd",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#ffeae0",
+                    "on-surface-variant": "#49473f",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#261900",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "headline-sm": ["Playfair Display"],
+                    "label-caps": ["Montserrat"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.03em", "fontWeight": "300"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 248, 246, 0.4);
+        }
+
+        /* Luxury Hover States */
+        .btn-luxury {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-luxury:hover {
+            letter-spacing: 0.25em;
+        }
+
+        .card-lift {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-lift:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(97, 94, 86, 0.15);
+        }
+
+        /* Cinematic Hero Effects */
+        @keyframes subtleZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+        .cinematic-zoom {
+            animation: subtleZoom 60s ease-out forwards;
+        }
+
+        @keyframes ambientLight {
+            0%, 100% { opacity: 0.3; transform: translate(-10%, -10%) scale(1); }
+            50% { opacity: 0.6; transform: translate(10%, 10%) scale(1.2); }
+        }
+        .ambient-glow {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(216, 179, 106, 0.15) 0%, transparent 70%);
+            animation: ambientLight 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Global Pulsing Background */
+        @keyframes backgroundPulse {
+            0%, 100% { background-color: #fff8f6; }
+            50% { background-color: #fffcfb; }
+        }
+        .pulse-bg {
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+
+        /* Shimmer Mask Animation */
+        @keyframes gleam {
+            0% { mask-position: -200%; }
+            100% { mask-position: 200%; }
+        }
+        .shimmer-gleam {
+            mask-image: linear-gradient(65deg, rgba(0,0,0,1) 40%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,1) 60%);
+            mask-size: 200% 100%;
+            animation: gleam 4s infinite linear;
+        }
+
+        /* Bottle Shimmer Overlay */
+        .bottle-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            animation: bottleGleam 8s infinite linear;
+        }
+        @keyframes bottleGleam {
+            0% { left: -150%; }
+            20%, 100% { left: 150%; }
+        }
+
+        /* Soft Focus Reveal */
+        .reveal-soft {
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(40px);
+            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-soft.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Signature Draw Animation */
+        .signature-draw {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 3s ease-out;
+        }
+        .signature-draw.active {
+            stroke-dashoffset: 0;
+        }
+
+        /* Crawling Light Gradient */
+        .crawling-light {
+            background: linear-gradient(120deg, transparent 30%, rgba(216, 179, 106, 0.03) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: crawl 15s linear infinite;
+        }
+        @keyframes crawl {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        #global-dust-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.4;
+        }
+
+        .passpartout-frame {
+            border: 1px solid #D8B36A;
+            padding: 16px;
+            background: white;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cinematic-zoom, .ambient-glow, .shimmer-gleam, .reveal-soft, .bottle-shimmer::after {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+                filter: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<canvas id="global-dust-canvas"></canvas>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-[60] bg-surface/40 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<div class="font-headline-md text-headline-md text-primary italic">Sandou Kremas</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-tertiary border-b border-tertiary pb-1 font-label-caps text-label-caps uppercase tracking-widest" href="#">Story</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest" href="#">Flavors</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest" href="#">Experience</a>
+</div>
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury active:scale-95">
+            Reserve
+        </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="ambient-glow"></div>
+<div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLsCqatL4dcOJVaUXSOOxyVuz9uy2fSjuoUraT8VtaGh24fLQxFf6h_c3hVGKmCrOXCOUa7UcmkDpzXnEfgSsJEau9mFYiqfyZOuCY8_yA854vDtSkI4l-Lo2Tx9GIZDhAPS47ayQx7QsYz5ahlbkVAUowLAD2vyh0WCXpwN0L97P7L6X6T5LfUpnpZmbdKYmZQ_zHOWGo-ID9n9hUl-FBp1-ecqe94pMzJ2vJ9aznTbs3yoPabDDEfE5GMi');"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 text-center text-white px-margin-mobile md:px-0">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight shimmer-gleam">Every Bottle Tells A Story</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto mb-12 opacity-90 reveal-soft">Crafted from family tradition. Shared through every celebration.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center items-center reveal-soft">
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-w-[220px]">
+                Explore Flavors
+            </button>
+<button class="border border-[#D8B36A] text-white px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-w-[220px]">
+                Our Story
+            </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+<span class="material-symbols-outlined text-white text-4xl">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Founder Section (Prominent Editorial) -->
+<section class="py-section-gap px-margin-desktop max-w-screen-2xl mx-auto reveal-soft pulse-bg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+<div class="lg:col-span-6 space-y-10 order-2 lg:order-1">
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.4em] block">The Founder</span>
+<h2 class="font-display-lg text-headline-md md:text-display-lg-mobile leading-tight text-on-background">Meet The Heart Behind Sandou</h2>
+</div>
+<div class="space-y-8">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Sandou Kremas was born in a kitchen filled with the scent of toasted coconut and warm nutmeg. For our founder, Sandou, this isn't just a beverage; it's a bottled memory of her grandmother's porch in Jacmel.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant/80 italic border-l-2 border-tertiary pl-8">
+                    "I remember the precision. The way the lime zest was folded into the cream, the patient stirring that lasted into the sunset. It was a ritual of love."
+                </p>
+</div>
+<div class="pt-8">
+<div class="relative inline-block">
+<svg class="w-64 h-24 text-tertiary opacity-80" fill="none" viewbox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+<path class="signature-draw" d="M10,40 Q30,10 50,40 T90,40 T130,20 T170,40" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+<p class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant mt-2">Sandou Dessalines</p>
+<p class="font-body-md text-sm italic opacity-60">Founder &amp; Master Blender</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-6 order-1 lg:order-2">
+<div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+<img alt="Sandou Dessalines" class="w-full h-[700px] object-cover transition-transform duration-[3s] group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section (Refined Editorial Modules) -->
+<section class="py-section-gap px-margin-desktop max-w-screen-2xl mx-auto crawling-light">
+<div class="text-center mb-32 reveal-soft">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.3em] block mb-4">The Craft</span>
+<h2 class="font-headline-md text-headline-md text-on-background">The Sandou Experience</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<!-- Card 1 -->
+<div class="reveal-soft flex flex-col space-y-8 group">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-low border border-outline-variant/10 shadow-lg">
+<img alt="Ingredients" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"/>
+</div>
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm">Authentic Ingredients</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Only the finest organic coconuts and premium aged spirits touch our copper vats.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="reveal-soft flex flex-col space-y-8 group md:translate-y-20">
+<div class="aspect-[4/5] overflow-hidden bg-primary-container border border-outline-variant/10 shadow-lg p-10 flex items-center justify-center text-center">
+<div class="passpartout-frame w-full h-full flex flex-col items-center justify-center space-y-6">
+<span class="material-symbols-outlined text-tertiary text-6xl">family_history</span>
+<h3 class="font-headline-sm text-headline-sm">Family Tradition</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A secret recipe preserved across four generations of excellence.</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="reveal-soft flex flex-col space-y-8 group">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-low border border-outline-variant/10 shadow-lg">
+<img alt="Celebration" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFG2dKPylFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"/>
+</div>
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm">Haitian Heritage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Celebrating the spirit of Saint-Marc in every chilled pour of our heritage recipe.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Moments In Time Gallery (Parallax Depth) -->
+<section class="py-section-gap px-margin-desktop max-w-screen-2xl mx-auto reveal-soft" id="gallery-parallax">
+<div class="text-center mb-24">
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md">Moments In Time</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 overflow-hidden passpartout-frame relative" data-parallax-depth="0.1">
+<img alt="Family Moments" class="w-full h-[500px] object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFG2dKPylFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"/>
+</div>
+<div class="md:col-span-4 overflow-hidden passpartout-frame relative md:-translate-y-20" data-parallax-depth="0.3">
+<img alt="Process" class="w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLB1WdxI3sdGUf_Ir6m8Wk04FtuY_EgCJMUKBJrTjlwnaLxEbpLejgBWTWZVartffBxW8YE0uAr7Ca-9mrw7Ay0vcOfrQYRHsZU8GzToKFncRuP8_d6MX3ZWe-Lnexgt2YBhbILDLq9HXYhWLC_H-05q1H39e03HHz3eoU2MYC_uDdjKr04Rr7mn1kV3H101RO6naqyq-gZSkpKXodBJSTIRu2qZS8z35G9eUT4iDa5xAh3CDu-K3tW5UmrmyneUzYXOA78Lix9VzF"/>
+</div>
+</div>
+</section>
+<!-- Product Reveal Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center bg-white overflow-hidden reveal-soft" id="bottle-parallax-section">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5 overflow-hidden">
+<span class="font-display-lg text-[400px] whitespace-nowrap select-none" id="bg-text-parallax">SANDOU KREMAS</span>
+</div>
+<div class="max-w-screen-xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-16 relative z-10">
+<div class="order-2 md:order-1">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4">Smooth. Rich. Authentic.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">The definitive expression of Haitian luxury. Designed to be sipped, shared, and celebrated in the company of those who matter most.</p>
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-12 py-5 font-label-caps text-label-caps uppercase tracking-widest shadow-xl btn-luxury">
+                Reserve Your Bottle
+            </button>
+</div>
+<div class="order-1 md:order-2 flex justify-center">
+<div class="relative w-full max-w-[500px] bottle-shimmer" id="bottle-container">
+<img alt="Sandou Bottle" class="w-full h-auto drop-shadow-[0_35px_35px_rgba(44,27,18,0.2)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background w-full py-section-gap border-t border-outline-variant/20 pulse-bg">
+<div class="grid grid-cols-1 md:grid-cols-12 px-margin-desktop gap-gutter w-full mx-auto max-w-screen-2xl">
+<div class="md:col-span-4 mb-12 md:mb-0">
+<div class="font-headline-sm text-headline-sm text-primary mb-6">Sandou Kremas</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A legacy of Haitian craftsmanship, delivered to the global epicurean.</p>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-8 text-on-surface">Explore</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li><a class="hover:text-on-surface transition-colors" href="#">Provenance</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Press</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Trade</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-8 text-on-surface">Support</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li><a class="hover:text-on-surface transition-colors" href="#">Privacy</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Shipping</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 flex flex-col md:items-end justify-between">
+<div class="flex gap-6 mb-8 md:mb-0">
+<a class="text-on-surface-variant hover:text-tertiary transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-on-surface-variant hover:text-tertiary transition-all" href="#"><span class="material-symbols-outlined">camera_indoor</span></a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">© 2024 Sandou Kremas. Crafted with Heritage.</p>
+</div>
+</div>
+</footer>
+<script>
+    // 1. Global Gold Dust Particle System
+    const canvas = document.getElementById('global-dust-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.5 + 0.2;
+            this.speedX = (Math.random() - 0.5) * 0.2;
+            this.speedY = Math.random() * 0.3 + 0.1; // Slow downward drift
+            this.opacity = Math.random() * 0.3 + 0.05;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.y > canvas.height) {
+                this.y = -10;
+                this.x = Math.random() * canvas.width;
+            }
+            if (this.x < 0 || this.x > canvas.width) this.reset();
+        }
+        draw() {
+            ctx.fillStyle = `rgba(216, 179, 106, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    initParticles();
+    animateParticles();
+
+    // 2. Sophisticated Scroll Reveal
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                
+                // Special check for signature
+                const sig = entry.target.querySelector('.signature-draw');
+                if (sig) sig.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-soft').forEach(el => revealObserver.observe(el));
+
+    // 3. Advanced Parallax & Depth
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        // Background Text Parallax
+        const bgText = document.getElementById('bg-text-parallax');
+        const bottleSection = document.getElementById('bottle-parallax-section');
+        if (bottleSection && bgText) {
+            const rect = bottleSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const distance = scrolled - bottleSection.offsetTop;
+                bgText.style.transform = `translateX(${distance * 0.15}px)`;
+                
+                const bottle = document.getElementById('bottle-container');
+                if (bottle) bottle.style.transform = `translateY(${distance * 0.05}px)`;
+            }
+        }
+
+        // Gallery Layered Parallax
+        const galleryItems = document.querySelectorAll('[data-parallax-depth]');
+        galleryItems.forEach(item => {
+            const depth = parseFloat(item.dataset.parallaxDepth);
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const move = (window.innerHeight / 2 - rect.top) * depth;
+                item.style.transform = `translateY(${move}px)`;
+            }
+        });
+    });
+
+    // Prevent default on dummy links
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+        link.addEventListener('click', e => e.preventDefault());
+    });
+</script>
+</body></html>

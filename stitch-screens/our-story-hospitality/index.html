@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story | Sandou Kremas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#716f66",
+                        "inverse-primary": "#cac6bc",
+                        "surface-container-high": "#ffe2d5",
+                        "on-background": "#28180f",
+                        "on-tertiary-container": "#896a29",
+                        "surface-tint": "#615e56",
+                        "secondary": "#675e41",
+                        "on-surface": "#28180f",
+                        "on-secondary-fixed": "#221b05",
+                        "surface-bright": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#fcdccd",
+                        "inverse-surface": "#3f2c22",
+                        "secondary-fixed-dim": "#d3c6a2",
+                        "secondary-container": "#f0e2bd",
+                        "tertiary-fixed": "#ffdea2",
+                        "primary-fixed": "#e7e2d7",
+                        "outline": "#7a776e",
+                        "on-secondary-fixed-variant": "#4f462b",
+                        "inverse-on-surface": "#ffede6",
+                        "on-primary-fixed-variant": "#49473f",
+                        "background": "#fff8f6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#f8f3e8",
+                        "tertiary": "#765a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#cac6bc",
+                        "on-tertiary-fixed-variant": "#5c4201",
+                        "on-secondary-container": "#6e6446",
+                        "surface": "#fff8f6",
+                        "surface-container-low": "#fff1eb",
+                        "tertiary-container": "#fff2e0",
+                        "surface-dim": "#f3d4c5",
+                        "tertiary-fixed-dim": "#e7c177",
+                        "on-primary-fixed": "#1d1c15",
+                        "primary": "#615e56",
+                        "outline-variant": "#cac6bc",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#fcdccd",
+                        "secondary-fixed": "#f0e2bd",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ffeae0",
+                        "on-surface-variant": "#49473f",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#261900",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "margin-desktop": "80px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.03em", "fontWeight": "300"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(255, 248, 246, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .editorial-frame {
+            border: 1px solid #D8B36A;
+            padding: 16px;
+        }
+        .signature-font {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            border-bottom: 1px solid #D8B36A;
+            display: inline-block;
+            padding-bottom: 4px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 2.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .signature-font.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .underline-expand {
+            position: relative;
+        }
+        .underline-expand::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #765a1a;
+            transition: all 0.5s ease;
+        }
+        .underline-expand:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        body {
+            background-color: #fff8f6;
+            scroll-behavior: smooth;
+        }
+
+        /* Weighted transitions for all interactions */
+        a, button, input {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* Breathing Effect */
+        @keyframes breathing {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-breathing {
+            animation: breathing 20s ease-in-out infinite;
+        }
+
+        /* Refined Slow Memory Reveal */
+        .memory-reveal {
+            filter: blur(25px);
+            opacity: 0;
+            transform: scale(1.08);
+            transition: filter 5s cubic-bezier(0.2, 0, 0.2, 1), 
+                        opacity 5s cubic-bezier(0.2, 0, 0.2, 1), 
+                        transform 5s cubic-bezier(0.2, 0, 0.2, 1);
+            will-change: filter, opacity, transform;
+        }
+        .memory-reveal.active {
+            filter: blur(0);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Reveal Animations for Text */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 3s cubic-bezier(0.2, 0, 0.2, 1), 
+                        transform 3s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Shimmer Effect */
+        .shimmer-overlay {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+            transform: skewX(-25deg);
+            pointer-events: none;
+        }
+        .group:hover .shimmer-overlay {
+            animation: shimmer 3s ease-in-out;
+        }
+        @keyframes shimmer {
+            100% { left: 150%; }
+        }
+
+        /* Parallax Container */
+        .parallax-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .parallax-img {
+            transition: transform 1.5s cubic-bezier(0.1, 0.8, 0.2, 1);
+            will-change: transform;
+        }
+
+        /* Canvas Overlay for Gold Dust */
+        #dust-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        /* Sandou Concierge Floating Widget */
+        .concierge-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            pointer-events: none;
+        }
+        .concierge-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(216, 179, 106, 0.3);
+            border-radius: 1rem;
+            padding: 24px;
+            max-width: 320px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+            pointer-events: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .concierge-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .concierge-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(216, 179, 106, 0.1) 0%, transparent 70%);
+            animation: rotate-glow 15s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes rotate-glow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .concierge-trigger {
+            width: 64px;
+            height: 64px;
+            background: #28180f;
+            color: #fff8f6;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(40, 24, 15, 0.2);
+            pointer-events: auto;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        .concierge-trigger:hover {
+            transform: scale(1.1) translateY(-5px);
+            background: #615e56;
+        }
+        .concierge-trigger .ping {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background: #D8B36A;
+            opacity: 0.3;
+            animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes ping {
+            75%, 100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .memory-reveal, .parallax-img, .animate-breathing, .shimmer-overlay {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-surface-container-high overflow-x-hidden">
+<!-- Ambient Dust Layer -->
+<canvas id="dust-canvas"></canvas>
+<!-- Sandou Concierge Experience -->
+<div class="concierge-float">
+<div class="concierge-card" id="conciergeCard">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-tertiary text-xl">concierge</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] uppercase tracking-widest text-tertiary">Sandou Concierge</p>
+<p class="font-headline-sm text-sm text-on-background">A Votre Service</p>
+</div>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant leading-relaxed mb-6">
+            "Welcome to our home. Would you like to explore the rare botanicals we use, or perhaps I can assist you in finding the perfect vintage for your celebration?"
+        </p>
+<div class="space-y-2">
+<button class="w-full text-left font-label-caps text-[10px] uppercase tracking-widest p-3 bg-white/50 border border-outline-variant/30 hover:border-tertiary hover:bg-white transition-all flex justify-between items-center group">
+                Discover The Spices
+                <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="w-full text-left font-label-caps text-[10px] uppercase tracking-widest p-3 bg-white/50 border border-outline-variant/30 hover:border-tertiary hover:bg-white transition-all flex justify-between items-center group">
+                Curate A Gifting Set
+                <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="concierge-trigger" id="conciergeTrigger">
+<div class="ping"></div>
+<span class="material-symbols-outlined z-10">magic_button</span>
+</div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<div class="font-headline-md text-headline-md text-primary italic">Sandou Kremas</div>
+<div class="hidden md:flex space-x-12 items-center">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary underline-expand" href="#">Story</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary underline-expand" href="#">Flavors</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary underline-expand" href="#">Experience</a>
+</div>
+<button class="font-label-caps text-label-caps uppercase tracking-widest bg-on-background text-background px-8 py-3 hover:opacity-80 active:scale-95">
+            Reserve
+        </button>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Hero Title -->
+<header class="px-margin-mobile md:px-margin-desktop text-center mb-section-gap reveal">
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.3em] block mb-4">Our Heritage</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background max-w-4xl mx-auto">The Alchemy of Heritage &amp; Elegance</h1>
+</header>
+<!-- FOUNDER SECTION -->
+<section class="px-margin-mobile md:px-margin-desktop mb-section-gap max-w-screen-2xl mx-auto reveal">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-6 lg:col-span-5 order-2 md:order-1">
+<span class="font-label-caps text-label-caps text-tertiary uppercase mb-6 block">The Founder</span>
+<h2 class="font-headline-md text-headline-md text-on-background mb-8">Meet The Heart Behind Sandou</h2>
+<div class="space-y-6 text-on-surface-variant">
+<p class="font-body-lg text-body-lg leading-relaxed">
+                        Sandou Kremas was born in a kitchen filled with the scent of toasted coconut and warm nutmeg. For our founder, Sandou, this isn't just a beverage; it's a bottled memory of her grandmother's porch in Jacmel.
+                    </p>
+<p class="font-body-md text-body-md">
+                        "I remember the precision," she recalls. "The way the lime zest was folded into the cream, the patient stirring that lasted into the sunset. It was a ritual of love." Sandou has spent a decade refining these family secrets, elevating the traditional Haitian Kremas into a sophisticated spirit that honors its roots while embracing a global, luxury palate.
+                    </p>
+</div>
+<div class="mt-12 signature-trigger">
+<p class="signature-font text-headline-sm text-primary" id="founder-signature">Sandou Dessalines</p>
+<p class="font-label-caps text-[10px] uppercase tracking-widest text-outline mt-2">Founder &amp; Master Blender</p>
+</div>
+</div>
+<div class="md:col-span-6 lg:col-start-7 lg:col-span-6 order-1 md:order-2">
+<div class="editorial-frame bg-surface shadow-xl shadow-on-background/5 overflow-hidden memory-reveal">
+<img alt="Portrait of the founder" class="w-full h-auto object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-[5s] animate-breathing scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"/>
+</div>
+</div>
+</div>
+</section>
+<!-- HERITAGE SECTION -->
+<section class="bg-primary-container py-section-gap mb-section-gap reveal">
+<div class="px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7">
+<div class="relative group overflow-hidden parallax-container memory-reveal">
+<img alt="Cultural collage" class="w-full h-auto shadow-2xl parallax-img scale-125" src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFG2dKPylFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"/>
+<div class="absolute inset-0 border-[16px] border-primary-container/30 pointer-events-none"></div>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-12 mt-12 md:mt-0">
+<span class="font-label-caps text-label-caps text-tertiary uppercase mb-6 block">The Tradition</span>
+<h2 class="font-headline-md text-headline-md text-on-background mb-8">A Taste Of Haitian Celebration</h2>
+<div class="space-y-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-tertiary">celebration</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">The Golden Toast</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">At every Haitian wedding, the clink of crystal glasses filled with Kremas marks the beginning of a union. It is the communal spirit of joy, poured with intention.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-tertiary">home</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Holiday Rituals</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Christmas in a Haitian home is incomplete without the cooling richness of Sandou. It is the flavor of homecoming, shared among generations by the fireplace or under the stars.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- GALLERY: Editorial Grid -->
+<section class="px-margin-mobile md:px-margin-desktop mb-section-gap max-w-screen-2xl mx-auto reveal">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md text-on-background">Moments In Time</h2>
+<div class="flex flex-wrap justify-center gap-8 mt-8">
+<button class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-tertiary border-b border-tertiary pb-1">All Collections</button>
+<button class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary">Behind The Bottle</button>
+<button class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary">Family Moments</button>
+<button class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary">Celebrations</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[300px]">
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-surface-container-low memory-reveal parallax-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s] parallax-img scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv1dPLgxd3CzmJGTqiqZqtuSLV5B3FtewdZI6_v9XipGVs2MpxRCLPcjuhwG2gkKfgPocGSDiMF3vObmN8KDpt5h2wMLsKfZXIC7FAQXpByUtjXLIN8vdNGXeXoNaGsE_6mknKLHYt9Tf5qsfKxdmxtwVXzNutXgU8xWTPk8KS_bJ1DEu2d342mk-6h1BPp_qMeV-fNe0KHq2ipJUq3O6l0Cd8_YycKRvqS82sYadjnRM0XLsP4PAR51UBDkG6nncLal_veCM5oENl"/>
+<div class="shimmer-overlay"></div>
+<div class="absolute inset-0 bg-on-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] flex items-end p-8">
+<p class="text-background font-label-caps text-label-caps uppercase">The Pour</p>
+</div>
+</div>
+<div class="relative group overflow-hidden bg-surface-container-low memory-reveal parallax-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s] parallax-img scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLB1WdxI3sdGUf_Ir6m8Wk04FtuY_EgCJMUKBJrTjlwnaLxEbpLejgBWTWZVartffBxW8YE0uAr7Ca-9mrw7Ay0vcOfrQYRHsZU8GzToKFncRuP8_d6MX3ZWe-Lnexgt2YBhbILDLq9HXYhWLC_H-05q1H39e03HHz3eoU2MYC_uDdjKr04Rr7mn1kV3H101RO6naqyq-gZSkpKXodBJSTIRu2qZS8z35G9eUT4iDa5xAh3CDu-K3tW5UmrmyneUzYXOA78Lix9VzF"/>
+<div class="shimmer-overlay"></div>
+<div class="absolute inset-0 bg-on-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] flex items-end p-6">
+<p class="text-background font-label-caps text-label-caps uppercase">Ingredients</p>
+</div>
+</div>
+<div class="md:row-span-2 relative group overflow-hidden bg-surface-container-low memory-reveal parallax-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s] parallax-img scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAduYKPPaYjFrwDjW5b-34FlaIaZZiEdGZ2rBaNPS0mb35aweDaGBPkYmjVRD5uTXqP7I33kjQ2-7eGwVhZ8uwLBvcXJ67kL81QouSVABZpSjRbwLrto8PFiKJNc3igjOEqLaul4UC1UwEfA6tu-iFEF0-m6C_tDHOKve0tJsOhu2_hR9qMT633UorDtpT3bHdN2lPx2_CP70fKn57ECzhFOH3v6x0yly2MVLK_s4R0_SKl5_pTcCuT9HcUWA9nDVOhhEiZ8yHkEApu"/>
+<div class="shimmer-overlay"></div>
+<div class="absolute inset-0 bg-on-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] flex items-end p-6">
+<p class="text-background font-label-caps text-label-caps uppercase">Festivals</p>
+</div>
+</div>
+<div class="relative group overflow-hidden bg-surface-container-low memory-reveal parallax-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s] parallax-img scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWhY12pN62-E1f2k2FW8HqjmVVR9lWmIJTNxuy6lXhO9PS-G5vm_v_W5MLuhCeUUGEAp0thqZlcAy3jNciYRpv2rU9RjlgR31_nqP4icN_6TBjqAXNmWvhYmzL2E-8vRSyU7XvE9jpx_283jP_fAnwMPcyd2pyvINXqiiucjSsybKLx0Mzpw-zqpzXLky20ovXXdYcdQ1wvviNFh8ABfUZxYHnEEFTTO7FSZSRZveRbVuYJrL2KG3KXaTQBk3_UW94R2wCInnTc4w7"/>
+<div class="shimmer-overlay"></div>
+<div class="absolute inset-0 bg-on-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] flex items-end p-6">
+<p class="text-background font-label-caps text-label-caps uppercase">Heritage</p>
+</div>
+</div>
+<div class="md:col-span-2 relative group overflow-hidden bg-surface-container-low memory-reveal parallax-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s] parallax-img scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9TAs3RPzoniEUilrZ6EKAF48u2YIWmG5r37PRMJWknJXDjb8AE4Bo4Y0Fm8URB2wkJ8fIOiq5G9TY3qV-NouUEc2iSnMGO8zFY4TKZS08uKL2B7wQqzZox8n99wVwRS-a_J5D5LAUEU7KbAfNbktZKlActTm0nwLcCGJWTw4o0QiGENy63pise7LP6zSZNgKiijjKLsR43wqRrxPRNJmotC9LbxV0cyOYejzZUT0kkBRDKmUTJ7ewfwsUnITK5VAK0zXLcnXvFbwb"/>
+<div class="shimmer-overlay"></div>
+<div class="absolute inset-0 bg-on-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] flex items-end p-8">
+<p class="text-background font-label-caps text-label-caps uppercase">Process</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA SECTION -->
+<section class="mb-section-gap px-margin-mobile text-center reveal">
+<div class="bg-surface-container-lowest max-w-4xl mx-auto py-20 px-12 border border-outline-variant/10 shadow-2xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-background px-4 z-10">
+<span class="material-symbols-outlined text-tertiary scale-150">flare</span>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline-md text-headline-md text-on-background mb-6 italic">Experience the Legacy</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto mb-10">Invite the spirit of Haitian celebration into your home. Each batch is limited, artisanal, and prepared with the same devotion as our founder’s family ritual.</p>
+<div class="flex flex-col md:flex-row justify-center gap-6">
+<button class="bg-on-background text-background px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:opacity-90">Shop Collection</button>
+<button class="border border-tertiary text-tertiary px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-tertiary hover:text-white">Book Tasting</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-on-background border-t border-outline-variant w-full py-section-gap reveal">
+<div class="grid grid-cols-1 md:grid-cols-12 px-margin-mobile md:px-margin-desktop gap-gutter w-full mx-auto max-w-screen-2xl">
+<div class="col-span-1 md:col-span-4 mb-12 md:mb-0">
+<div class="font-headline-sm text-headline-sm text-primary mb-6">Sandou Kremas</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Crafting artisanal spirits inspired by the soul of Haiti and the precision of fine luxury.</p>
+</div>
+<div class="col-span-1 md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase text-on-background mb-6">Navigation</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Story</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Collection</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Gifting</a></li>
+</ul>
+</div>
+<div class="col-span-1 md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase text-on-background mb-6">Inquiry</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Provenance</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Press</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:tracking-wider" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="col-span-1 md:col-span-4 mt-12 md:mt-0">
+<h4 class="font-label-caps text-label-caps uppercase text-on-background mb-6 italic">Join the Sandou Circle</h4>
+<p class="font-body-md text-sm text-on-surface-variant mb-6">Stay informed of limited vintage releases and family recipes.</p>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-tertiary py-3 focus:outline-none placeholder:italic placeholder:font-headline-md placeholder:text-on-surface-variant/30 font-body-md" placeholder="Your email address" type="email"/>
+<button class="absolute right-0 bottom-3">
+<span class="material-symbols-outlined text-tertiary">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="col-span-1 md:col-span-12 mt-20 pt-12 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Sandou Kremas. Crafted with Heritage.</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary" href="#">Privacy</a>
+<a class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary" href="#">Terms</a>
+<a class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary" href="#">Instagram</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Concierge Interaction
+        const conciergeTrigger = document.getElementById('conciergeTrigger');
+        const conciergeCard = document.getElementById('conciergeCard');
+        let cardOpen = false;
+
+        conciergeTrigger.addEventListener('click', () => {
+            cardOpen = !cardOpen;
+            if (cardOpen) {
+                conciergeCard.classList.add('active');
+            } else {
+                conciergeCard.classList.remove('active');
+            }
+        });
+
+        // Auto-show concierge after a delay for welcome feel
+        setTimeout(() => {
+            conciergeCard.classList.add('active');
+            cardOpen = true;
+        }, 3000);
+
+        // Memory Reveal & Signature IntersectionObserver
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px'
+        };
+
+        const memoryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Trigger signature if ancestor is trigger
+                    if (entry.target.closest('.signature-trigger') || entry.target.classList.contains('signature-trigger')) {
+                        const sig = document.getElementById('founder-signature');
+                        if (sig) sig.classList.add('animate');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.memory-reveal, .reveal, .signature-trigger').forEach(el => memoryObserver.observe(el));
+
+        // Scrapbook Parallax Effect (Living Scrapbook Feel)
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const containers = document.querySelectorAll('.parallax-container');
+            
+            containers.forEach((container, index) => {
+                const rect = container.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                
+                if (rect.top < viewHeight && rect.bottom > 0) {
+                    const img = container.querySelector('.parallax-img');
+                    // Slower, smoother parallax for luxury feel
+                    const speed = 0.05 + (index * 0.01);
+                    const offset = (scrollY - (container.offsetTop + container.parentElement.offsetTop)) * speed;
+                    img.style.transform = `scale(1.25) translateY(${offset}px)`;
+                }
+            });
+        });
+
+        // Gold Dust Animation (Ambient Details)
+        const canvas = document.getElementById('dust-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.2;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.2 + 0.05; // Even slower float
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y -= this.speedY; // Floating up
+                if (this.y < 0) this.y = canvas.height;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(216, 179, 106, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            particles = [];
+            // Refined lower intensity
+            for (let i = 0; i < 45; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+    });
+</script>
+</body></html>

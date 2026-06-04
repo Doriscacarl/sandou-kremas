@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sandou Kremas | Every Bottle Tells A Story</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#716f66",
+                    "inverse-primary": "#cac6bc",
+                    "surface-container-high": "#ffe2d5",
+                    "on-background": "#28180f",
+                    "on-tertiary-container": "#896a29",
+                    "surface-tint": "#615e56",
+                    "secondary": "#675e41",
+                    "on-surface": "#28180f",
+                    "on-secondary-fixed": "#221b05",
+                    "surface-bright": "#fff8f6",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#fcdccd",
+                    "inverse-surface": "#3f2c22",
+                    "secondary-fixed-dim": "#d3c6a2",
+                    "secondary-container": "#f0e2bd",
+                    "tertiary-fixed": "#ffdea2",
+                    "primary-fixed": "#e7e2d7",
+                    "outline": "#7a776e",
+                    "on-secondary-fixed-variant": "#4f462b",
+                    "inverse-on-surface": "#ffede6",
+                    "on-primary-fixed-variant": "#49473f",
+                    "background": "#fff8f6",
+                    "error": "#ba1a1a",
+                    "primary-container": "#f8f3e8",
+                    "tertiary": "#765a1a",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#cac6bc",
+                    "on-tertiary-fixed-variant": "#5c4201",
+                    "on-secondary-container": "#6e6446",
+                    "surface": "#fff8f6",
+                    "surface-container-low": "#fff1eb",
+                    "tertiary-container": "#fff2e0",
+                    "surface-dim": "#f3d4c5",
+                    "tertiary-fixed-dim": "#e7c177",
+                    "on-primary-fixed": "#1d1c15",
+                    "primary": "#615e56",
+                    "outline-variant": "#cac6bc",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#fcdccd",
+                    "secondary-fixed": "#f0e2bd",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#ffeae0",
+                    "on-surface-variant": "#49473f",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#261900",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "headline-sm": ["Playfair Display"],
+                    "label-caps": ["Montserrat"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.03em", "fontWeight": "300"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 248, 246, 0.4);
+        }
+        .text-underline-expand {
+            position: relative;
+        }
+        .text-underline-expand::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #D8B36A;
+            transition: all 0.5s ease;
+            transform: translateX(-50%);
+        }
+        .text-underline-expand:hover::after {
+            width: 100%;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .passpartout-frame {
+            border: 1px solid #D8B36A;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl dark:bg-surface-dim/40 border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary italic">Sandou Kremas</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-tertiary border-b border-tertiary pb-1 font-label-caps text-label-caps uppercase tracking-widest" href="#">Story</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest" href="#">Flavors</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase tracking-widest" href="#">Experience</a>
+</div>
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest hover:opacity-80 transition-opacity active:scale-95 duration-200">
+                Reserve
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8X0M60_5jO4c6XUO7BDoQ7IoHX4U5lqqpSGBdtYlOQxjQHsaZ9b0HGM-PviusJOURnaS0JHX-rOFyUu_tpE_suptU6sZM2kRrlZDRwzMI2WWIJBgCo9pe0IOutW4CE9LXmn6StwoKlWsVxvCNuoFMSX32juOYYehT1xpxBUmHERGrDBGxWYzeXkqjpGbTijlsg1B6-pB4JB-5YabWgxMpr2z-DbThOR67xN4h6FDGjy9OZjbMBY0XuV3BePJ6ESSdcN9qRIwFGa9D');"></div>
+<div class="absolute inset-0 bg-black/30"></div>
+</div>
+<div class="relative z-10 text-center text-white px-margin-mobile md:px-0">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">Every Bottle Tells A Story</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto mb-12 opacity-90">Crafted from family tradition. Shared through every celebration.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-opacity-90 transition-all min-w-[220px]">
+                    Explore Flavors
+                </button>
+<button class="border border-[#D8B36A] text-white px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-white/10 transition-all min-w-[220px]">
+                    Our Story
+                </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-white text-4xl">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Experience Section (Bento Grid Style) -->
+<section class="py-section-gap px-margin-desktop max-w-screen-2xl mx-auto">
+<div class="text-center mb-24">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.3em] block mb-4">The Craft</span>
+<h2 class="font-headline-md text-headline-md text-on-background">The Sandou Experience</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[700px]">
+<!-- Card 1 -->
+<div class="md:col-span-4 bg-white p-12 flex flex-col justify-end border border-[#F4E6C1] hover:shadow-2xl transition-all duration-700 group">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">workspace_premium</span>
+<h3 class="font-headline-sm text-headline-sm mb-4">Authentic Ingredients</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80">Only the finest organic coconuts and premium aged spirits touch our copper vats.</p>
+</div>
+<!-- Card 2 (Tall) -->
+<div class="md:col-span-4 bg-primary-container p-12 flex flex-col items-center justify-center border border-[#F4E6C1] relative overflow-hidden group">
+<div class="passpartout-frame w-full h-full flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-tertiary text-5xl mb-8">family_history</span>
+<h3 class="font-headline-sm text-headline-sm mb-4">Family Tradition</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A secret recipe preserved across four generations of Haitian excellence.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="md:col-span-4 grid grid-rows-2 gap-gutter">
+<div class="bg-white p-8 border border-[#F4E6C1] flex flex-col justify-center">
+<h3 class="font-headline-sm text-headline-sm mb-2">Haitian Heritage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Celebrating the spirit of Saint-Marc in every chilled pour.</p>
+</div>
+<div class="bg-[#2C1B12] p-8 text-white flex flex-col justify-center">
+<h3 class="font-headline-sm text-headline-sm mb-2 text-primary-fixed">Crafted With Care</h3>
+<p class="font-body-md text-body-md opacity-70">Small-batch production ensures the luxury of precision in every bottle.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Art of Kremas: Ingredient Showcase -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+<div class="px-margin-desktop max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-20">
+<div class="w-full md:w-1/2">
+<div class="passpartout-frame">
+<img alt="Ingredients" class="w-full h-[600px] object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000" data-alt="A lush, editorial still-life arrangement of split fresh coconuts, aromatic cinnamon sticks, star anise, and dark vanilla beans resting on a cream-colored linen cloth. The scene is captured in high-key, soft natural lighting, emphasizing the organic textures and warm earthy tones of the spices against a minimalist ivory background. The mood is sophisticated and evokes the high-end sensory experience of artisanal Haitian culinary traditions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"/>
+</div>
+</div>
+<div class="w-full md:w-1/2 space-y-12">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.3em] block mb-4">The Alchemist's Palette</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md mb-8">The Art of Kremas</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Our process is a quiet symphony of natural elements. We begin with the milk of sun-drenched coconuts, balanced by the warmth of hand-ground spices and the depth of premium cane spirits.
+                    </p>
+</div>
+<ul class="space-y-6">
+<li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+<span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors">Pure Coconut</span>
+<span class="font-body-md text-body-md italic text-on-surface-variant">The Foundation</span>
+</li>
+<li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+<span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors">Madagascar Vanilla</span>
+<span class="font-body-md text-body-md italic text-on-surface-variant">The Soul</span>
+</li>
+<li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+<span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors">Cinnamon &amp; Nutmeg</span>
+<span class="font-body-md text-body-md italic text-on-surface-variant">The Warmth</span>
+</li>
+<li class="flex items-end justify-between border-b border-outline-variant pb-2 group">
+<span class="font-headline-sm text-headline-sm group-hover:text-tertiary transition-colors">Premium Aged Rum</span>
+<span class="font-body-md text-body-md italic text-on-surface-variant">The Spirit</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Product Reveal Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center bg-white overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5 overflow-hidden">
+<span class="font-display-lg text-[400px] whitespace-nowrap select-none">SANDOU KREMAS</span>
+</div>
+<div class="max-w-screen-xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-16 relative z-10">
+<div class="order-2 md:order-1">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4">Smooth. Rich. Authentic.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">The definitive expression of Haitian luxury. Designed to be sipped, shared, and celebrated in the company of those who matter most.</p>
+<div class="flex gap-4">
+<button class="bg-[#2C1B12] text-[#F8F3E8] px-12 py-5 font-label-caps text-label-caps uppercase tracking-widest shadow-xl hover:translate-y-[-2px] transition-all">
+                        Reserve Your Bottle
+                    </button>
+</div>
+</div>
+<div class="order-1 md:order-2 flex justify-center">
+<div class="relative w-full max-w-[500px]">
+<img alt="Sandou Bottle" class="w-full h-auto drop-shadow-[0_35px_35px_rgba(44,27,18,0.15)] animate-pulse-slow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"/>
+<!-- Atmospheric Particles using CSS -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute w-2 h-2 bg-tertiary rounded-full blur-sm animate-ping" style="top: 20%; left: 10%;"></div>
+<div class="absolute w-1 h-1 bg-tertiary rounded-full blur-sm animate-ping" style="top: 70%; right: 15%; animation-delay: 1s;"></div>
+<div class="absolute w-3 h-3 bg-secondary rounded-full blur-sm animate-ping" style="bottom: 10%; left: 30%; animation-delay: 2s;"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sandou Concierge Section -->
+<section class="py-section-gap px-margin-desktop max-w-screen-lg mx-auto">
+<div class="bg-primary-container border border-[#D8B36A] p-12 md:p-20 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-8">
+<span class="w-12 h-[1px] bg-tertiary"></span>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Sandou Concierge</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-12">How may we assist your celebration?</h2>
+<form class="space-y-12">
+<div class="relative">
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-[#D8B36A] py-4 px-0 focus:ring-0 focus:border-on-background placeholder:italic placeholder:font-headline-md placeholder:text-on-surface-variant/40 font-body-lg text-body-lg" placeholder="Your Name" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-[#D8B36A] py-4 px-0 focus:ring-0 focus:border-on-background placeholder:italic placeholder:font-headline-md placeholder:text-on-surface-variant/40 font-body-lg text-body-lg" placeholder="Inquiry Type (Gifting, Corporate, Event)" type="email"/>
+</div>
+<div class="relative">
+<textarea class="w-full bg-transparent border-t-0 border-x-0 border-b border-[#D8B36A] py-4 px-0 focus:ring-0 focus:border-on-background placeholder:italic placeholder:font-headline-md placeholder:text-on-surface-variant/40 font-body-lg text-body-lg resize-none" placeholder="Message to our Cellar Master" rows="1"></textarea>
+</div>
+<button class="flex items-center gap-6 group">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.3em] group-hover:mr-4 transition-all duration-500">Submit Inquiry</span>
+<span class="material-symbols-outlined text-tertiary">arrow_right_alt</span>
+</button>
+</form>
+</div>
+<!-- Atmospheric texture -->
+<div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]">lock_open</span>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background dark:bg-on-background w-full py-section-gap border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-12 px-margin-desktop gap-gutter w-full mx-auto max-w-screen-2xl">
+<div class="md:col-span-4 mb-12 md:mb-0">
+<div class="font-headline-sm text-headline-sm text-primary mb-6">Sandou Kremas</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A legacy of Haitian craftsmanship, delivered to the global epicurean.</p>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-8 text-on-surface">Explore</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li><a class="hover:text-on-surface transition-colors" href="#">Provenance</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Press</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Trade</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-8 text-on-surface">Support</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li><a class="hover:text-on-surface transition-colors" href="#">Privacy</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-on-surface transition-colors" href="#">Shipping</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 flex flex-col md:items-end justify-between">
+<div class="flex gap-6 mb-8 md:mb-0">
+<a class="text-on-surface-variant hover:text-tertiary transition-all duration-500" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-all duration-500" href="#">
+<span class="material-symbols-outlined">camera_indoor</span>
+</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">© 2024 Sandou Kremas. Crafted with Heritage.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(link.getAttribute('href') === '#') e.preventDefault();
+            });
+        });
+
+        // Scroll Reveal effect
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Parallax simple implementation
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelector('.parallax-bg');
+            let offset = window.pageYOffset;
+            parallax.style.backgroundPositionY = offset * 0.7 + 'px';
+        });
+    </script>
+</body></html>
