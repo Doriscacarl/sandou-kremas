@@ -74,6 +74,7 @@
   .flavor-card:hover .flavor-img { transform: scale(1.04); }
   .flavor-img { transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
   .founder-badge { background: linear-gradient(135deg, #D8B36A, #765a1a); }
+  .sk-badge { position:absolute;top:12px;right:12px;z-index:10;color:white;padding:5px 10px;font-family:Montserrat,sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600; }
   @media (prefers-reduced-motion: reduce) { .cinematic-zoom, .ambient-glow, .shimmer-gleam, .reveal-soft, .concierge-float, .crawling-light, .bottle-shimmer::after { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
 </style>
 </head>
@@ -436,5 +437,8 @@
   function animateConcierge() { if (!conciergeModal.classList.contains('active')) return; cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); cParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; } cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; cCtx.beginPath(); cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); cCtx.fill(); }); requestAnimationFrame(animateConcierge); }
   document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="supabase-init.js"></script>
+<script src="sandou-conversion.js"></script>
 </body>
 </html>

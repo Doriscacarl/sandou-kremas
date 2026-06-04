@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="SAndouKremas%20logo.png"/>
 <link rel="apple-touch-icon" href="SAndouKremas%20logo.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
@@ -597,11 +597,24 @@
       </div>
       <div class="pt-4 space-y-6">
         <div class="relative inline-block">
-          <svg class="w-48 md:w-64 h-16 md:h-24 text-tertiary opacity-80" fill="none" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="signature-draw" d="M10,40 Q30,10 50,40 T90,40 T130,20 T170,40" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          <p class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant mt-1">Alexandra Louis</p>
-          <p class="font-body-md text-sm italic opacity-60">Founder &amp; Master Blender</p>
+          <!-- Luxury handwritten signature -->
+          <div style="padding:20px 0 12px;">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg"
+              style="width:clamp(200px,28vw,300px);height:auto;display:block;overflow:visible;">
+              <path class="signature-draw"
+                d="M8,52 C18,20 36,8 52,28 C62,42 68,18 82,30 C96,42 100,18 118,28 C130,36 136,16 152,26 C166,36 172,14 188,24 C204,34 210,16 226,26 C240,36 248,20 264,30 C276,38 284,22 298,32"
+                fill="none" stroke="#D8B36A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="signature-draw"
+                d="M8,60 Q155,56 298,60"
+                fill="none" stroke="rgba(216,179,106,0.25)" stroke-width="0.8" stroke-linecap="round"
+                style="stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 3s ease-out 0.9s;"/>
+            </svg>
+            <p style="font-family:'Dancing Script',cursive;font-size:clamp(24px,2.8vw,32px);color:#2C1B12;line-height:1.1;margin:6px 0 0;letter-spacing:0.01em;">Alexandra Louis</p>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+              <div style="height:1px;width:28px;background:rgba(216,179,106,0.55);flex-shrink:0;"></div>
+              <span style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#49473f;opacity:0.7;">Founder &amp; Master Blender</span>
+            </div>
+          </div>
         </div>
         <div>
           <a href="our-story.html" class="inline-flex items-center gap-3 border border-tertiary text-tertiary px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-tertiary hover:text-white transition-colors duration-300">
@@ -1333,5 +1346,6 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
+<script src="sandou-conversion.js"></script>
 </body>
 </html>
