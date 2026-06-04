@@ -222,6 +222,26 @@
     background: white;
   }
 
+  /* ── Founder portrait premium frame ── */
+  .founder-portrait-frame {
+    border: 2px solid #D8B36A;
+    padding: 12px;
+    background: white;
+    box-shadow:
+      0 0 0 1px rgba(216,179,106,0.15),
+      0 4px 12px rgba(216,179,106,0.12),
+      0 16px 40px rgba(44,27,18,0.18),
+      0 40px 80px rgba(44,27,18,0.12);
+    transition: box-shadow 0.8s ease, transform 0.8s ease;
+  }
+  .founder-portrait-frame:hover {
+    box-shadow:
+      0 0 0 2px rgba(216,179,106,0.3),
+      0 8px 20px rgba(216,179,106,0.18),
+      0 24px 56px rgba(44,27,18,0.22),
+      0 56px 100px rgba(44,27,18,0.16);
+  }
+
   /* ── Gold underline link ── */
   .text-underline-expand { position: relative; }
   .text-underline-expand::after {
@@ -626,14 +646,14 @@
     </div>
     <!-- Portrait -->
     <div class="lg:col-span-6 order-1 lg:order-2">
-      <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+      <div class="founder-portrait-frame relative group overflow-hidden">
         <img
-          alt="Sandou Dessalines, Founder"
-          class="w-full h-[360px] sm:h-[500px] lg:h-[700px] object-cover transition-transform duration-[3s] group-hover:scale-105"
+          alt="Alexandra Louis, Founder of Sandou Kremas"
+          class="w-full h-[360px] sm:h-[500px] lg:h-[700px] object-cover object-[center_15%] transition-transform duration-[3s] group-hover:scale-105"
           loading="lazy"
-          src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"
+          src="founder-portrait.png"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
       </div>
     </div>
   </div>

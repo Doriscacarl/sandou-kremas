@@ -144,6 +144,24 @@
   }
   .signature-draw.active { stroke-dashoffset: 0; }
   .passpartout-frame { border: 1px solid #D8B36A; padding: 16px; background: white; }
+  .founder-portrait-frame {
+    border: 2px solid #D8B36A;
+    padding: 12px;
+    background: white;
+    box-shadow:
+      0 0 0 1px rgba(216,179,106,0.15),
+      0 4px 12px rgba(216,179,106,0.12),
+      0 16px 40px rgba(44,27,18,0.18),
+      0 40px 80px rgba(44,27,18,0.12);
+    transition: box-shadow 0.8s ease, transform 0.8s ease;
+  }
+  .founder-portrait-frame:hover {
+    box-shadow:
+      0 0 0 2px rgba(216,179,106,0.3),
+      0 8px 20px rgba(216,179,106,0.18),
+      0 24px 56px rgba(44,27,18,0.22),
+      0 56px 100px rgba(44,27,18,0.16);
+  }
   .text-underline-expand { position: relative; }
   .text-underline-expand::after {
     content: ''; position: absolute; bottom: -2px; left: 50%;
@@ -330,7 +348,7 @@
 <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 z-0 overflow-hidden">
     <div class="ambient-glow"></div>
-    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9');"></div>
+    <div class="w-full h-full cinematic-zoom bg-[center_15%] bg-cover" style="background-image: url('founder-portrait.png');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70"></div>
   </div>
   <div class="relative z-10 text-center text-white px-5 md:px-0 max-w-4xl mx-auto">
@@ -355,14 +373,14 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
     <!-- Portrait -->
     <div class="lg:col-span-5 order-1 reveal-soft">
-      <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
+      <div class="founder-portrait-frame relative group overflow-hidden">
         <img
           alt="Alexandra Louis, Founder of Sandou Kremas"
-          class="w-full h-[420px] sm:h-[560px] lg:h-[720px] object-cover transition-transform duration-[3s] group-hover:scale-105"
+          class="w-full h-[420px] sm:h-[560px] lg:h-[720px] object-cover object-[center_15%] transition-transform duration-[3s] group-hover:scale-105"
           loading="lazy"
-          src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"
+          src="founder-portrait.png"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
       </div>
     </div>
     <!-- Text -->
