@@ -250,7 +250,7 @@
     <h2 class="font-headline-md text-headline-md text-on-background">The Full Collection</h2>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div id="collection-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
     <!-- Original Reserve -->
     <article class="group flavor-card bg-white border border-[#F4E6C1] overflow-hidden">
@@ -470,5 +470,82 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
 <script src="sandou-conversion.js"></script>
+<script>
+// ── Supabase dynamic collection loader ──────────────────
+(async function(){
+  const SURL='https://lmeszvvlejrfribqveek.supabase.co';
+  const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZXN6dnZsZWpyZnJpYnF2ZWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1ODE4MzUsImV4cCI6MjA5NjE1NzgzNX0.e9_EbR8HuEvYEOdsjFgsezr9F_XwUnGM1HQA35GFln8';
+  try{
+    const db=supabase.createClient(SURL,SKEY);
+    const{data:products,error}=await db.from('products').select('*').eq('hidden',false).order('display_order');
+    if(error||!products||!products.length)return; // fallback to hardcoded
+
+    function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+    function cardHtml(p){
+      const isFounder=p.founder_favorite;
+      const isHoliday=p.name==='Holiday Collection';
+      const imgSrc=p.image_url||'https://placehold.co/600x700/f8f3e8/765a1a?text='+encodeURIComponent(p.name);
+      const slug=p.slug||p.id||p.name.toLowerCase().replace(/\s+/g,'-');
+      const price=p.price?'$'+p.price:'';
+      if(isHoliday){
+        return`<article class="group flavor-card bg-[#2C1B12] border border-[#2C1B12] overflow-hidden">
+          <div class="overflow-hidden h-[280px] sm:h-[320px] relative">
+            <img alt="${esc(p.name)} — Sandou Kremas" class="w-full h-full object-cover flavor-img opacity-80" loading="lazy" src="${esc(imgSrc)}" onerror="this.src='https://placehold.co/600x700/2C1B12/D8B36A?text=${encodeURIComponent(p.name)}'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#2C1B12]/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-4"><span class="font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A] border border-[#D8B36A]/50 px-3 py-1">Limited Edition</span></div>
+          </div>
+          <div class="p-8">
+            <span class="font-label-caps text-[9px] uppercase tracking-[0.35em] block mb-3" style="color:#D8B36A;">${esc(p.tagline||'The Seasonal')}</span>
+            <h3 class="font-headline-sm text-headline-sm mb-2" style="color:#F4E6C1;font-family:'Playfair Display',serif;">${esc(p.name)}</h3>
+            ${p.description?`<p class="font-body-md text-body-md leading-relaxed mb-5" style="color:rgba(255,248,246,0.65);">${esc(p.description)}</p>`:''}
+            ${p.serving_notes||p.inventory==='in_stock'?`<div class="border-t border-[#D8B36A]/15 pt-5 mb-6"><p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-2" style="color:rgba(216,179,106,0.6);">Serve</p><p class="font-body-md text-sm" style="color:rgba(255,248,246,0.55);">${esc(p.serving_notes||'Best served chilled')}</p></div>`:''}
+            <button onclick="toggleConcierge()" class="w-full border border-[#D8B36A] text-[#D8B36A] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-[#D8B36A] hover:text-[#2C1B12] transition-colors duration-500">Reserve This Flavor</button>
+            <a href="${esc(slug)}.html" class="w-full flex items-center justify-center gap-2 py-3 font-label-caps text-[9px] uppercase tracking-[0.25em] hover:opacity-80 transition-opacity duration-300 mt-3 min-h-[44px]" style="color:rgba(216,179,106,0.6);">Explore This Flavor <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+          </div>
+        </article>`;
+      }
+      const borderColor=isFounder?'border-[#D8B36A]':'border-[#F4E6C1]';
+      return`<article class="group flavor-card bg-white ${borderColor} border overflow-hidden${isFounder?' relative':''}">
+        ${isFounder?`<div class="absolute top-4 right-4 z-10 founder-badge text-white px-3 py-1" style="font-family:Montserrat,sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Founder's Favorite</div>`:''}
+        <div class="overflow-hidden h-[280px] sm:h-[320px]">
+          <img alt="Sandou Kremas ${esc(p.name)}" class="w-full h-full object-cover flavor-img" loading="lazy" src="${esc(imgSrc)}" onerror="this.src='https://placehold.co/600x700/f8f3e8/765a1a?text=${encodeURIComponent(p.name)}'"/>
+        </div>
+        <div class="p-8">
+          <span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">${esc(p.tagline||p.category||'')}</span>
+          <h3 class="font-headline-sm text-headline-sm mb-2 text-on-background" style="font-family:'Playfair Display',serif;">${esc(p.name)}</h3>
+          ${p.description?`<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-5">${esc(p.description)}</p>`:''}
+          ${p.serving_notes?`<div class="border-t border-[#F4E6C1] pt-5 mb-6"><p class="font-label-caps text-[9px] uppercase tracking-[0.3em] text-on-surface-variant mb-2">Serve</p><p class="font-body-md text-sm text-on-surface-variant">${esc(p.serving_notes)}</p></div>`:''}
+          ${price?`<p class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-tertiary mb-4">${esc(price)}</p>`:''}
+          ${isFounder
+            ?`<button onclick="toggleConcierge()" class="w-full bg-[#2C1B12] text-[#F8F3E8] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">Reserve This Flavor</button>`
+            :`<button onclick="toggleConcierge()" class="w-full border border-[#2C1B12] text-[#2C1B12] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-[#2C1B12] hover:text-white transition-colors duration-500">Reserve This Flavor</button>`
+          }
+          <a href="${esc(slug)}.html" class="w-full flex items-center justify-center gap-2 py-3 font-label-caps text-[9px] uppercase tracking-[0.25em] text-tertiary hover:text-on-surface transition-colors duration-300 mt-3 min-h-[44px]">Explore This Flavor <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+      </article>`;
+    }
+
+    // Replace the collection grid
+    const grid=document.getElementById('collection-grid');
+    if(grid) grid.innerHTML=products.map(cardHtml).join('');
+
+    // Update founder's favorite section if one exists
+    const ff=products.find(p=>p.founder_favorite);
+    if(ff&&ff.image_url){
+      document.querySelectorAll('img[alt*="Alexandra\'s Favorite"],img[alt*="Coconut Cream"]').forEach(img=>{
+        if(img.closest('section[style*="1A0F08"]'))img.src=ff.image_url;
+      });
+    }
+
+    // Re-apply reveal observers after DOM replacement
+    if(typeof revealObserver!=='undefined'){
+      grid.querySelectorAll('.flavor-card').forEach(el=>revealObserver.observe(el));
+    }
+  }catch(e){
+    // Silently fall back to hardcoded content
+  }
+})();
+</script>
 </body>
 </html>

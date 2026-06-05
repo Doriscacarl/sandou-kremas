@@ -292,5 +292,56 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
 <script src="sandou-conversion.js"></script>
+<script>
+// ── Supabase dynamic gallery loader ─────────────────────
+(async function(){
+  const SURL='https://lmeszvvlejrfribqveek.supabase.co';
+  const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZXN6dnZsZWpyZnJpYnF2ZWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1ODE4MzUsImV4cCI6MjA5NjE1NzgzNX0.e9_EbR8HuEvYEOdsjFgsezr9F_XwUnGM1HQA35GFln8';
+  try{
+    const db=supabase.createClient(SURL,SKEY);
+    const{data:items,error}=await db.from('gallery').select('*').eq('hidden',false).order('display_order');
+    if(error||!items||!items.length)return; // fallback to hardcoded
+
+    function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+    // Build responsive grid items; first item is wide (col-span-8), rest alternate
+    function itemHtml(g, idx){
+      const span = idx===0?'md:col-span-8': idx===items.length-1?'md:col-span-12':'';
+      const h = idx===items.length-1?'h-[260px] sm:h-[380px] md:h-[480px]':'h-[280px] sm:h-[380px]';
+      const imgCls = 'w-full '+h+' object-cover transition-transform duration-[1.2s] group-hover:scale-105';
+      const cat=g.category||'gallery';
+      const caption=g.caption||'';
+      const alt=g.alt_text||g.caption||'Sandou Kremas gallery image';
+      return`<div class="gallery-item ${span} overflow-hidden passpartout-frame relative group" data-category="${esc(cat)}">
+        <img alt="${esc(alt)}" class="${imgCls}" loading="lazy" src="${esc(g.image_url)}" onerror="this.src='https://placehold.co/800x600/f8f3e8/765a1a?text=Sandou+Kremas'"/>
+        ${caption||cat?`<div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+          <div>
+            ${cat?`<p class="font-label-caps text-[9px] uppercase tracking-[0.3em] text-[#D8B36A] mb-1">${esc(cat)}</p>`:''}
+            ${caption?`<h3 class="font-headline-sm text-white text-lg">${esc(caption)}</h3>`:''}
+          </div>
+        </div>`:''}
+        ${g.featured?`<div class="absolute top-3 left-3 bg-[#D8B36A] text-[#2C1B12] px-2 py-1 text-[8px] font-bold uppercase tracking-widest">Featured</div>`:''}
+      </div>`;
+    }
+
+    const grid=document.getElementById('gallery-grid');
+    if(grid) grid.innerHTML=items.map((g,i)=>itemHtml(g,i)).join('');
+
+    // Re-wire category filter buttons
+    document.querySelectorAll('.gallery-filter-btn,[data-filter]').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        const cat=this.dataset.filter||this.dataset.category||'';
+        document.querySelectorAll('.gallery-item').forEach(el=>{
+          el.style.display=(!cat||el.dataset.category===cat)?'':'none';
+        });
+        document.querySelectorAll('.gallery-filter-btn,[data-filter]').forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  }catch(e){
+    // Silently fall back to hardcoded content
+  }
+})();
+</script>
 </body>
 </html>
