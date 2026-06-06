@@ -71,12 +71,6 @@ const RESERVATION_MODAL_HTML = `
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:20px;">
           <div>
-            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">State</label>
-            <input type="text" name="state" placeholder="Florida"
-              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
-              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
-          </div>
-          <div>
             <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Preferred Flavor</label>
             <select name="flavor"
               style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;cursor:pointer;appearance:none;-webkit-appearance:none;">
@@ -89,18 +83,49 @@ const RESERVATION_MODAL_HTML = `
               <option>Holiday Collection</option>
             </select>
           </div>
+          <div>
+            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Quantity</label>
+            <input type="number" name="quantity" min="1" max="100" value="1"
+              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;padding-top:8px;border-top:1px solid rgba(216,179,106,0.2);">
+          <p style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#765a1a;margin:14px 0 0;">Shipping Address</p>
         </div>
         <div style="margin-bottom:20px;">
-          <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Shipping Address</label>
-          <input type="text" name="address" placeholder="Street, City, ZIP"
+          <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Street Address *</label>
+          <input type="text" name="streetAddress" required placeholder="123 Main Street"
             style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
             onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
         </div>
-        <div style="margin-bottom:20px;">
-          <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Quantity</label>
-          <input type="number" name="quantity" min="1" max="100" value="1"
-            style="width:120px;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;transition:border-color 0.3s;"
-            onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:20px;">
+          <div>
+            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Apt / Suite # <span style="opacity:0.5;">(Optional)</span></label>
+            <input type="text" name="apt" placeholder="Apt 4B"
+              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+          </div>
+          <div>
+            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">City *</label>
+            <input type="text" name="city" required placeholder="Miami"
+              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:20px;">
+          <div>
+            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">State *</label>
+            <input type="text" name="state" required placeholder="Florida"
+              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+          </div>
+          <div>
+            <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">ZIP Code *</label>
+            <input type="text" name="zip" required placeholder="33101"
+              style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+              onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+          </div>
         </div>
         <div style="margin-bottom:28px;">
           <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Special Notes</label>
@@ -293,12 +318,21 @@ async function handleReservationSubmit(e) {
   var firstName = d.get('firstName') || '';
   var lastName  = d.get('lastName') || '';
   var email     = d.get('email') || '';
-  var phone     = d.get('phone') || '';
-  var state     = d.get('state') || '';
-  var address   = d.get('address') || '';
-  var flavor    = d.get('flavor') || '';
-  var quantity  = parseInt(d.get('quantity')) || 1;
-  var notes     = d.get('notes') || '';
+  var phone         = d.get('phone') || '';
+  var streetAddress = (d.get('streetAddress') || '').trim();
+  var apt           = (d.get('apt') || '').trim();
+  var city          = (d.get('city') || '').trim();
+  var state         = (d.get('state') || '').trim();
+  var zip           = (d.get('zip') || '').trim();
+  var flavor        = d.get('flavor') || '';
+  var quantity      = parseInt(d.get('quantity')) || 1;
+  var notes         = d.get('notes') || '';
+
+  var addrParts = [streetAddress];
+  if (apt) addrParts.push('Apt/Suite: ' + apt);
+  var cityLine = [city, state + (zip ? ' ' + zip : '')].filter(Boolean).join(', ');
+  if (cityLine) addrParts.push(cityLine);
+  var fullAddress = addrParts.filter(Boolean).join('\n');
 
   if (typeof saveOrder === 'function') {
     var err = await saveOrder({
@@ -308,7 +342,7 @@ async function handleReservationSubmit(e) {
       productName: flavor || 'General Reservation',
       quantity: quantity,
       shippingState: state || null,
-      shippingAddress: address || null,
+      shippingAddress: fullAddress || null,
       notes: notes || null
     });
     if (err) {
