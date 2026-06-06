@@ -598,6 +598,7 @@ CREATE POLICY "public_read" ON storage.objects
 DO $$ BEGIN
   DROP POLICY IF EXISTS "admin_select_orders" ON public.orders;
   DROP POLICY IF EXISTS "admin_update_orders" ON public.orders;
+  DROP POLICY IF EXISTS "admin_delete_orders" ON public.orders;
   DROP POLICY IF EXISTS "admin_select_inquiries" ON public.inquiries;
   DROP POLICY IF EXISTS "admin_select_subscribers" ON public.subscribers;
 EXCEPTION WHEN OTHERS THEN NULL; END $$;
@@ -607,6 +608,8 @@ CREATE POLICY "admin_select_orders" ON public.orders FOR SELECT TO authenticated
 CREATE POLICY "admin_update_orders" ON public.orders FOR UPDATE TO authenticated
   USING (auth.email() = 'teamloxen@gmail.com')
   WITH CHECK (auth.email() = 'teamloxen@gmail.com');
+CREATE POLICY "admin_delete_orders" ON public.orders FOR DELETE TO authenticated
+  USING (auth.email() = 'teamloxen@gmail.com');
 CREATE POLICY "admin_select_inquiries" ON public.inquiries FOR SELECT TO authenticated
   USING (auth.email() = 'teamloxen@gmail.com');
 CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO authenticated
@@ -833,7 +836,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
             <thead><tr>
               <th>Customer</th><th>Product</th>
               <th class="hm">Qty</th><th>Status</th>
-              <th class="hm">Revenue</th><th class="ht">Phone</th><th class="ht">Notes</th><th>Date</th>
+              <th class="hm">Revenue</th><th class="ht">Phone</th><th class="ht">Notes</th><th>Date</th><th></th>
             </tr></thead>
             <tbody id="o-tbody"></tbody>
           </table>
@@ -1775,7 +1778,7 @@ function renderOTable(){
   document.getElementById('o-rc').textContent=`${S.fo.length} result${S.fo.length!==1?'s':''}`;
   const tbody=document.getElementById('o-tbody');
   if(!S.fo.length){
-    tbody.innerHTML=`<tr><td colspan="7">${emptyHTML('shopping_bag','No orders found','Try adjusting your filters.')}</td></tr>`;
+    tbody.innerHTML=`<tr><td colspan="9">${emptyHTML('shopping_bag','No orders found','Try adjusting your filters.')}</td></tr>`;
     document.getElementById('o-pgn').innerHTML='';return;
   }
   const p=S.pages.o,st=(p-1)*PER;
@@ -1793,6 +1796,7 @@ function renderOTable(){
       <td class="ht" style="font-size:11px">${o.customer_phone||'—'}</td>
       <td class="ht" style="font-size:10px;color:var(--t3);max-width:160px">${trunc(o.notes||'—',60)}</td>
       <td style="font-size:10px;color:var(--t3)">${$ds(o.created_at)}</td>
+      <td><button class="btn-ico" style="color:var(--red);border-color:rgba(224,122,95,.25)" onclick="deleteOrder('${o.id}','${(o.customer_name||'this order').replace(/'/g,"\\'")}')"><span class="ms" style="font-size:16px">delete</span></button></td>
     </tr>`).join('');
   renderPgn('o',S.fo.length);
 }
@@ -1802,6 +1806,15 @@ async function updateStatus(id,status){
   const o=S.orders.find(x=>x.id===id);if(o)o.status=status;
   const fo=S.fo.find(x=>x.id===id);if(fo)fo.status=status;
   toast('Updated',`Order marked as ${status}`,'s');
+  renderOTable();renderKPIs();
+}
+async function deleteOrder(id,name){
+  if(!confirm(`Delete order from "${name}"? This cannot be undone.`))return;
+  const{error}=await db.from('orders').delete().eq('id',id);
+  if(error){toast('Delete failed',error.message,'e');return;}
+  S.orders=S.orders.filter(x=>x.id!==id);
+  S.fo=S.fo.filter(x=>x.id!==id);
+  toast('Deleted',`Order from "${name}" removed`,'s');
   renderOTable();renderKPIs();
 }
 
