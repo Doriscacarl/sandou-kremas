@@ -251,7 +251,7 @@
         <button type="submit" id="contact-submit-btn" class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px]">
           Send Your Message
         </button>
-        <div id="contact-error" class="hidden flex items-center gap-3 mt-4 p-4 border border-error/30 bg-error-container/20">
+        <div id="contact-error" class="items-center gap-3 mt-4 p-4 border border-error/30 bg-error-container/20" style="display:none">
           <span class="material-symbols-outlined text-error text-xl flex-shrink-0">error_outline</span>
           <p class="font-body-md text-sm text-on-background">Something went wrong. Please try again or email us directly at <a href="mailto:hello@sandoukremas.com" class="text-tertiary underline">hello@sandoukremas.com</a></p>
         </div>
@@ -351,7 +351,7 @@
     e.preventDefault();
     const btn = document.getElementById('contact-submit-btn');
     const errorDiv = document.getElementById('contact-error');
-    errorDiv.classList.add('hidden');
+    errorDiv.style.display = 'none';
     btn.disabled = true;
     btn.textContent = 'Sending…';
     const error = await saveInquiry({
@@ -364,7 +364,7 @@
     if (error) {
       btn.disabled = false;
       btn.textContent = 'Send Your Message';
-      errorDiv.classList.remove('hidden');
+      errorDiv.style.display = 'flex';
       return;
     }
     e.target.classList.add('hidden');

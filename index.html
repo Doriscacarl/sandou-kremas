@@ -470,7 +470,7 @@
           rows="3"
         ></textarea>
         <div id="concierge-form-area">
-          <button id="concierge-submit-btn" onclick="handleConciergeSubmit(event)" class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">
+          <button class="w-full bg-[#2C1B12] text-[#F8F3E8] py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">
             Send to the Cellar Master
           </button>
         </div>
@@ -866,7 +866,7 @@
   </div>
 
   <!-- Gold dust canvas for this section -->
-  <canvas id="art-dust-canvas" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:0.5;"></canvas>
+  <canvas id="art-sandou-canvas" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:0.5;"></canvas>
 
   <!-- SVG cream ribbons -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true" style="z-index:1;">
@@ -1032,6 +1032,71 @@
       <div id="home-circle-success" class="hidden max-w-md mx-auto text-center py-6">
         <span class="material-symbols-outlined text-[#D8B36A] text-4xl block mb-3">celebration</span>
         <p class="font-body-lg text-body-lg" style="color:#F4E6C1;">Welcome to the Sandou Circle. We're honored to have you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AI CONCIERGE — COMING SOON
+═══════════════════════════════════════════ -->
+<section id="ai-concierge-section" class="py-[80px] md:py-[100px] px-5 md:px-[80px] max-w-screen-2xl mx-auto reveal-soft">
+  <div class="max-w-3xl mx-auto">
+    <div class="border border-[#D8B36A]/30 p-10 sm:p-16 relative overflow-hidden" style="background: linear-gradient(135deg, #fff8f6 0%, #fdf4e8 100%);">
+      <!-- Decorative corner accents -->
+      <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-[#D8B36A]/60"></div>
+      <div class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#D8B36A]/60"></div>
+      <div class="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-[#D8B36A]/60"></div>
+      <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-[#D8B36A]/60"></div>
+      <!-- Ambient glow -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:radial-gradient(ellipse at 60% 50%, rgba(216,179,106,0.07) 0%, transparent 70%);"></div>
+
+      <div class="relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 border border-[#D8B36A]/40 px-4 py-2 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D8B36A] animate-pulse"></span>
+          <span class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-tertiary">Coming Soon</span>
+        </div>
+        <h2 class="font-display-lg leading-tight text-on-background mb-4" style="font-size:clamp(28px,4vw,44px); font-family:'Playfair Display',serif; font-style:italic;">
+          Your Personal<br/><span style="color:#D8B36A;">Sandou AI Concierge</span>
+        </h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto mb-10 leading-relaxed">
+          A private, intelligent guide — always ready to help you discover the perfect expression, plan a celebration, or answer any question about Sandou Kremas.
+        </p>
+
+        <!-- Feature previews -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 text-left">
+          <div class="p-5 border border-[#D8B36A]/20 space-y-3">
+            <span class="material-symbols-outlined text-tertiary text-2xl block">smart_toy</span>
+            <h4 class="font-headline-sm text-sm text-on-background">Flavor Matching</h4>
+            <p class="font-body-md text-xs text-on-surface-variant">Describe your occasion and receive a personalized recommendation.</p>
+          </div>
+          <div class="p-5 border border-[#D8B36A]/20 space-y-3">
+            <span class="material-symbols-outlined text-tertiary text-2xl block">celebration</span>
+            <h4 class="font-headline-sm text-sm text-on-background">Event Planning</h4>
+            <p class="font-body-md text-xs text-on-surface-variant">Plan your next celebration with a knowledgeable Sandou guide.</p>
+          </div>
+          <div class="p-5 border border-[#D8B36A]/20 space-y-3">
+            <span class="material-symbols-outlined text-tertiary text-2xl block">help_outline</span>
+            <h4 class="font-headline-sm text-sm text-on-background">Instant Answers</h4>
+            <p class="font-body-md text-xs text-on-surface-variant">Shipping, ingredients, heritage — any question, answered immediately.</p>
+          </div>
+        </div>
+
+        <!-- n8n chat widget embed slot -->
+        <!-- ═══════════════════════════════════════════════════════════
+             INSERT YOUR N8N CHAT WIDGET HERE
+             Replace the placeholder below with your n8n embed code.
+             Example: <script src="https://your-n8n.app/chat/embed.js" ...></script>
+             ═══════════════════════════════════════════════════════════ -->
+        <div id="n8n-chat-embed" class="min-h-[80px] flex items-center justify-center border border-dashed border-[#D8B36A]/30 rounded-sm px-6 py-8 mb-8" style="background:rgba(216,179,106,0.03);">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-[#D8B36A]/40 text-4xl block mb-3">chat_bubble_outline</span>
+            <p class="font-body-md text-sm text-on-surface-variant/50 italic">AI Concierge widget will appear here</p>
+          </div>
+        </div>
+        <!-- ═══════════════════════════════════════════════════════════ -->
+
+        <p class="font-label-caps text-[9px] uppercase tracking-[0.4em] text-on-surface-variant/40">Powered by Sandou Intelligence — Available Soon</p>
       </div>
     </div>
   </div>
@@ -1309,6 +1374,23 @@
   artSection.addEventListener('mouseleave', () => { artMouse.x = -300; artMouse.y = -300; });
   window.addEventListener('resize', resizeArtCanvas, { passive: true });
 
+  // ── ART OF SANDOU SECTION PARTICLES ─────────
+  const artSandouCanvas = document.getElementById('art-sandou-canvas');
+  if (artSandouCanvas) {
+    const asCtx = artSandouCanvas.getContext('2d');
+    const artSandouSection = artSandouCanvas.closest('section');
+    const asParticles = [];
+    function resizeArtSandouCanvas() { artSandouCanvas.width = artSandouSection.offsetWidth; artSandouCanvas.height = artSandouSection.offsetHeight; }
+    resizeArtSandouCanvas();
+    for (let i = 0; i < 50; i++) { asParticles.push({ x: Math.random() * artSandouCanvas.width, y: Math.random() * artSandouCanvas.height, size: Math.random() * 1.8 + 0.3, speedX: (Math.random() - 0.5) * 0.3, speedY: Math.random() * 0.2 + 0.05, opacity: Math.random() * 0.5 + 0.05 }); }
+    function animateArtSandou() {
+      asCtx.clearRect(0, 0, artSandouCanvas.width, artSandouCanvas.height);
+      asParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > artSandouCanvas.height) { p.y = -5; p.x = Math.random() * artSandouCanvas.width; } if (p.x < 0 || p.x > artSandouCanvas.width) { p.x = Math.random() * artSandouCanvas.width; p.y = Math.random() * artSandouCanvas.height; } asCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; asCtx.beginPath(); asCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); asCtx.fill(); }); requestAnimationFrame(animateArtSandou);
+    }
+    animateArtSandou();
+    window.addEventListener('resize', resizeArtSandouCanvas, { passive: true });
+  }
+
   // ── CONCIERGE MODAL DUST ─────────────────────
   const cCanvas = document.getElementById('concierge-dust-canvas');
   const cCtx = cCanvas.getContext('2d');
@@ -1367,29 +1449,6 @@
     document.getElementById('home-circle-success').classList.remove('hidden');
   }
 
-  async function handleConciergeSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('concierge-submit-btn');
-    const selected = [...document.querySelectorAll('#concierge-modal .border.border-\\[\\#D8B36A\\]\\/30')].filter(b => b.style.background || b.classList.contains('bg-\\[\\#D8B36A\\]')).map(b => b.textContent.trim()).join(', ');
-    const message = document.getElementById('concierge-message').value;
-    if (!message.trim()) return;
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-    const error = await saveInquiry({
-      name: 'Concierge Request',
-      email: 'concierge@sandoukremas.com',
-      subject: 'Concierge: ' + (selected || 'General'),
-      message,
-      inquiryType: 'Reservation'
-    });
-    if (error) {
-      btn.disabled = false;
-      btn.textContent = 'Send to the Cellar Master';
-      return;
-    }
-    document.getElementById('concierge-form-area').classList.add('hidden');
-    document.getElementById('concierge-success').classList.remove('hidden');
-  }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
