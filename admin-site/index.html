@@ -571,6 +571,76 @@ input,select{font-family:inherit}
 .ie-slider{flex:1;accent-color:var(--gold);cursor:pointer;height:4px}
 .ie-ctrl-val{font-size:11px;color:var(--gold);width:44px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
 .ie-foot{display:flex;gap:8px;padding:14px 18px 16px;border-top:1px solid var(--g10);margin-top:14px;flex-shrink:0}
+
+/* ── DESKTOP TOPBAR ─────────────────────────────────────── */
+#desk-topbar{display:none;position:fixed;top:0;left:var(--sw);right:0;height:56px;background:var(--bg1);border-bottom:1px solid var(--g10);z-index:99;padding:0 28px;align-items:center;justify-content:flex-end;gap:10px}
+@media(min-width:1024px){#desk-topbar{display:flex}#main{padding-top:56px}}
+
+/* ── NOTIFICATION BELL ─────────────────────────────────── */
+.notif-bell-btn{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--r8);color:var(--t2);transition:background .2s,color .2s;cursor:pointer;flex-shrink:0}
+.notif-bell-btn:hover{background:var(--g05);color:var(--t1)}
+.notif-bell-btn.has-unread{color:var(--gold)}
+.notif-badge{position:absolute;top:4px;right:4px;min-width:16px;height:16px;border-radius:99px;background:var(--red);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;font-family:'JetBrains Mono',monospace;border:1.5px solid var(--bg1);pointer-events:none}
+@keyframes bellShake{0%,100%{transform:rotate(0)}15%{transform:rotate(-16deg)}30%{transform:rotate(16deg)}45%{transform:rotate(-11deg)}60%{transform:rotate(11deg)}75%{transform:rotate(-7deg)}87%{transform:rotate(7deg)}}
+.notif-bell-btn.ringing .ms{animation:bellShake .75s var(--ease) both}
+
+/* ── NOTIFICATION DRAWER ───────────────────────────────── */
+.notif-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);backdrop-filter:blur(3px);z-index:409}
+.notif-ov.show{display:block}
+#notif-drawer{position:fixed;right:0;top:0;height:100%;width:380px;max-width:100vw;background:var(--bg1);border-left:1px solid var(--g10);z-index:410;transform:translateX(100%);transition:transform .35s var(--ease);display:flex;flex-direction:column;overflow:hidden}
+#notif-drawer.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.55)}
+.nd-hdr{padding:15px 16px;border-bottom:1px solid var(--g10);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg2);gap:10px}
+.nd-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--t1)}
+.nd-sub{font-size:9px;color:var(--t3);letter-spacing:.08em;margin-top:1px}
+.nd-hdr-r{display:flex;align-items:center;gap:6px}
+.nd-body{flex:1;overflow-y:auto}
+.nd-item{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border-bottom:1px solid var(--g05);cursor:pointer;transition:background .15s;position:relative;user-select:none}
+.nd-item:hover{background:var(--g05)}
+.nd-item.nd-unread{background:rgba(201,168,76,.025)}
+.nd-item.nd-unread:hover{background:var(--g05)}
+.nd-ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.nd-ico .ms{font-size:16px}
+.nd-ico-order{background:rgba(201,168,76,.1);border:1px solid var(--g15)}.nd-ico-order .ms{color:var(--gold)}
+.nd-ico-inquiry{background:rgba(129,178,212,.1);border:1px solid rgba(129,178,212,.2)}.nd-ico-inquiry .ms{color:var(--blue)}
+.nd-ico-signup{background:rgba(82,183,136,.1);border:1px solid rgba(82,183,136,.22)}.nd-ico-signup .ms{color:var(--green)}
+.nd-cnt{flex:1;min-width:0}
+.nd-ntitle{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:2px;line-height:1.4}
+.nd-nbody{font-size:11px;color:var(--t3);line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.nd-ntime{font-size:9px;color:var(--t4);font-family:'JetBrains Mono',monospace;letter-spacing:.03em}
+.nd-unread-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px;box-shadow:0 0 7px rgba(201,168,76,.6)}
+.nd-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
+.nd-empty .ms{font-size:36px;color:var(--t4);display:block;margin-bottom:12px}
+.nd-empty-ttl{font-family:'Playfair Display',serif;font-size:14px;color:var(--t2);margin-bottom:5px}
+.nd-empty-sub{font-size:11px;color:var(--t3);line-height:1.6;max-width:220px}
+.nd-loading{padding:30px;display:flex;justify-content:center}
+.nd-phone-footer{flex-shrink:0;border-top:1px solid var(--g10);background:var(--bg2)}
+.nd-phone-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;gap:8px;user-select:none}
+.nd-phone-hdr:hover{background:var(--g05)}
+.nd-phone-hdr-l{display:flex;align-items:center;gap:8px}
+.nd-phone-hdr-l .ms{font-size:15px;color:var(--gold)}
+.nd-phone-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t2)}
+.nd-phone-chevron{font-size:16px;color:var(--t3);transition:transform .25s var(--ease)}
+.nd-phone-body{padding:0 14px 14px;display:none}
+.nd-phone-body.open{display:block}
+.nd-phone-chevron.open{transform:rotate(180deg)}
+.nd-phone-step{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
+.nd-phone-num{width:18px;height:18px;border-radius:50%;background:var(--g10);border:1px solid var(--g25);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:1px}
+.nd-phone-txt{font-size:11px;color:var(--t3);line-height:1.55}
+.nd-phone-txt strong{color:var(--t2)}
+.nd-phone-topic{display:flex;align-items:center;gap:6px;background:var(--bg0);border:1px solid var(--g15);border-radius:var(--r8);padding:8px 10px;margin:10px 0 6px;cursor:pointer}
+.nd-phone-topic-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nd-phone-copy{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--t3);letter-spacing:.06em;white-space:nowrap;padding:3px 7px;border-radius:4px;background:var(--g05);transition:background .15s}
+.nd-phone-topic:hover .nd-phone-copy{background:var(--g15);color:var(--t2)}
+.nd-phone-apps{display:flex;gap:6px;margin-top:8px}
+.nd-phone-app{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:var(--r8);background:var(--bg0);border:1px solid var(--g10);cursor:pointer;transition:border-color .15s,background .15s;text-decoration:none}
+.nd-phone-app:hover{border-color:var(--g25);background:var(--g05)}
+.nd-phone-app .ms{font-size:18px;color:var(--t3)}
+.nd-phone-app:hover .ms{color:var(--gold)}
+.nd-phone-app-name{font-size:9px;color:var(--t3);letter-spacing:.06em;text-align:center}
+.nd-phone-test{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:8px;border-radius:var(--r8);background:var(--g05);border:1px solid var(--g15);color:var(--t2);font-size:10px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:background .15s,border-color .15s;margin-top:8px}
+.nd-phone-test:hover{background:var(--g10);border-color:var(--g25);color:var(--t1)}
+.nd-phone-test .ms{font-size:14px;color:var(--gold)}
+.nd-phone-none{font-size:10px;color:var(--t4);padding:6px 2px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -726,11 +796,17 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
         <span class="sb-badge" id="sb-pr">—</span>
       </a>
       <div class="sb-sep"></div>
+      <div class="sb-sec">Alerts</div>
+      <a class="sb-link" href="#" onclick="toggleNotifDrawer();return false" id="sb-notif-link">
+        <span class="ms">notifications</span>Notifications
+        <span class="sb-badge" id="sb-notif-count">—</span>
+      </a>
+      <div class="sb-sep"></div>
       <div class="sb-sec">Tools</div>
       <a class="sb-link" href="#" onclick="openSetup();return false">
         <span class="ms">settings</span>DB Setup Guide
       </a>
-      <a class="sb-link" href="index.html" target="_blank" rel="noopener">
+      <a class="sb-link" href="../index.html" target="_blank" rel="noopener">
         <span class="ms">open_in_new</span>View Website
       </a>
     </nav>
@@ -754,10 +830,22 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
     </div>
   </aside>
 
+  <!-- DESKTOP TOPBAR -->
+  <div id="desk-topbar">
+    <button class="notif-bell-btn" id="desk-notif-bell" onclick="toggleNotifDrawer()" aria-label="Notifications">
+      <span class="ms">notifications</span>
+      <span class="notif-badge" id="desk-notif-badge" style="display:none">0</span>
+    </button>
+  </div>
+
   <!-- MOBILE HEADER -->
   <header id="mob-hd">
     <button class="mob-ham" onclick="openSB()" aria-label="Menu"><span class="ms">menu</span></button>
     <div class="mob-ttl" id="mob-ttl">Overview</div>
+    <button class="notif-bell-btn" id="mob-notif-bell" onclick="toggleNotifDrawer()" aria-label="Notifications">
+      <span class="ms">notifications</span>
+      <span class="notif-badge" id="notif-badge" style="display:none">0</span>
+    </button>
     <img src="SAndouKremas%20logo.png" alt="Sandou Kremas Logo" class="mob-logo"/>
   </header>
 
@@ -1527,6 +1615,7 @@ async function handleLogin(e){
   if(data.user){showApp(data.user);await loadAll();}
 }
 async function doLogout(){
+  stopNotifPolling();
   await db.auth.signOut();
   S.orders=[];S.inquiries=[];S.subscribers=[];S.custMeta={};
   Object.values(S.charts).forEach(c=>{if(c)c.destroy();});
@@ -1555,6 +1644,7 @@ function showApp(user){
   const a=document.getElementById('sb-av');
   if(e)e.textContent=user.email;
   if(a)a.textContent=(user.email||'A')[0].toUpperCase();
+  startNotifPolling();
 }
 
 // ── DATA ──────────────────────────────────────────
@@ -3554,6 +3644,193 @@ function openPEImgEditor(key){
   });
 }
 
+// ══════════════════════════════════════════════════
+// NOTIFICATIONS
+// ══════════════════════════════════════════════════
+let notifCache=[];
+let notifPollInterval=null;
+
+async function loadNotifications(){
+  try{
+    const{data,error}=await db.from('notifications').select('*').order('created_at',{ascending:false}).limit(60);
+    if(error)throw error;
+    notifCache=data||[];
+    renderNotifDrawer();
+    updateNotifBell();
+  }catch(e){console.warn('[Notifications]',e.message);}
+}
+
+function updateNotifBell(){
+  const unread=notifCache.filter(n=>!n.is_read).length;
+  const sbCount=document.getElementById('sb-notif-count');
+  const bells=document.querySelectorAll('.notif-bell-btn');
+  document.querySelectorAll('.notif-badge').forEach(b=>{b.textContent=unread>0?String(unread):'';b.style.display=unread>0?'flex':'none';});
+  if(sbCount){sbCount.textContent=unread>0?String(unread):'—';}
+  bells.forEach(b=>{
+    const hadUnread=b.classList.contains('has-unread');
+    b.classList.toggle('has-unread',unread>0);
+    if(unread>0&&!hadUnread){b.classList.add('ringing');setTimeout(()=>b.classList.remove('ringing'),800);}
+  });
+}
+
+function renderNotifDrawer(){
+  const list=document.getElementById('nd-list');
+  if(!list)return;
+  const unread=notifCache.filter(n=>!n.is_read).length;
+  const sub=document.getElementById('nd-unread-count');
+  const markAll=document.getElementById('nd-mark-all');
+  if(sub)sub.textContent=unread===0?'All caught up':`${unread} unread`;
+  if(markAll)markAll.style.display=unread>0?'flex':'none';
+  if(!notifCache.length){
+    list.innerHTML=`<div class="nd-empty"><span class="ms">notifications_none</span><div class="nd-empty-ttl">No notifications yet</div><div class="nd-empty-sub">New orders, inquiries, and signups will appear here.</div></div>`;
+    return;
+  }
+  const icons={order:'shopping_bag',inquiry:'mail',signup:'group_add'};
+  list.innerHTML=notifCache.map(n=>{
+    const icon=icons[n.type]||'notifications';
+    const time=_relNotifTime(n.created_at);
+    return`<div class="nd-item${n.is_read?'':' nd-unread'}" data-notif-id="${esc(n.id)}" onclick="handleNotifClick('${esc(n.id)}','${esc(n.related_type||'')}')">
+      <div class="nd-ico nd-ico-${esc(n.type||'')}"><span class="ms">${icon}</span></div>
+      <div class="nd-cnt">
+        <div class="nd-ntitle">${esc(n.title||'')}</div>
+        <div class="nd-nbody">${esc(n.body||'')}</div>
+        <div class="nd-ntime">${time}</div>
+      </div>
+      ${!n.is_read?'<div class="nd-unread-dot"></div>':''}
+    </div>`;
+  }).join('');
+}
+
+function _relNotifTime(ts){
+  if(!ts)return'';
+  const diff=Math.floor((Date.now()-new Date(ts))/1000);
+  if(diff<60)return'Just now';
+  if(diff<3600)return Math.floor(diff/60)+'m ago';
+  if(diff<86400)return Math.floor(diff/3600)+'h ago';
+  if(diff<604800)return Math.floor(diff/86400)+'d ago';
+  return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+
+async function handleNotifClick(id,relatedType){
+  await markNotificationRead(id);
+  closeNotifDrawer();
+  if(relatedType==='orders'){const l=document.querySelector('.sb-link[href="#orders"]');if(l)showView('orders',l);}
+  else if(relatedType==='inquiries'){const l=document.querySelector('.sb-link[href="#inquiries"]');if(l)showView('inquiries',l);}
+  else if(relatedType==='subscribers'){const l=document.querySelector('.sb-link[href="#subscribers"]');if(l)showView('subscribers',l);}
+}
+
+async function markNotificationRead(id){
+  const n=notifCache.find(x=>x.id===id);
+  if(!n||n.is_read)return;
+  n.is_read=true;
+  renderNotifDrawer();
+  updateNotifBell();
+  try{await db.from('notifications').update({is_read:true}).eq('id',id);}
+  catch(e){console.warn('[Notifications] mark read:',e.message);}
+}
+
+async function markAllNotificationsRead(){
+  const ids=notifCache.filter(n=>!n.is_read).map(n=>n.id);
+  if(!ids.length)return;
+  notifCache.forEach(n=>{n.is_read=true;});
+  renderNotifDrawer();
+  updateNotifBell();
+  toast('Done','All notifications marked as read','s');
+  try{await db.from('notifications').update({is_read:true}).in('id',ids);}
+  catch(e){console.warn('[Notifications] mark all read:',e.message);}
+}
+
+function toggleNotifDrawer(){
+  const d=document.getElementById('notif-drawer');
+  if(!d)return;
+  d.classList.contains('open')?closeNotifDrawer():openNotifDrawer();
+}
+function openNotifDrawer(){
+  document.getElementById('notif-drawer')?.classList.add('open');
+  document.getElementById('notif-drawer-ov')?.classList.add('show');
+  loadNotifications();
+}
+function closeNotifDrawer(){
+  document.getElementById('notif-drawer')?.classList.remove('open');
+  document.getElementById('notif-drawer-ov')?.classList.remove('show');
+}
+function startNotifPolling(){
+  if(notifPollInterval)clearInterval(notifPollInterval);
+  loadNotifications();
+  notifPollInterval=setInterval(loadNotifications,30000);
+}
+function stopNotifPolling(){
+  if(notifPollInterval){clearInterval(notifPollInterval);notifPollInterval=null;}
+}
+
+// ── PHONE PUSH SETUP ──────────────────────────────
+let _ntfyTopic='';
+async function loadPhoneSetup(){
+  try{
+    const r=await fetch('/api/ntfy-topic');
+    if(!r.ok)throw new Error('no endpoint');
+    const{topic}=await r.json();
+    _ntfyTopic=topic||'';
+  }catch(e){_ntfyTopic='';}
+  renderPhoneSetup();
+}
+function renderPhoneSetup(){
+  const el=document.getElementById('nd-phone-content');
+  if(!el)return;
+  if(!_ntfyTopic){
+    el.innerHTML=`<div class="nd-phone-none">Phone push is not configured.<br/>Add <code style="font-size:10px;color:var(--gold)">NTFY_TOPIC=your-private-topic</code> to your <code style="font-size:10px;color:var(--gold)">.env</code> and restart the server.</div>`;
+    return;
+  }
+  el.innerHTML=`
+    <div class="nd-phone-step"><div class="nd-phone-num">1</div><div class="nd-phone-txt">Download the free <strong>ntfy</strong> app on your phone</div></div>
+    <div class="nd-phone-apps">
+      <a class="nd-phone-app" href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener"><span class="ms">android</span><span class="nd-phone-app-name">Android</span></a>
+      <a class="nd-phone-app" href="https://apps.apple.com/app/ntfy/id1625396347" target="_blank" rel="noopener"><span class="ms">phone_iphone</span><span class="nd-phone-app-name">iPhone</span></a>
+    </div>
+    <div class="nd-phone-step" style="margin-top:10px"><div class="nd-phone-num">2</div><div class="nd-phone-txt">Open ntfy → tap <strong>+</strong> → subscribe to this topic</div></div>
+    <div class="nd-phone-topic" onclick="copyNtfyTopic()" title="Tap to copy">
+      <span class="ms" style="font-size:14px;color:var(--t3)">tag</span>
+      <span class="nd-phone-topic-val" id="nd-phone-topic-val">${esc(_ntfyTopic)}</span>
+      <span class="nd-phone-copy"><span class="ms" style="font-size:12px">content_copy</span>Copy</span>
+    </div>
+    <div class="nd-phone-step"><div class="nd-phone-num">3</div><div class="nd-phone-txt">That's it — you'll get a popup for every new order, inquiry, and signup</div></div>
+    <button class="nd-phone-test" onclick="sendTestPush()"><span class="ms">send</span>Send a test notification</button>`;
+}
+function togglePhoneSetup(){
+  const body=document.getElementById('nd-phone-body');
+  const chev=document.getElementById('nd-phone-chevron');
+  const tog=document.getElementById('nd-phone-toggle');
+  if(!body)return;
+  const opening=!body.classList.contains('open');
+  body.classList.toggle('open',opening);
+  chev?.classList.toggle('open',opening);
+  tog?.setAttribute('aria-expanded',String(opening));
+  if(opening&&!_ntfyTopic)loadPhoneSetup();
+}
+function copyNtfyTopic(){
+  if(!_ntfyTopic)return;
+  navigator.clipboard?.writeText(_ntfyTopic).then(()=>toast('Copied','Topic copied to clipboard','s'));
+}
+async function sendTestPush(){
+  const btn=document.querySelector('.nd-phone-test');
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="ms">hourglass_top</span>Sending…';}
+  try{
+    const r=await fetch('/api/notify',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type:'order',customerName:'Test Customer',customerEmail:'test@sandoukremas.com',customerPhone:'+1 (555) 000-0000',subject:'Test Notification',message:'This is a test push notification from your Sandou Kremas admin panel.',datetime:new Date().toLocaleString('en-US',{timeZone:'America/New_York'}),relatedId:'test'})
+    });
+    const d=await r.json();
+    if(d.ntfySent)toast('Sent!','Check your phone — notification is on its way','s');
+    else if(d.emailSent)toast('Email sent','Push not available — server may need restart','w');
+    else toast('Not sent','Check NTFY_TOPIC in .env and restart the server','e');
+  }catch(e){
+    toast('Error','Could not reach the server','e');
+  }finally{
+    if(btn){btn.disabled=false;btn.innerHTML='<span class="ms">send</span>Send a test notification';}
+  }
+}
+
 // ── INIT ──────────────────────────────────────────
 async function init(){
   initDb();
@@ -3598,5 +3875,43 @@ document.addEventListener('DOMContentLoaded',init);
     </div>
   </div>
 </div>
+
+<!-- NOTIFICATION DRAWER -->
+<div id="notif-drawer-ov" class="notif-ov" onclick="closeNotifDrawer()"></div>
+<aside id="notif-drawer" aria-label="Notifications">
+  <div class="nd-hdr">
+    <div>
+      <div class="nd-title">Notifications</div>
+      <div class="nd-sub" id="nd-unread-count">Loading…</div>
+    </div>
+    <div class="nd-hdr-r">
+      <button class="btn-ol" id="nd-mark-all" onclick="markAllNotificationsRead()" style="font-size:10px;padding:6px 10px;display:none">
+        <span class="ms">done_all</span>Mark all read
+      </button>
+      <button class="btn-ico" onclick="closeNotifDrawer()" aria-label="Close notifications">
+        <span class="ms">close</span>
+      </button>
+    </div>
+  </div>
+  <div class="nd-body" id="nd-list">
+    <div class="nd-loading"><div class="spinner"></div></div>
+  </div>
+  <div class="nd-phone-footer" id="nd-phone-section">
+    <div class="nd-phone-hdr" onclick="togglePhoneSetup()" role="button" aria-expanded="false" id="nd-phone-toggle">
+      <div class="nd-phone-hdr-l">
+        <span class="ms">phone_iphone</span>
+        <span class="nd-phone-lbl">Phone Notifications</span>
+      </div>
+      <span class="ms nd-phone-chevron" id="nd-phone-chevron">expand_more</span>
+    </div>
+    <div class="nd-phone-body" id="nd-phone-body">
+      <div id="nd-phone-content">
+        <div style="padding:10px 2px 4px;font-size:10px;color:var(--t4);text-align:center">
+          <div class="spinner" style="width:16px;height:16px;margin:0 auto 6px"></div>Loading…
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
 </body>
 </html>
