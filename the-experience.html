@@ -75,7 +75,7 @@
   @media (prefers-reduced-motion: reduce) { .cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float,.crawling-light { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
 </style>
 </head>
-<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<body data-sk-page="experience" class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
 
 <div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
   <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"/>
@@ -175,13 +175,13 @@
 <section class="relative h-[75vh] min-h-[520px] w-full flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 z-0 overflow-hidden">
     <div class="ambient-glow"></div>
-    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p');"></div>
+    <div class="w-full h-full cinematic-zoom bg-center bg-cover" data-sk-bg="heroImage" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
   </div>
   <div class="relative z-10 text-center text-white px-5 md:px-0 max-w-4xl mx-auto">
     <span class="font-label-caps text-[10px] tracking-[0.5em] uppercase text-[#D8B36A] block mb-6">The Art of Kremas</span>
-    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">The Story Behind<br/>Every Pour.</h1>
-    <p class="font-body-lg text-body-lg max-w-xl mx-auto opacity-90 reveal-soft" style="font-style:italic;">A decade of craft, bottled with intention for every celebration.</p>
+    <h1 data-sk-content="heroTitle" class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">The Story Behind<br/>Every Pour.</h1>
+    <p data-sk-content="heroSubtitle" class="font-body-lg text-body-lg max-w-xl mx-auto opacity-90 reveal-soft" style="font-style:italic;">A decade of craft, bottled with intention for every celebration.</p>
   </div>
 </section>
 
@@ -220,7 +220,7 @@
       <!-- Image -->
       <div class="lg:sticky lg:top-28">
         <div class="passpartout-frame">
-          <img alt="Artisan Sandou Kremas ingredients: coconuts, vanilla, spices" class="w-full h-[360px] sm:h-[500px] object-cover grayscale-[0.15] hover:grayscale-0 transition-all duration-1000" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"/>
+          <img alt="Artisan Sandou Kremas ingredients: coconuts, vanilla, spices" class="w-full h-[360px] sm:h-[500px] object-cover grayscale-[0.15] hover:grayscale-0 transition-all duration-1000" data-sk-src="ingredientImage" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"/>
         </div>
       </div>
       <!-- Ingredient tabs -->
@@ -299,7 +299,7 @@
       <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Kremas is not just a beverage in Haitian culture — it is a ritual. It appears at baptisms, weddings, Christmas mornings, and every gathering where family comes together. It is passed between hands, shared between generations, and poured with pride.</p>
       <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Sandou Kremas carries that heritage forward. It honors the tradition while elevating it — creating something that respects where it came from and opens doors to where it can go. This is Haitian craftsmanship, bottled for the world.</p>
       <div class="passpartout-frame">
-        <img alt="Haitian celebration with Sandou Kremas" class="w-full h-[240px] object-cover" loading="lazy" src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFig6H27WjGdlnHjFjHqRSjSmwXpTNr8n_2pXFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"/>
+        <img alt="Haitian celebration with Sandou Kremas" class="w-full h-[240px] object-cover" data-sk-src="cultureImage" loading="lazy" src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFig6H27WjGdlnHjFjHqRSjSmwXpTNr8n_2pXFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"/>
       </div>
     </div>
   </div>
@@ -446,5 +446,9 @@
   function animateConcierge() { if (!conciergeModal.classList.contains('active')) return; cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); cParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; } cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; cCtx.beginPath(); cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); cCtx.fill(); }); requestAnimationFrame(animateConcierge); }
   document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="supabase-init.js"></script>
+<script src="sandou-public.js"></script>
+<script src="sandou-conversion.js"></script>
 </body>
 </html>

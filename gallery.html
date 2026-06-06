@@ -59,7 +59,7 @@
   @media (prefers-reduced-motion: reduce) { .cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
 </style>
 </head>
-<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<body data-sk-page="gallery" class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
 
 <div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
   <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"/>
@@ -144,13 +144,13 @@
 <section class="relative h-[60vh] min-h-[420px] w-full flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 z-0 overflow-hidden">
     <div class="ambient-glow"></div>
-    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFig6H27WjGdlnHjFjHqRSjSmwXpTNr8n_2pXFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs');"></div>
+    <div class="w-full h-full cinematic-zoom bg-center bg-cover" data-sk-bg="heroImage" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFig6H27WjGdlnHjFjHqRSjSmwXpTNr8n_2pXFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
   </div>
   <div class="relative z-10 text-center text-white px-5 max-w-3xl mx-auto">
     <span class="font-label-caps text-[10px] tracking-[0.5em] uppercase text-[#D8B36A] block mb-5">The Gallery</span>
-    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">Moments Worth<br/>Remembering.</h1>
-    <p class="font-body-lg text-body-lg max-w-xl mx-auto opacity-90 reveal-soft" style="font-style:italic;">Every bottle creates a story. Every story deserves to be seen.</p>
+    <h1 data-sk-content="heroTitle" class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">Moments Worth<br/>Remembering.</h1>
+    <p data-sk-content="heroSubtitle" class="font-body-lg text-body-lg max-w-xl mx-auto opacity-90 reveal-soft" style="font-style:italic;">Every bottle creates a story. Every story deserves to be seen.</p>
   </div>
 </section>
 
@@ -291,6 +291,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
+<script src="sandou-public.js"></script>
 <script src="sandou-conversion.js"></script>
 <script>
 // ── Supabase dynamic gallery loader ─────────────────────

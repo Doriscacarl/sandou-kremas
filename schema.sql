@@ -115,8 +115,8 @@ CREATE POLICY "anon_read_products"
 CREATE POLICY "admin_all_products"
   ON public.products FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 
 -- ── 5. MEDIA LIBRARY ───────────────────────────────────────
@@ -138,8 +138,8 @@ ALTER TABLE public.media ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "admin_all_media"
   ON public.media FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 
 -- ── 6. GALLERY ─────────────────────────────────────────────
@@ -166,8 +166,8 @@ CREATE POLICY "anon_read_gallery"
 CREATE POLICY "admin_all_gallery"
   ON public.gallery FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 
 -- ── 7. PAGE CONTENT ────────────────────────────────────────
@@ -189,8 +189,8 @@ CREATE POLICY "anon_read_page_content"
 CREATE POLICY "admin_all_page_content"
   ON public.page_content FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 
 -- ── 8. SITE SETTINGS ───────────────────────────────────────
@@ -211,8 +211,8 @@ CREATE POLICY "anon_read_site_settings"
 CREATE POLICY "admin_all_site_settings"
   ON public.site_settings FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 INSERT INTO public.site_settings (key, value) VALUES
   ('business_name',   'Sandou Kremas'),
@@ -242,8 +242,8 @@ CREATE POLICY "anon_read_social_links"
 CREATE POLICY "admin_all_social_links"
   ON public.social_links FOR ALL
   TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 INSERT INTO public.social_links (platform, url) VALUES
   ('instagram', '#'),
@@ -267,32 +267,55 @@ END $$;
 
 CREATE POLICY "admin_select_orders"
   ON public.orders FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 
 CREATE POLICY "admin_update_orders"
   ON public.orders FOR UPDATE TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 CREATE POLICY "admin_select_inquiries"
   ON public.inquiries FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 
 CREATE POLICY "admin_select_subscribers"
   ON public.subscribers FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 
 CREATE POLICY "admin_update_subscribers"
   ON public.subscribers FOR UPDATE TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 
 CREATE POLICY "admin_delete_subscribers"
   ON public.subscribers FOR DELETE TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 
 
--- ── 11. STORAGE BUCKET (run separately or via dashboard) ───
+-- ── 11. CUSTOMERS (CRM metadata — tags, notes, overrides) ─
+
+CREATE TABLE IF NOT EXISTS public.customers (
+  email           text        PRIMARY KEY,
+  name_override   text,
+  phone_override  text,
+  address         text,
+  state           text,
+  tags            jsonb       NOT NULL DEFAULT '[]',
+  notes           jsonb       NOT NULL DEFAULT '[]',
+  hidden          boolean     NOT NULL DEFAULT false,
+  updated_at      timestamptz NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.customers ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "admin_all_customers"
+  ON public.customers FOR ALL
+  TO authenticated
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
+
+
+-- ── 12. STORAGE BUCKET (run separately or via dashboard) ───
 -- Create a public bucket named "sandou-media" in:
 --   Supabase Dashboard → Storage → New bucket
 --   Name: sandou-media

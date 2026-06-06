@@ -383,7 +383,7 @@
   }
 </style>
 </head>
-<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<body data-sk-page="home" class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
 
 <!-- ═══════════════════════════════════════════
      LOADING SCREEN
@@ -579,16 +579,17 @@
     <div class="ambient-glow"></div>
     <div
       class="w-full h-full cinematic-zoom bg-center bg-cover"
+      data-sk-bg="heroImage"
       style="background-image: url('Luxury_cinematic_photography_f_Nano_Banana_2_04748.png');"
     ></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60"></div>
   </div>
 
   <div class="relative z-10 text-center text-white px-5 md:px-0 max-w-4xl mx-auto">
-    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight shimmer-gleam">
+    <h1 data-sk-content="heroTitle" class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight shimmer-gleam">
       Every Bottle Tells A Story
     </h1>
-    <p class="font-body-lg text-body-lg max-w-2xl mx-auto mb-10 md:mb-12 opacity-90 reveal-soft">
+    <p data-sk-content="heroSubtitle" class="font-body-lg text-body-lg max-w-2xl mx-auto mb-10 md:mb-12 opacity-90 reveal-soft">
       Crafted from family tradition. Shared through every celebration.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center reveal-soft">
@@ -662,6 +663,7 @@
         <img
           alt="Alexandra Louis, Founder of Sandou Kremas"
           class="w-full h-[360px] sm:h-[500px] lg:h-[700px] object-cover object-[center_15%] transition-transform duration-[3s] group-hover:scale-105"
+          data-sk-src="founderPreviewImage"
           loading="lazy"
           src="founder-portrait.png"
         />
@@ -733,6 +735,7 @@
         <img
           alt="Artisan kremas ingredients: coconuts, cinnamon, vanilla, spices"
           class="w-full h-[300px] sm:h-[450px] lg:h-[600px] object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
+          data-sk-src="artOfKremasImage"
           loading="lazy"
           onerror="this.onerror=null;this.src='https://placehold.co/800x600/f8f3e8/765a1a?text=Sandou+Kremas';"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQyhYhkxsBgCArHKbDTRCcoCMpoWUc-WUxpyP9gqfxxAyMledWsONjm9C0zvY337vU85nFvCfUCalFb910zjmwgWpTyf_IOsLHKz0-fB6WcwTgNisy13jNmUInPjQfmWFxefPIMyNTUawFv1-VJKWel_wV4_fxq1hAx4ffUUEY_z17pMlAh2TAJN3gxGKRDCdJX40KJ5R7EYamWwCfN4TP5vd7s5Uv1n9zlL7c7V8A2Jvbza5KLlH9zkWK2QP79xALSuXKGQkhar9p"
@@ -782,6 +785,7 @@
       <img
         alt="Family celebrating with Sandou Kremas"
         class="w-full h-[250px] sm:h-[380px] md:h-[500px] object-cover transition-transform duration-1000 hover:scale-105"
+        data-sk-src="momentsImage1"
         loading="lazy"
         onerror="this.onerror=null;this.src='https://placehold.co/1200x600/2c1b12/d8b36a?text=Sandou+Kremas';"
         src="https://lh3.googleusercontent.com/aida/AP1WRLvLCdIyE-S3RgxFixNwXKNa67vaap7lcwcwn8j7tC2g8yektbzf0UY29IBl9pLfgBEuaWFy0n0QSd7MRvFwMCHHrhqi9tTNksFR8iHL5oREPxFG2dKPylFjtFHjGwJCUNpUxJxDvHWDgEcHagK6yKnIG5fQK_Srknm9M6xQKXTdeRpRa2KuWaD_TvzHoAPhmz1t2qEUWxAyaloE32--zO71DQYGQfo4Wmwn6qIOvuJw2qhI7JZ6UIkgp5bs"
@@ -791,6 +795,7 @@
       <img
         alt="Kremas production process"
         class="w-full h-[250px] sm:h-[380px] md:h-[600px] object-cover"
+        data-sk-src="momentsImage2"
         loading="lazy"
         onerror="this.onerror=null;this.src='https://placehold.co/600x700/2c1b12/d8b36a?text=Sandou+Kremas';"
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLB1WdxI3sdGUf_Ir6m8Wk04FtuY_EgCJMUKBJrTjlwnaLxEbpLejgBWTWZVartffBxW8YE0uAr7Ca-9mrw7Ay0vcOfrQYRHsZU8GzToKFncRuP8_d6MX3ZWe-Lnexgt2YBhbILDLq9HXYhWLC_H-05q1H39e03HHz3eoU2MYC_uDdjKr04Rr7mn1kV3H101RO6naqyq-gZSkpKXodBJSTIRu2qZS8z35G9eUT4iDa5xAh3CDu-K3tW5UmrmyneUzYXOA78Lix9VzF"
@@ -834,6 +839,7 @@
         <img
           alt="Sandou Kremas premium bottle"
           class="w-full h-auto drop-shadow-[0_35px_35px_rgba(44,27,18,0.2)]"
+          data-sk-src="productShowcaseImage"
           onerror="this.onerror=null;this.src='https://placehold.co/400x600/f8f3e8/765a1a?text=Sandou+Kremas';"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"
         />
@@ -1387,6 +1393,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="supabase-init.js"></script>
+<script src="sandou-public.js"></script>
 <script src="sandou-conversion.js"></script>
 </body>
 </html>

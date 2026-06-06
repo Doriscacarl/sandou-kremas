@@ -49,7 +49,7 @@
   @media(prefers-reduced-motion:reduce){.cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float{animation:none !important;transition:none !important;transform:none !important;opacity:1 !important;filter:none !important;}#loading-logo,#loading-line{animation:none !important;opacity:1 !important;}}
 </style>
 </head>
-<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<body data-product-id="coconut-cream" class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
 <div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
   <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width:min(520px,80vw);mix-blend-mode:multiply;display:block;height:auto;"/>
   <div id="loading-line" style="width:64px;height:1px;background:#D8B36A;"></div>
@@ -128,7 +128,7 @@
 <section class="relative h-[85vh] min-h-[600px] w-full flex items-end justify-center overflow-hidden pb-20">
   <div class="absolute inset-0 z-0 overflow-hidden">
     <div class="ambient-glow"></div>
-    <div class="w-full h-full cinematic-zoom bg-center bg-cover" style="background-image:url('https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9');"></div>
+    <div class="hero-product-bg w-full h-full cinematic-zoom bg-center bg-cover" style="background-image:url('https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9');"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
   </div>
   <div class="relative z-10 text-white px-5 md:px-[80px] max-w-screen-xl mx-auto w-full">
@@ -152,7 +152,7 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
     <div class="lg:col-span-5 order-1 reveal-soft">
       <div class="passpartout-frame shadow-2xl relative group overflow-hidden">
-        <img alt="Coconut Cream" class="w-full h-[460px] sm:h-[580px] object-cover transition-transform duration-[3s] group-hover:scale-105" loading="lazy" src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"/>
+        <img alt="Coconut Cream" class="flavor-story-img w-full h-[460px] sm:h-[580px] object-cover transition-transform duration-[3s] group-hover:scale-105" loading="lazy" src="https://lh3.googleusercontent.com/aida/AP1WRLvpbOBt3RORt-ZI3NMeNbM_fgiVRgKX3HV5Ye8bh97lq5OFqXebfl7YklJPcp4OLKExaVJL8vk-Dyiyx4hiPe5VsSgk_2fv63bK5u_zzTkVXHNAhrpuoP3cYOXiH-pl9l-Lz20sLDZHsYlvJIsGfRlGhUqY_q5arHdeUesGxNsNxsZqxLYXqiRh416DpLTC4a7BIw20xIDBuwYSVq70oOZ3m1rs6GFvRkcNzkBUthcYBUiZ-ALrg8laBzG9"/>
         <div class="absolute top-4 right-4 text-white px-4 py-2 text-center" style="background:linear-gradient(135deg,#D8B36A,#765a1a);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Founder's<br/>Favorite</div>
       </div>
     </div>
@@ -235,6 +235,25 @@
   function initConciergeParticles(){cParticles=[];cCanvas.width=cCanvas.parentElement.offsetWidth;cCanvas.height=cCanvas.parentElement.offsetHeight;for(let i=0;i<28;i++){cParticles.push({x:Math.random()*cCanvas.width,y:Math.random()*cCanvas.height,size:Math.random()*1.2+0.2,speedX:(Math.random()-0.5)*0.2,speedY:Math.random()*0.3+0.1,opacity:Math.random()*0.3+0.05});}animateConcierge();}
   function animateConcierge(){if(!conciergeModal.classList.contains('active'))return;cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);cParticles.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.y>cCanvas.height){p.y=-5;p.x=Math.random()*cCanvas.width;}cCtx.fillStyle=`rgba(216,179,106,${p.opacity})`;cCtx.beginPath();cCtx.arc(p.x,p.y,p.size,0,Math.PI*2);cCtx.fill();});requestAnimationFrame(animateConcierge);}
   document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="supabase-init.js"></script>
+<script src="sandou-public.js"></script>
+<script src="sandou-conversion.js"></script>
+<script>
+(async()=>{
+  const pid=document.body.dataset.productId;if(!pid)return;
+  try{
+    const db=supabase.createClient('https://lmeszvvlejrfribqveek.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZXN6dnZsZWpyZnJpYnF2ZWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1ODE4MzUsImV4cCI6MjA5NjE1NzgzNX0.e9_EbR8HuEvYEOdsjFgsezr9F_XwUnGM1HQA35GFln8');
+    const{data}=await db.from('products').select('image_url').eq('id',pid).single();
+    if(!data||!data.image_url)return;
+    const img=data.image_url;
+    const heroBg=document.querySelector('.hero-product-bg');
+    if(heroBg){if(heroBg.tagName==='IMG')heroBg.src=img;else heroBg.style.backgroundImage=`url('${img}')`;}
+    const storyImg=document.querySelector('.flavor-story-img');
+    if(storyImg)storyImg.src=img;
+  }catch(e){}
+})();
 </script>
 </body>
 </html>

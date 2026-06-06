@@ -27,18 +27,21 @@ async function saveSubscriber(email, source) {
 }
 
 // Save an order/reservation
-async function saveOrder({ customerName, customerEmail, customerPhone, productName, quantity, notes }) {
+async function saveOrder({ customerName, customerEmail, customerPhone, productName, quantity, shippingState, shippingAddress, notes }) {
   const { data: { user } } = await db.auth.getUser();
-  const { error } = await db.from('orders').insert({
+  const { data, error } = await db.from('orders').insert({
     user_id: user?.id || null,
     customer_name: customerName,
     customer_email: customerEmail,
     customer_phone: customerPhone || null,
     product_name: productName || 'General Inquiry',
     quantity: quantity || 1,
+    shipping_state: shippingState || null,
+    shipping_address: shippingAddress || null,
     notes: notes || null,
     status: 'pending'
   });
+  if (error) console.error('[Sandou] saveOrder error:', error);
   return error;
 }
 

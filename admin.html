@@ -56,8 +56,7 @@ input,select{font-family:inherit}
 #login-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 50%,rgba(201,168,76,.06),transparent 60%),radial-gradient(ellipse 40% 40% at 80% 30%,rgba(201,168,76,.04),transparent 60%);pointer-events:none}
 .lcard{width:100%;max-width:400px;background:var(--bg2);border:1px solid var(--g15);border-radius:var(--r16);padding:40px 36px;backdrop-filter:blur(20px);box-shadow:0 24px 80px rgba(0,0,0,.6),inset 0 0 0 1px var(--g10)}
 .llogo{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
-.llogo img{height:52px;width:auto;filter:brightness(0) invert(1);opacity:.88}
-[data-theme="light"] .llogo img{filter:none;opacity:1}
+.llogo img{height:52px;width:auto;border-radius:8px}
 .leyebrow{text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .ltitle{text-align:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px}
 .ldivider{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px}
@@ -81,8 +80,7 @@ input,select{font-family:inherit}
 #sidebar{position:fixed;left:0;top:0;width:var(--sw);height:100vh;background:var(--bg1);border-right:1px solid var(--g10);display:flex;flex-direction:column;z-index:200;transition:transform .3s var(--ease);overflow-y:auto;overflow-x:hidden}
 @media(max-width:1023px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0);box-shadow:20px 0 60px rgba(0,0,0,.5)}}
 .sb-hd{padding:22px 18px 18px;border-bottom:1px solid var(--g10);flex-shrink:0;display:flex;align-items:center;gap:12px}
-.sb-hd img{height:34px;width:auto;filter:brightness(0) invert(1);opacity:.82;flex-shrink:0}
-[data-theme="light"] .sb-hd img{filter:none}
+.sb-hd img{height:34px;width:auto;border-radius:6px;flex-shrink:0}
 .sb-hd-t{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--t2);line-height:1.3}
 .sb-hd-s{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.8}
 .sb-nav{flex:1;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
@@ -116,8 +114,7 @@ input,select{font-family:inherit}
 .mob-ham{padding:8px;border-radius:var(--r8);color:var(--t2);transition:background .2s;display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
 .mob-ham:hover{background:var(--g05);color:var(--t1)}
 .mob-ttl{flex:1;font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--t1)}
-.mob-logo{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.75}
-[data-theme="light"] .mob-logo{filter:none}
+.mob-logo{height:30px;width:auto;border-radius:5px}
 
 /* MAIN */
 #main{margin-left:var(--sw);flex:1;min-width:0;min-height:100vh;overflow-x:hidden}
@@ -573,14 +570,27 @@ input,select{font-family:inherit}
         <li>Paste the full <code>schema.sql</code> file contents and click <strong>Run</strong></li>
         <li>Refresh this admin panel — all sections will be live</li>
       </ol>
-      <p><strong>Step 2 — Create the Media Storage bucket</strong></p>
+      <p><strong>Step 2 — Create the Media Storage bucket (required for image uploads)</strong></p>
       <ol>
         <li>In Supabase, go to <strong>Storage → New Bucket</strong></li>
         <li>Name it exactly: <code>sandou-media</code></li>
         <li>Set <strong>Public</strong> to ON</li>
         <li>Click <strong>Save</strong></li>
+        <li>Then go to <strong>Storage → Policies</strong> and add a policy on <code>sandou-media</code>: allow <strong>INSERT</strong> for <strong>authenticated</strong> users</li>
       </ol>
-      <p>The admin panel will also attempt to create this bucket automatically on your first upload. Once created, all product images, gallery photos, and media library files are stored there permanently.</p>
+      <div class="sqlblock"><code>-- Run in SQL Editor to enable authenticated image uploads
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('sandou-media', 'sandou-media', true)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE POLICY "auth_upload" ON storage.objects
+  FOR INSERT TO authenticated
+  WITH CHECK (bucket_id = 'sandou-media');
+
+CREATE POLICY "public_read" ON storage.objects
+  FOR SELECT TO public
+  USING (bucket_id = 'sandou-media');</code></div>
+      <p><strong>No Storage bucket?</strong> You can still add images by pasting direct URLs — use the "Add by URL" buttons in the Media Library, Gallery Manager, and Page Editor image fields.</p>
       <p><strong>Quick admin policies (if you only need the fix now)</strong></p>
       <div class="sqlblock"><code>-- Run this in Supabase SQL Editor if tables already exist
 
@@ -593,14 +603,14 @@ DO $$ BEGIN
 EXCEPTION WHEN OTHERS THEN NULL; END $$;
 
 CREATE POLICY "admin_select_orders" ON public.orders FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 CREATE POLICY "admin_update_orders" ON public.orders FOR UPDATE TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com')
-  WITH CHECK (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com')
+  WITH CHECK (auth.email() = 'teamloxen@gmail.com');
 CREATE POLICY "admin_select_inquiries" ON public.inquiries FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');
+  USING (auth.email() = 'teamloxen@gmail.com');
 CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO authenticated
-  USING (auth.email() = 'doriscacarlm40@gmail.com');</code></div>
+  USING (auth.email() = 'teamloxen@gmail.com');</code></div>
       <p style="font-size:11px;color:var(--t3)">Duplicate policy errors are safe to ignore. After running, refresh the dashboard to see your data.</p>
     </div>
   </div>
@@ -627,6 +637,8 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
       </button>
     </form>
     <div class="lerr" id="lerr"></div>
+    <button type="button" onclick="handleForgotPassword()" style="background:none;border:none;color:var(--gold);font-size:11px;cursor:pointer;margin-top:10px;text-decoration:underline;font-family:inherit;">Forgot password? Send reset email</button>
+    <div id="reset-msg" style="display:none;font-size:11px;color:var(--green);margin-top:8px;text-align:center;"></div>
     <div class="lfooter">Sandou Kremas · Restricted Access</div>
   </div>
 </div>
@@ -743,8 +755,8 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
         <div id="access-banner" class="abanner" style="display:none">
           <span class="ms">warning</span>
           <div>
-            <div class="abanner-ttl">Database Access Not Configured</div>
-            <div class="abanner-dsc">Admin read policies are missing. Charts and tables may be empty. <a onclick="openSetup()">Run the setup SQL →</a></div>
+            <div class="abanner-ttl">Supabase Auth Required</div>
+            <div class="abanner-dsc">You must sign in with your Supabase account to read orders and save changes. Sign out and log in with your real Supabase email/password. No account yet? Go to your <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Supabase Dashboard → Authentication → Users → Add user</a>. After adding yourself, come back and sign in.</div>
           </div>
         </div>
         <div class="stitle">Key Metrics</div>
@@ -821,7 +833,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
             <thead><tr>
               <th>Customer</th><th>Product</th>
               <th class="hm">Qty</th><th>Status</th>
-              <th class="hm">Revenue</th><th class="ht">Phone</th><th>Date</th>
+              <th class="hm">Revenue</th><th class="ht">Phone</th><th class="ht">Notes</th><th>Date</th>
             </tr></thead>
             <tbody id="o-tbody"></tbody>
           </table>
@@ -981,6 +993,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
             <button class="vtog-btn on" onclick="setMLView('grid',this)" title="Grid"><span class="ms">grid_view</span></button>
             <button class="vtog-btn" onclick="setMLView('list',this)" title="List"><span class="ms">view_list</span></button>
           </div>
+          <button class="btn-ol" onclick="openMLUrlDialog()"><span class="ms">add_link</span><span class="hm">Add by URL</span></button>
           <label class="btn-ol" style="cursor:pointer;position:relative">
             <span class="ms">upload</span>Upload Images
             <input type="file" accept="image/*" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="handleMLUpload(this.files)"/>
@@ -1011,7 +1024,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
           <input type="file" accept="image/*" multiple onchange="handleMLUpload(this.files)"/>
           <span class="ms">cloud_upload</span>
           <div class="upload-zone-ttl">Drop images here or click to upload</div>
-          <div class="upload-zone-sub">Supports JPG, PNG, GIF, WebP, SVG · Images stored locally until Supabase Storage is configured</div>
+          <div class="upload-zone-sub">Supports JPG, PNG, GIF, WebP, SVG · Files upload to Supabase Storage (sandou-media bucket)</div>
         </div>
 
         <div id="ml-content"></div>
@@ -1090,6 +1103,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
           <div class="psub">Manage all public gallery images — upload, categorize, feature, and reorder</div>
         </div>
         <div class="phdr-r">
+          <button class="btn-ol" onclick="openGalUrlDialog()"><span class="ms">add_link</span><span class="hm">Add by URL</span></button>
           <label class="btn-ol" style="cursor:pointer;position:relative">
             <span class="ms">add_photo_alternate</span>Add Images
             <input type="file" accept="image/*" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="handleGalUpload(this.files)"/>
@@ -1250,6 +1264,8 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
     </div>
     <div id="gm-preview-wrap"></div>
     <div class="gm-body">
+      <div class="field"><label>Image URL <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)">(paste a new URL to replace)</span></label>
+        <input id="gm-url" type="url" placeholder="https://… or leave blank to keep current"/></div>
       <div class="field"><label>Caption</label>
         <input id="gm-cap" type="text" placeholder="Optional caption shown in gallery"/></div>
       <div class="field"><label>Alt Text</label>
@@ -1301,6 +1317,21 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
           <option>Gallery Images</option><option>Ingredients</option><option>Backgrounds</option>
           <option>Logo Assets</option><option>Social Media Assets</option>
         </select>
+      </div>
+    </div>
+    <div style="padding:10px 14px;border-bottom:1px solid var(--g10);display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <label class="btn-ol" style="cursor:pointer;position:relative;overflow:hidden">
+        <span class="ms">upload</span>Upload New Image
+        <input type="file" accept="image/*" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="handleIPMUpload(this.files)"/>
+      </label>
+      <div style="display:flex;gap:6px;flex:1;min-width:180px;align-items:center">
+        <input id="ipm-url-in" type="url" placeholder="Or paste image URL…"
+          style="flex:1;background:var(--bg1);border:1px solid var(--g10);border-radius:var(--r8);padding:7px 10px;color:var(--t1);font-size:11px;font-family:inherit;outline:none;transition:border-color .25s;min-width:0"
+          onfocus="this.style.borderColor='rgba(201,168,76,.4)'" onblur="this.style.borderColor='rgba(201,168,76,.10)'"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();addIPMUrl();}"/>
+        <button class="btn-ol" style="padding:6px 11px;font-size:9px;white-space:nowrap" onclick="addIPMUrl()">
+          <span class="ms">add_link</span>Add URL
+        </button>
       </div>
     </div>
     <div class="ipm-body">
@@ -1386,8 +1417,8 @@ const S = {
   charts:{},
   theme:'dark',
   accessErr:false,
-  // Phase 1.5 — Supabase-backed
-  products:[], media:[], gallery:[], pageContent:{}
+  products:[], media:[], gallery:[], pageContent:{},
+  custMeta:{}
 };
 
 // ── DB ─────────────────────────────────────────────
@@ -1453,10 +1484,19 @@ async function handleLogin(e){
 }
 async function doLogout(){
   await db.auth.signOut();
-  S.orders=[];S.inquiries=[];S.subscribers=[];
+  S.orders=[];S.inquiries=[];S.subscribers=[];S.custMeta={};
   Object.values(S.charts).forEach(c=>{if(c)c.destroy();});
   S.charts={};
   showLogin();
+}
+async function handleForgotPassword(){
+  const email=document.getElementById('le').value.trim();
+  const msg=document.getElementById('reset-msg');
+  if(!email){msg.style.color='var(--red)';msg.textContent='Enter your email address above first.';msg.style.display='block';return;}
+  msg.style.color='var(--t3)';msg.textContent='Sending…';msg.style.display='block';
+  const{error}=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.href});
+  if(error){msg.style.color='var(--red)';msg.textContent=error.message;}
+  else{msg.style.color='var(--green)';msg.textContent='Reset email sent! Check your inbox, click the link, then come back here to sign in.';}
 }
 function showLogin(){
   document.getElementById('login-screen').style.display='flex';
@@ -1477,7 +1517,7 @@ function showApp(user){
 async function loadAll(){
   setSpinning(true);
   S.accessErr=false;
-  await Promise.all([loadOrders(),loadInquiries(),loadSubs(),loadProducts(),loadMedia(),loadGallery(),loadPageContent()]);
+  await Promise.all([loadOrders(),loadInquiries(),loadSubs(),loadProducts(),loadMedia(),loadGallery(),loadPageContent(),loadCustMeta()]);
   initBuckets(); // fire-and-forget bucket creation
   setSpinning(false);
   document.getElementById('access-banner').style.display=S.accessErr?'flex':'none';
@@ -1517,7 +1557,10 @@ async function loadProducts(){
       hidden:!!p.hidden,inventory:p.inventory||'in_stock'
     }));
   }else{
-    if(!S.products.length)S.products=JSON.parse(JSON.stringify(PROD_DEFAULTS));
+    // First-run: seed defaults into Supabase so public site can read them
+    const defaults=JSON.parse(JSON.stringify(PROD_DEFAULTS));
+    S.products=defaults;
+    await _upsertProducts(defaults);
   }
 }
 async function loadMedia(){
@@ -1540,7 +1583,18 @@ async function loadGallery(){
 }
 async function loadPageContent(){
   const{data,error}=await db.from('page_content').select('*');
-  if(!error&&data)data.forEach(row=>{S.pageContent[row.slug]=row.data||{};});
+  if(!error&&data&&data.length){
+    data.forEach(row=>{S.pageContent[row.slug]=row.data||{};});
+  }else if(!error){
+    // First-run: seed all page defaults into Supabase
+    const results=await Promise.all(Object.entries(PAGE_DEFAULTS).map(([slug,d])=>
+      db.from('page_content').upsert({slug,data:d,updated_at:new Date().toISOString()})
+    ));
+    Object.assign(S.pageContent,PAGE_DEFAULTS);
+    const seedErr=results.find(r=>r.error);
+    if(seedErr)toast('Page seed failed — not signed in?',seedErr.error.message,'e');
+    else toast('Pages seeded','Default page content saved to database','s');
+  }
 }
 async function initBuckets(){
   try{
@@ -1727,7 +1781,7 @@ function renderOTable(){
   const p=S.pages.o,st=(p-1)*PER;
   tbody.innerHTML=S.fo.slice(st,st+PER).map(o=>`
     <tr>
-      <td><div class="bold">${o.customer_name||'—'}</div><div style="font-size:10px;color:var(--t3)">${o.customer_email||''}</div></td>
+      <td><div class="bold">${o.customer_name||'—'}</div><div style="font-size:10px;color:var(--t3)">${o.customer_email||''}</div>${o.shipping_state?`<div style="font-size:9px;color:var(--t4);margin-top:1px;">${o.shipping_state}${o.shipping_address?' · '+o.shipping_address:''}</div>`:''}</td>
       <td>${o.product_name||'—'}</td>
       <td class="mono hm">${o.quantity||1}</td>
       <td><span class="badge b-${(o.status||'pending').toLowerCase()}">
@@ -1737,6 +1791,7 @@ function renderOTable(){
       </span></td>
       <td class="mono hm">${$c(rev(o))}</td>
       <td class="ht" style="font-size:11px">${o.customer_phone||'—'}</td>
+      <td class="ht" style="font-size:10px;color:var(--t3);max-width:160px">${trunc(o.notes||'—',60)}</td>
       <td style="font-size:10px;color:var(--t3)">${$ds(o.created_at)}</td>
     </tr>`).join('');
   renderPgn('o',S.fo.length);
@@ -1905,11 +1960,30 @@ document.getElementById('cust-del-modal').addEventListener('click',function(e){i
 // ── CUSTOMER CRM ──────────────────────────────────
 
 // LocalStorage helpers
+async function loadCustMeta(){
+  try{
+    const{data}=await db.from('customers').select('*');
+    S.custMeta={};
+    (data||[]).forEach(r=>{S.custMeta[r.email]={name:r.name_override,phone:r.phone_override,address:r.address,state:r.state,tags:r.tags||[],notes:r.notes||[],hidden:r.hidden||false};});
+  }catch(e){S.custMeta={};}
+}
 function getCustMeta(email){
-  try{return JSON.parse(localStorage.getItem('sk-cust-'+email))||{};}catch{return{};}
+  return S.custMeta[(email||'').toLowerCase()]||{};
 }
 function saveCustMeta(email,meta){
-  localStorage.setItem('sk-cust-'+email,JSON.stringify(meta));
+  const key=(email||'').toLowerCase();
+  S.custMeta[key]=meta;
+  db.from('customers').upsert([{
+    email:key,
+    name_override:meta.name||null,
+    phone_override:meta.phone||null,
+    address:meta.address||null,
+    state:meta.state||null,
+    tags:meta.tags||[],
+    notes:meta.notes||[],
+    hidden:meta.hidden||false,
+    updated_at:new Date().toISOString()
+  }]).then(({error})=>{if(error)toast('Save error',error.message,'e');});
 }
 
 // Build customer profiles by aggregating all data sources
@@ -2326,56 +2400,69 @@ function saveProducts(arr){ S.products=arr; _upsertProducts(arr); }
 function saveGallery(arr){ S.gallery=arr; _upsertGallery(arr); }
 function savePageContent(slug,data){ S.pageContent[slug]=data; _upsertPage(slug,data); }
 
-// Supabase sync helpers (fire-and-forget, errors surfaced as toasts)
+// Supabase sync helpers — fire-and-forget, errors surfaced as toasts
 async function _upsertMedia(arr){
   if(!arr.length)return;
   try{
-    await db.from('media').upsert(arr.map(m=>({
+    const{error}=await db.from('media').upsert(arr.map(m=>({
       id:m.id,file_name:m.name||'',url:m.url||'',alt_text:m.altText||'',
       caption:m.caption||'',category:m.category||'',used_on_page:m.usedIn||'',
       created_at:m.uploadedAt||new Date().toISOString()
     })));
-  }catch(e){toast('Sync warning',e.message||'Media sync failed','w');}
+    if(error)toast('Save failed — not signed in?',error.message||'Media save failed','e');
+  }catch(e){toast('Save failed',e.message||'Media save failed','e');}
 }
 async function _upsertProducts(arr){
   if(!arr.length)return;
   try{
-    await db.from('products').upsert(arr.map((p,i)=>({
+    const{error}=await db.from('products').upsert(arr.map((p,i)=>({
       id:p.id,name:p.name,tagline:p.tagline||null,description:p.description||null,
       price:p.price||24,image_url:p.primaryImage||null,gallery_images:p.galleryImages||[],
       featured:!!p.featured,founder_favorite:!!p.founderFavorite,hidden:!!p.hidden,
       inventory:p.inventory||'in_stock',display_order:i,updated_at:new Date().toISOString()
     })));
-  }catch(e){toast('Sync warning',e.message||'Products sync failed','w');}
+    if(error)toast('Save failed — not signed in?',error.message||'Products save failed','e');
+  }catch(e){toast('Save failed',e.message||'Products save failed','e');}
 }
 async function _upsertGallery(arr){
   if(!arr.length)return;
   try{
-    await db.from('gallery').upsert(arr.map((g,i)=>({
+    const{error}=await db.from('gallery').upsert(arr.map((g,i)=>({
       id:g.id,image_url:g.url||'',caption:g.caption||null,alt_text:g.altText||null,
       category:g.category||null,featured:!!g.featured,hidden:!!g.hidden,
       display_order:g.order||i,created_at:g.uploadedAt||new Date().toISOString()
     })));
-  }catch(e){toast('Sync warning',e.message||'Gallery sync failed','w');}
+    if(error)toast('Save failed — not signed in?',error.message||'Gallery save failed','e');
+  }catch(e){toast('Save failed',e.message||'Gallery save failed','e');}
 }
 async function _upsertPage(slug,data){
   try{
-    await db.from('page_content').upsert({slug,data,updated_at:new Date().toISOString()});
-  }catch(e){toast('Sync warning',e.message||'Page sync failed','w');}
+    const{error}=await db.from('page_content').upsert({slug,data,updated_at:new Date().toISOString()});
+    if(error)toast('Save failed — not signed in?',error.message||'Page save failed','e');
+  }catch(e){toast('Save failed',e.message||'Page save failed','e');}
 }
 
 // Supabase delete helpers
 async function _deleteMedia(id){
-  try{await db.from('media').delete().eq('id',id);}catch(e){toast('Sync warning',e.message,'w');}
+  try{
+    const{error}=await db.from('media').delete().eq('id',id);
+    if(error)toast('Delete failed',error.message,'e');
+  }catch(e){toast('Delete failed',e.message,'e');}
 }
 async function _deleteProduct(id){
-  try{await db.from('products').delete().eq('id',id);}catch(e){toast('Sync warning',e.message,'w');}
+  try{
+    const{error}=await db.from('products').delete().eq('id',id);
+    if(error)toast('Delete failed',error.message,'e');
+  }catch(e){toast('Delete failed',e.message,'e');}
 }
 async function _deleteGallery(id){
-  try{await db.from('gallery').delete().eq('id',id);}catch(e){toast('Sync warning',e.message,'w');}
+  try{
+    const{error}=await db.from('gallery').delete().eq('id',id);
+    if(error)toast('Delete failed',error.message,'e');
+  }catch(e){toast('Delete failed',e.message,'e');}
 }
 
-// Upload file to Supabase Storage, returns public URL or falls back to base64
+// Upload file to Supabase Storage, returns public URL or null on failure
 async function uploadToStorage(file, folder){
   try{
     const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
@@ -2385,12 +2472,8 @@ async function uploadToStorage(file, folder){
     const{data:{publicUrl}}=db.storage.from('sandou-media').getPublicUrl(path);
     return publicUrl;
   }catch(e){
-    // Fallback: read as base64 data URL
-    return new Promise(res=>{
-      const r=new FileReader();
-      r.onload=ev=>res(ev.target.result);
-      r.readAsDataURL(file);
-    });
+    toast('Storage upload failed',e.message||'Create the sandou-media bucket in Supabase Storage (see DB Setup Guide) or use a direct URL instead.','e');
+    return null;
   }
 }
 
@@ -2398,13 +2481,13 @@ function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2
 
 // ── PAGE DEFAULTS ─────────────────────────────────
 const PAGE_DEFAULTS={
-  home:{pageTitle:'Home',heroTitle:'Taste the Spirit of Haiti',heroSubtitle:'Premium artisan Kremas — crafted with love, tradition, and the finest Caribbean ingredients.',heroImage:'',founderPreviewImage:'',artOfKremasImage:'',productShowcaseImage:'',sandouCircleBgImage:'',ctaText:'Shop Now',ctaLink:'collection.html',cta2Text:'Our Story',cta2Link:'our-story.html',seoTitle:'Sandou Kremas — Premium Haitian Kremas',seoDesc:'Artisan Haitian Kremas crafted with love and tradition.'},
-  story:{pageTitle:'Our Story',heroTitle:'From Haiti, With Love',heroSubtitle:'The story of Alexandra Louis and the mission to bring authentic Haitian Kremas to the world.',heroImage:'',founderPortrait:'',founderSignatureImage:'',sectionHeading1:'The Founder',sectionDesc1:'Alexandra Louis grew up surrounded by the rich flavors and traditions of Haiti.',sectionHeading2:'From Haiti to America',sectionDesc2:'Bringing the authentic taste of Kremas to the American market.',ctaText:'Shop Collection',ctaLink:'collection.html',seoTitle:'Our Story — Sandou Kremas',seoDesc:"Alexandra Louis's journey from Haiti to America."},
-  collection:{pageTitle:'Collection',heroTitle:'Our Collection',heroSubtitle:'Explore our lineup of handcrafted Kremas flavors — each bottle a celebration of Haitian heritage.',heroImage:'',founderFavoriteImage:'',seoTitle:'Collection — Sandou Kremas',seoDesc:'Shop our full lineup of premium artisan Kremas flavors.'},
-  experience:{pageTitle:'Experience',heroTitle:'The Art of Kremas',heroSubtitle:'A sensory journey through tradition, craftsmanship, and culture.',heroImage:'',ingredientImage:'',craftsmanshipImage:'',cultureImage:'',ritualImage:'',seoTitle:'The Experience — Sandou Kremas',seoDesc:'Discover the art, ingredients, and craftsmanship behind every bottle.'},
-  gallery:{pageTitle:'Gallery',heroTitle:'Moments in Time',heroSubtitle:'A visual celebration of culture, craft, and community.',heroImage:'',seoTitle:'Gallery — Sandou Kremas',seoDesc:'Explore the world of Sandou Kremas through our photo gallery.'},
-  shipping:{pageTitle:'Shipping & FAQ',heroTitle:'Shipping & FAQ',heroSubtitle:'Everything you need to know about orders, shipping, and our products.',heroImage:'',bgImage:'',seoTitle:'Shipping & FAQ — Sandou Kremas',seoDesc:'Shipping and FAQ for Sandou Kremas.'},
-  contact:{pageTitle:'Contact',heroTitle:'Get in Touch',heroSubtitle:"We'd love to hear from you.",heroImage:'',contactSectionImage:'',ctaText:'Send Message',seoTitle:'Contact — Sandou Kremas',seoDesc:'Contact Sandou Kremas for orders, wholesale inquiries, and more.'}
+  home:{pageTitle:'Home',heroTitle:'Every Bottle Tells A Story',heroSubtitle:'Crafted from family tradition. Shared through every celebration.',heroImage:'',founderPreviewImage:'',artOfKremasImage:'',momentsImage1:'',momentsImage2:'',productShowcaseImage:'',sandouCircleBgImage:'',ctaText:'Explore Collection',ctaLink:'collection.html',cta2Text:'Our Story',cta2Link:'our-story.html',seoTitle:'Sandou Kremas | Every Bottle Tells A Story',seoDesc:'Premium artisan Haitian Kremas crafted from family tradition.'},
+  story:{pageTitle:'Our Story',heroTitle:'Meet Alexandra Louis',heroSubtitle:'Born in Port-au-Prince. Built with purpose. Bottled with love.',heroImage:'',founderPortrait:'',founderSignatureImage:'',sectionHeading1:'The Founder',sectionDesc1:'Alexandra Louis grew up surrounded by the rich flavors and traditions of Haiti.',sectionHeading2:'From Haiti to America',sectionDesc2:'Bringing the authentic taste of Kremas to the American market.',ctaText:'Shop Collection',ctaLink:'collection.html',seoTitle:'Our Story — Sandou Kremas',seoDesc:"Alexandra Louis's journey from Haiti to America."},
+  collection:{pageTitle:'Collection',heroTitle:'Crafted in Haiti. Shared With The World.',heroSubtitle:'Six expressions of a heritage worth tasting.',heroImage:'',founderFavoriteImage:'',seoTitle:'Collection — Sandou Kremas',seoDesc:'Shop our full lineup of premium artisan Kremas flavors.'},
+  experience:{pageTitle:'Experience',heroTitle:'The Story Behind Every Pour.',heroSubtitle:'A decade of craft, bottled with intention for every celebration.',heroImage:'',ingredientImage:'',craftsmanshipImage:'',cultureImage:'',ritualImage:'',seoTitle:'The Experience — Sandou Kremas',seoDesc:'Discover the art, ingredients, and craftsmanship behind every bottle.'},
+  gallery:{pageTitle:'Gallery',heroTitle:'Moments Worth Remembering.',heroSubtitle:'Every bottle creates a story. Every story deserves to be seen.',heroImage:'',seoTitle:'Gallery — Sandou Kremas',seoDesc:'Explore the world of Sandou Kremas through our photo gallery.'},
+  shipping:{pageTitle:'Shipping & FAQ',heroTitle:'We Ship Nationwide',heroSubtitle:'From our cellar to your door. Every bottle delivered with the same care it was crafted with.',heroImage:'',bgImage:'',seoTitle:'Shipping & FAQ — Sandou Kremas',seoDesc:'Shipping and FAQ for Sandou Kremas.'},
+  contact:{pageTitle:'Contact',heroTitle:'Speak With Us',heroSubtitle:'Every inquiry is a beginning. We are here, and we are listening.',heroImage:'',contactSectionImage:'',ctaText:'Send Message',seoTitle:'Contact — Sandou Kremas',seoDesc:'Contact Sandou Kremas for orders, wholesale inquiries, and more.'}
 };
 
 // ── PRODUCT DEFAULTS ──────────────────────────────
@@ -2433,13 +2516,18 @@ async function handleMLUpload(files){
   if(!files||!files.length)return;
   const arr=getMedia();
   const total=files.length;
-  let done=0;
+  let done=0;let ok=0;
   for(const file of Array.from(files)){
-    if(!file.type.startsWith('image/')){done++;if(done===total){saveMedia(arr);renderMediaLibrary();updateMLBadge();}continue;}
+    if(!file.type.startsWith('image/')){done++;if(done===total&&ok>0){saveMedia(arr);renderMediaLibrary();updateMLBadge();}continue;}
     const url=await uploadToStorage(file,'media');
-    arr.push({id:uid(),name:file.name,url,category:'',altText:'',caption:'',usedIn:'',uploadedAt:new Date().toISOString()});
+    if(url){
+      arr.push({id:uid(),name:file.name,url,category:'',altText:'',caption:'',usedIn:'',uploadedAt:new Date().toISOString()});
+      ok++;
+    }
     done++;
-    if(done===total){saveMedia(arr);renderMediaLibrary();updateMLBadge();toast('Uploaded',`${total} image${total>1?'s':''} added to Media Library`,'s');}
+    if(done===total){
+      if(ok>0){saveMedia(arr);renderMediaLibrary();updateMLBadge();toast('Uploaded',`${ok} image${ok>1?'s':''} added to Media Library`,'s');}
+    }
   }
 }
 
@@ -2501,6 +2589,32 @@ function copyImgUrl(id){
   const url=m.url||'';
   if(!url){toast('No URL','This image has no URL to copy','w');return;}
   navigator.clipboard.writeText(url).then(()=>toast('Copied!','URL copied to clipboard','s')).catch(()=>toast('Failed','Could not copy URL','e'));
+}
+
+function openMLUrlDialog(){
+  openConfirm('add_link','Add Image by URL','',()=>{});
+  const dsc=document.getElementById('confirm-dsc');
+  dsc.innerHTML='';
+  const inp=document.createElement('input');
+  inp.type='url';inp.id='ml-url-inp';
+  inp.placeholder='https://your-image-url.com/photo.jpg';
+  inp.style.cssText='width:100%;background:var(--bg1);border:1px solid var(--g10);border-radius:var(--r8);padding:9px 11px;color:var(--t1);font-size:13px;font-family:inherit;outline:none;margin-top:6px;box-sizing:border-box';
+  inp.onfocus=function(){this.style.borderColor='rgba(201,168,76,.4)';};
+  inp.onblur=function(){this.style.borderColor='rgba(201,168,76,.10)';};
+  dsc.appendChild(inp);
+  setTimeout(()=>inp.focus(),50);
+  const okBtn=document.getElementById('confirm-ok');
+  okBtn.textContent='Add Image';
+  okBtn.onclick=()=>{
+    const url=(inp.value||'').trim();
+    closeConfirm();
+    if(!url)return;
+    const arr=getMedia();
+    const name=url.split('/').pop().split('?')[0]||'image';
+    arr.push({id:uid(),name,url,category:'',altText:'',caption:'',usedIn:'',uploadedAt:new Date().toISOString()});
+    saveMedia(arr);renderMediaLibrary();updateMLBadge();
+    toast('Image added','Added to Media Library by URL','s');
+  };
 }
 
 // Media modal
@@ -2570,6 +2684,7 @@ function renderPageEditor(slug){
   function imgField(label,key,hint){
     const val=d[key]||'';
     const isUrl=val&&(val.startsWith('http')||val.startsWith('data:'));
+    const urlVal=isUrl&&val.startsWith('http')?esc(val):'';
     return`<div class="pe-field pe-full">
       <label>${label}</label>
       <div class="pe-img-row">
@@ -2577,10 +2692,23 @@ function renderPageEditor(slug){
           `<div class="pe-img-thumb-empty"><span class="ms">image</span></div>`}
         ${isUrl?`<span class="pe-img-name" title="${esc(val)}">${esc(val.startsWith('data:')?'(Uploaded image)':val)}</span>`:
           `<span class="pe-img-none">No image set</span>`}
+        <label class="btn-ol" style="white-space:nowrap;padding:6px 10px;font-size:9px;cursor:pointer;position:relative;overflow:hidden">
+          <span class="ms">upload</span>Upload
+          <input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="handlePEUpload('${key}',this.files[0])"/>
+        </label>
         <button class="btn-ol" style="white-space:nowrap;padding:6px 10px;font-size:9px" onclick="openImgPicker('pe:${key}')">
-          <span class="ms">photo_library</span>Pick
+          <span class="ms">photo_library</span>Library
         </button>
         ${isUrl?`<button class="btn-ico" onclick="clearPEImg('${key}')" title="Remove"><span class="ms">close</span></button>`:''}
+      </div>
+      <div style="display:flex;gap:6px;margin-top:6px;align-items:center">
+        <input id="pe-url-${key}" type="url" placeholder="Or paste image URL directly…" value="${urlVal}"
+          style="flex:1;background:var(--bg1);border:1px solid var(--g10);border-radius:var(--r8);padding:7px 10px;color:var(--t1);font-size:11px;font-family:inherit;outline:none;transition:border-color .25s"
+          onfocus="this.style.borderColor='rgba(201,168,76,.4)'" onblur="this.style.borderColor='rgba(201,168,76,.10)'"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();setPEUrl('${key}',this.value);}"/>
+        <button class="btn-ol" style="padding:6px 11px;font-size:9px;flex-shrink:0" onclick="setPEUrl('${key}',document.getElementById('pe-url-${key}').value)">
+          <span class="ms">check</span>Set URL
+        </button>
       </div>
       ${hint?`<div style="font-size:9px;color:var(--t4);margin-top:4px">${hint}</div>`:''}
     </div>`;
@@ -2603,6 +2731,8 @@ function renderPageEditor(slug){
       <div class="pe-grid">
         ${imgField('Founder Preview Image','founderPreviewImage','Small founder portrait on the home page')}
         ${imgField('Art of Kremas Image','artOfKremasImage','Image in the "Art of Kremas" section')}
+        ${imgField('Moments Gallery Image 1','momentsImage1','Large 8-column image in the "Moments in Time" section')}
+        ${imgField('Moments Gallery Image 2','momentsImage2','Small 4-column image in the "Moments in Time" section')}
         ${imgField('Product Showcase Image','productShowcaseImage','Main product bottle/image on home page')}
         ${imgField('Sandou Circle Background','sandouCircleBgImage','Background image for the circle/newsletter section')}
       </div>
@@ -2698,11 +2828,39 @@ function clearPEImg(key){
   toast('Image cleared','','s');
 }
 
+async function handlePEUpload(key,file){
+  if(!file)return;
+  toast('Uploading…','','i');
+  const url=await uploadToStorage(file,'pages');
+  if(!url)return;
+  // Also add to media library for reuse
+  const media=getMedia();
+  media.push({id:uid(),name:file.name,url,category:'',altText:'',caption:'',usedIn:currentPage,uploadedAt:new Date().toISOString()});
+  saveMedia(media);
+  // Set page content
+  const d=getPageContent(currentPage);
+  d[key]=url;
+  savePageContent(currentPage,d);
+  renderPageEditor(currentPage);
+  toast('Image set',file.name,'s');
+}
+
+function setPEUrl(key,url){
+  url=(url||'').trim();
+  if(!url){toast('No URL entered','Paste a valid image URL first','w');return;}
+  const d=getPageContent(currentPage);
+  d[key]=url;
+  savePageContent(currentPage,d);
+  renderPageEditor(currentPage);
+  toast('Image set','','s');
+}
+
 function saveCurrentPage(){
   const d=getPageContent(currentPage);
-  // Collect all pe- inputs
+  // Collect all pe- inputs (skip pe-url-* helper inputs)
   document.querySelectorAll('[id^="pe-"]').forEach(el=>{
     const k=el.id.replace('pe-','');
+    if(k.startsWith('url-'))return;
     d[k]=el.value||el.textContent||'';
   });
   savePageContent(currentPage,d);
@@ -2887,14 +3045,19 @@ async function handleGalUpload(files){
   if(!files||!files.length)return;
   const arr=getGallery();
   const total=files.length;
-  let done=0;
+  let done=0;let ok=0;
   for(const file of Array.from(files)){
-    if(!file.type.startsWith('image/')){done++;if(done===total){saveGallery(arr);renderGallery();updateGalBadge();}continue;}
+    if(!file.type.startsWith('image/')){done++;if(done===total&&ok>0){saveGallery(arr);renderGallery();updateGalBadge();}continue;}
     const url=await uploadToStorage(file,'gallery');
-    arr.push({id:uid(),url,caption:'',altText:file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' '),
-      category:galCat||'',featured:false,hidden:false,order:arr.length,uploadedAt:new Date().toISOString()});
+    if(url){
+      arr.push({id:uid(),url,caption:'',altText:file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' '),
+        category:galCat||'',featured:false,hidden:false,order:arr.length,uploadedAt:new Date().toISOString()});
+      ok++;
+    }
     done++;
-    if(done===total){saveGallery(arr);renderGallery();updateGalBadge();toast('Added',`${total} image${total>1?'s':''} added to Gallery`,'s');}
+    if(done===total){
+      if(ok>0){saveGallery(arr);renderGallery();updateGalBadge();toast('Added',`${ok} image${ok>1?'s':''} added to Gallery`,'s');}
+    }
   }
 }
 
@@ -2964,6 +3127,7 @@ function openGalModal(id){
   const pw=document.getElementById('gm-preview-wrap');
   pw.innerHTML=g.url?`<img class="gm-preview" src="${esc(g.url)}" alt="${esc(g.altText||'Gallery image')}"/>`:
     `<div class="gm-preview-empty"><span class="ms">image</span></div>`;
+  document.getElementById('gm-url').value='';
   document.getElementById('gm-cap').value=g.caption||'';
   document.getElementById('gm-alt').value=g.altText||'';
   document.getElementById('gm-cat').value=g.category||'';
@@ -2977,6 +3141,8 @@ function closeGalModal(){document.getElementById('gal-modal').classList.remove('
 function saveGalModal(){
   if(!galEditId)return;
   const arr=getGallery();const g=arr.find(x=>x.id===galEditId);if(!g)return;
+  const newUrl=(document.getElementById('gm-url').value||'').trim();
+  if(newUrl)g.url=newUrl;
   g.caption=document.getElementById('gm-cap').value.trim();
   g.altText=document.getElementById('gm-alt').value.trim();
   g.category=document.getElementById('gm-cat').value;
@@ -2987,6 +3153,32 @@ function saveGalModal(){
 }
 function deleteGalFromModal(){if(!galEditId)return;closeGalModal();confirmDeleteGal(galEditId);}
 document.getElementById('gal-modal').addEventListener('click',function(e){if(e.target===this)closeGalModal();});
+
+function openGalUrlDialog(){
+  openConfirm('add_link','Add Gallery Image by URL','',()=>{});
+  // Repurpose confirm modal body with a URL input
+  const dsc=document.getElementById('confirm-dsc');
+  dsc.innerHTML='';
+  const inp=document.createElement('input');
+  inp.type='url';inp.id='gal-url-inp';
+  inp.placeholder='https://your-image-url.com/photo.jpg';
+  inp.style.cssText='width:100%;background:var(--bg1);border:1px solid var(--g10);border-radius:var(--r8);padding:9px 11px;color:var(--t1);font-size:13px;font-family:inherit;outline:none;margin-top:6px;box-sizing:border-box';
+  inp.onfocus=function(){this.style.borderColor='rgba(201,168,76,.4)';};
+  inp.onblur=function(){this.style.borderColor='rgba(201,168,76,.10)';};
+  dsc.appendChild(inp);
+  setTimeout(()=>inp.focus(),50);
+  const okBtn=document.getElementById('confirm-ok');
+  okBtn.textContent='Add Image';
+  okBtn.onclick=()=>{
+    const url=(inp.value||'').trim();
+    closeConfirm();
+    if(!url)return;
+    const arr=getGallery();
+    arr.push({id:uid(),url,caption:'',altText:'',category:galCat||'',featured:false,hidden:false,order:arr.length,uploadedAt:new Date().toISOString()});
+    saveGallery(arr);renderGallery();updateGalBadge();
+    toast('Image added','Gallery image added by URL','s');
+  };
+}
 
 // ══════════════════════════════════════════════════
 // IMAGE PICKER
@@ -3064,6 +3256,45 @@ function confirmImgPick(){
     closeImgPicker();
   }
 }
+async function handleIPMUpload(files){
+  if(!files||!files.length)return;
+  const arr=getMedia();
+  let lastId=null;
+  for(const file of Array.from(files)){
+    if(!file.type.startsWith('image/'))continue;
+    toast('Uploading…',file.name,'i');
+    const url=await uploadToStorage(file,'media');
+    if(!url)continue;
+    const id=uid();
+    arr.push({id,name:file.name,url,category:'',altText:'',caption:'',usedIn:'',uploadedAt:new Date().toISOString()});
+    lastId=id;
+  }
+  if(lastId){
+    saveMedia(arr);
+    renderImgPicker();
+    // Auto-select the last uploaded image
+    const el=document.querySelector(`.ipm-item[data-id="${lastId}"]`);
+    if(el)selectIpmItem(el,lastId);
+    toast('Uploaded','Image added to Media Library and selected','s');
+  }
+}
+
+async function addIPMUrl(){
+  const input=document.getElementById('ipm-url-in');
+  const url=(input.value||'').trim();
+  if(!url){toast('No URL','Paste an image URL first','w');return;}
+  const name=url.split('/').pop().split('?')[0]||'image';
+  const arr=getMedia();
+  const id=uid();
+  arr.push({id,name,url,category:'',altText:'',caption:'',usedIn:'',uploadedAt:new Date().toISOString()});
+  saveMedia(arr);
+  input.value='';
+  renderImgPicker();
+  const el=document.querySelector(`.ipm-item[data-id="${id}"]`);
+  if(el)selectIpmItem(el,id);
+  toast('Image added','URL added to Media Library and selected','s');
+}
+
 document.getElementById('img-picker-modal').addEventListener('click',function(e){if(e.target===this)closeImgPicker();});
 
 // ══════════════════════════════════════════════════

@@ -91,6 +91,12 @@ const RESERVATION_MODAL_HTML = `
           </div>
         </div>
         <div style="margin-bottom:20px;">
+          <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Shipping Address</label>
+          <input type="text" name="address" placeholder="Street, City, ZIP"
+            style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;box-sizing:border-box;transition:border-color 0.3s;"
+            onfocus="this.style.borderColor='#765a1a'" onblur="this.style.borderColor='rgba(216,179,106,0.45)'"/>
+        </div>
+        <div style="margin-bottom:20px;">
           <label style="font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#49473f;display:block;margin-bottom:8px;">Quantity</label>
           <input type="number" name="quantity" min="1" max="100" value="1"
             style="width:120px;background:transparent;border:none;border-bottom:1px solid rgba(216,179,106,0.45);padding:10px 0;font-family:Montserrat,sans-serif;font-size:14px;color:#28180f;outline:none;transition:border-color 0.3s;"
@@ -107,6 +113,7 @@ const RESERVATION_MODAL_HTML = `
           onmouseover="this.style.letterSpacing='0.35em'" onmouseout="this.style.letterSpacing='0.25em'">
           Reserve My Bottle
         </button>
+        <p id="res-error-msg" style="display:none;font-family:Montserrat,sans-serif;font-size:12px;color:#c0392b;text-align:center;margin-top:10px;padding:10px;border:1px solid rgba(192,57,43,0.3);"></p>
         <p style="font-family:Montserrat,sans-serif;font-size:11px;color:#49473f;opacity:0.5;text-align:center;margin-top:12px;">No payment required. We'll contact you to confirm.</p>
       </form>
     </div>
@@ -277,6 +284,8 @@ function toggleReservation() {
 async function handleReservationSubmit(e) {
   e.preventDefault();
   var btn = document.getElementById('res-submit-btn');
+  var errEl = document.getElementById('res-error-msg');
+  if (errEl) errEl.style.display = 'none';
   btn.disabled = true;
   btn.textContent = 'Reserving…';
   var form = e.target;
@@ -286,10 +295,10 @@ async function handleReservationSubmit(e) {
   var email     = d.get('email') || '';
   var phone     = d.get('phone') || '';
   var state     = d.get('state') || '';
+  var address   = d.get('address') || '';
   var flavor    = d.get('flavor') || '';
   var quantity  = parseInt(d.get('quantity')) || 1;
   var notes     = d.get('notes') || '';
-  var notesAll  = [state && ('State: ' + state), flavor && ('Flavor: ' + flavor), notes && ('Notes: ' + notes)].filter(Boolean).join(' | ');
 
   if (typeof saveOrder === 'function') {
     var err = await saveOrder({
@@ -298,11 +307,15 @@ async function handleReservationSubmit(e) {
       customerPhone: phone || null,
       productName: flavor || 'General Reservation',
       quantity: quantity,
-      notes: notesAll || null
+      shippingState: state || null,
+      shippingAddress: address || null,
+      notes: notes || null
     });
     if (err) {
       btn.disabled = false;
       btn.textContent = 'Reserve My Bottle';
+      if (errEl) { errEl.textContent = 'Something went wrong: ' + (err.message || 'Please try again.'); errEl.style.display = 'block'; }
+      console.error('[Sandou] Reservation error:', err);
       return;
     }
   }
@@ -527,4 +540,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Analytics
   patchConciergeAnalytics();
+
+  // Wire the concierge "Send to the Cellar Master" button →
+  // close concierge, pre-fill notes with any typed message, open reservation modal
+  (function wireConciergeSubmit() {
+    var modal = document.getElementById('concierge-modal');
+    if (!modal) return;
+    var buttons = modal.querySelectorAll('button');
+    var sendBtn = null;
+    buttons.forEach(function(b) {
+      if (b.textContent.trim() === 'Send to the Cellar Master') sendBtn = b;
+    });
+    if (!sendBtn) return;
+    sendBtn.addEventListener('click', function() {
+      var textarea = modal.querySelector('textarea');
+      var msg = (textarea ? textarea.value : '').trim();
+      if (typeof toggleConcierge === 'function') toggleConcierge();
+      setTimeout(function() {
+        if (typeof openReservation === 'function') {
+          openReservation();
+          if (msg) {
+            var notesField = document.querySelector('#reservation-form [name="notes"]');
+            if (notesField && !notesField.value) notesField.value = msg;
+          }
+        }
+      }, 350);
+    });
+  })();
 });

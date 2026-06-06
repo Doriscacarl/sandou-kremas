@@ -60,7 +60,7 @@
   @media (prefers-reduced-motion: reduce) { .cinematic-zoom,.ambient-glow,.shimmer-gleam,.reveal-soft,.concierge-float,.crawling-light { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
 </style>
 </head>
-<body class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
+<body data-sk-page="shipping" class="bg-background text-on-background selection:bg-tertiary-container selection:text-on-tertiary-container overflow-x-hidden">
 
 <div id="loading-screen" role="status" aria-label="Loading Sandou Kremas">
   <img id="loading-logo" src="SAndouKremas%20logo.png" alt="Sandou Kremas" style="width: min(520px, 80vw); mix-blend-mode: multiply; display: block; height: auto;"/>
@@ -144,8 +144,8 @@
 <!-- ═══ HERO ═══ -->
 <section class="pt-40 pb-20 md:pt-52 md:pb-28 px-5 md:px-[80px] max-w-screen-2xl mx-auto text-center">
   <span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.5em] block mb-6">Delivery & Support</span>
-  <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">We Ship Nationwide</h1>
-  <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto reveal-soft" style="font-style:italic;">From our cellar to your door. Every bottle delivered with the same care it was crafted with.</p>
+  <h1 data-sk-content="heroTitle" class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight shimmer-gleam">We Ship Nationwide</h1>
+  <p data-sk-content="heroSubtitle" class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto reveal-soft" style="font-style:italic;">From our cellar to your door. Every bottle delivered with the same care it was crafted with.</p>
 </section>
 
 <!-- ═══ SHIPPING HIGHLIGHTS ═══ -->
@@ -415,5 +415,9 @@
   function animateConcierge() { if (!conciergeModal.classList.contains('active')) return; cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); cParticles.forEach(p => { p.x += p.speedX; p.y += p.speedY; if (p.y > cCanvas.height) { p.y = -5; p.x = Math.random() * cCanvas.width; } cCtx.fillStyle = `rgba(216,179,106,${p.opacity})`; cCtx.beginPath(); cCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); cCtx.fill(); }); requestAnimationFrame(animateConcierge); }
   document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="supabase-init.js"></script>
+<script src="sandou-public.js"></script>
+<script src="sandou-conversion.js"></script>
 </body>
 </html>
