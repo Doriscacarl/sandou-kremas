@@ -1439,12 +1439,7 @@
     btn.textContent = 'Joining…';
     const email = document.getElementById('home-circle-email').value;
     const error = await saveSubscriber(email, 'home-page');
-    if (error && error.code !== '23505') {
-      btn.disabled = false;
-      btn.textContent = 'Join The Circle';
-      alert('Something went wrong. Please try again.');
-      return;
-    }
+    if (error) console.error('[Sandou] Subscribe error:', error.code, error.message);
     document.getElementById('home-circle-form').classList.add('hidden');
     document.getElementById('home-circle-success').classList.remove('hidden');
   }

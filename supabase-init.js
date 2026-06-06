@@ -82,11 +82,12 @@ async function saveInquiry({ name, email, subject, message, inquiryType }) {
 
 // ── Save a newsletter subscriber ─────────────────────────────────
 async function saveSubscriber(email, source) {
-  const { error } = await db.from('subscribers').upsert(
-    { email, source: source || 'website', is_active: true },
-    { onConflict: 'email', ignoreDuplicates: false }
+  const { error } = await db.from('subscribers').insert(
+    { email, source: source || 'website', is_active: true }
   );
-  if (error) return error;
+  // 23505 = duplicate email — already subscribed, treat as success
+  if (error && error.code !== '23505') return error;
+  if (error) return null; // duplicate — skip notifications, already subscribed
 
   const dt = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
   _saveNotification({

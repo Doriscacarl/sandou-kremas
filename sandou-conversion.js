@@ -396,11 +396,7 @@ async function handleCirclePopupSubmit(e) {
   var email = document.getElementById('circle-popup-email').value;
   if (typeof saveSubscriber === 'function') {
     var err = await saveSubscriber(email, 'circle-popup');
-    if (err && err.code !== '23505') {
-      btn.disabled = false;
-      btn.textContent = 'Join The Circle';
-      return;
-    }
+    if (err) console.error('[Sandou] Subscribe error:', err.code, err.message);
   }
   skTrack('circle_popup_conversion', { source: 'popup' });
   localStorage.setItem(SK_CIRCLE_KEY, Date.now().toString());
@@ -417,11 +413,7 @@ async function handlePageCircleSubmit(e) {
   var email = document.getElementById('page-circle-email').value;
   if (typeof saveSubscriber === 'function') {
     var err = await saveSubscriber(email, 'page-circle');
-    if (err && err.code !== '23505') {
-      btn.disabled = false;
-      btn.textContent = 'Join The Circle';
-      return;
-    }
+    if (err) console.error('[Sandou] Subscribe error:', err.code, err.message);
   }
   skTrack('circle_submission', { source: 'page-section' });
   document.getElementById('page-circle-form-wrap').style.display = 'none';
