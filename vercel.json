@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/notify",     "destination": "/api/notify" },
+    { "source": "/api/ntfy-topic", "destination": "/api/ntfy-topic" }
+  ]
+}
