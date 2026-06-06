@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
     const RESEND_FROM     = process.env.RESEND_FROM || 'Sandou Kremas <onboarding@resend.dev>';
     const N8N_URL         = process.env.N8N_WEBHOOK_URL;
     const NTFY_TOPIC      = process.env.NTFY_TOPIC;
-    const ADMIN_PANEL_URL = process.env.ADMIN_PANEL_URL || 'https://sandou-kremas.vercel.app/admin.html';
+    const ADMIN_PANEL_URL = process.env.ADMIN_PANEL_URL || 'https://sandou-kremas.vercel.app/admin-site/';
 
     const typeLabels = { order: 'New Order', inquiry: 'New Inquiry', signup: 'New Subscriber' };
     const typeColors = { order: '#C9A84C', inquiry: '#81B2D4', signup: '#52B788' };
