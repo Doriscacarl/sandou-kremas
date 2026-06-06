@@ -293,6 +293,13 @@ input,select{font-family:inherit}
 #cust-panel.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.55)}
 #cust-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);z-index:399}
 #cust-ov.show{display:block}
+#ord-panel{position:fixed;right:0;top:0;height:100%;width:460px;max-width:100vw;background:var(--bg1);border-left:1px solid var(--g10);z-index:401;transform:translateX(100%);transition:transform .35s var(--ease);overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column}
+#ord-panel.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.55)}
+#ord-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);z-index:400}
+#ord-ov.show{display:block}
+.op-addr{background:var(--bg3);border:1px solid var(--g10);border-radius:var(--r8);padding:12px 14px;font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap;font-family:'JetBrains Mono',monospace;letter-spacing:.01em}
+.op-ssel{width:100%;background:var(--bg3);border:1px solid var(--g25);border-radius:var(--r8);padding:9px 12px;color:var(--t1);font-size:12px;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;appearance:none;transition:border-color .2s}
+.op-ssel:focus{border-color:var(--g40)}
 .cp-hdr{padding:16px 18px;border-bottom:1px solid var(--g10);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg2);position:sticky;top:0;z-index:2}
 .cp-hdr-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);font-weight:700}
 .cp-close{padding:6px;border-radius:var(--r8);color:var(--t3);transition:color .2s,background .2s;display:flex;align-items:center;cursor:pointer}.cp-close:hover{color:var(--t1);background:var(--g05)}
@@ -913,7 +920,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
             <thead><tr>
               <th>Customer</th><th>Product</th>
               <th class="hm">Qty</th><th>Status</th>
-              <th class="hm">Revenue</th><th class="ht">Phone</th><th class="ht">Notes</th><th>Date</th>
+              <th class="hm">Revenue</th><th class="ht">Phone</th><th class="ht">Notes</th><th>Date</th><th></th>
             </tr></thead>
             <tbody id="o-tbody"></tbody>
           </table>
@@ -1488,6 +1495,16 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
   <div id="cp-content"></div>
 </div>
 
+<!-- ORDER DETAIL PANEL -->
+<div id="ord-ov" onclick="closeOrderDetail()"></div>
+<div id="ord-panel" role="dialog" aria-modal="true">
+  <div class="cp-hdr">
+    <div class="cp-hdr-lbl">Order Details</div>
+    <button class="cp-close" onclick="closeOrderDetail()"><span class="ms">close</span></button>
+  </div>
+  <div id="op-content"></div>
+</div>
+
 <!-- CUSTOMER EDIT MODAL -->
 <div id="cust-edit-modal" role="dialog" aria-modal="true">
   <div class="em-card">
@@ -1901,11 +1918,11 @@ function renderOTable(){
   }
   const p=S.pages.o,st=(p-1)*PER;
   tbody.innerHTML=S.fo.slice(st,st+PER).map(o=>`
-    <tr>
-      <td><div class="bold">${o.customer_name||'—'}</div><div style="font-size:10px;color:var(--t3)">${o.customer_email||''}</div>${o.shipping_state?`<div style="font-size:9px;color:var(--t4);margin-top:1px;">${o.shipping_state}${o.shipping_address?' · '+o.shipping_address:''}</div>`:''}</td>
+    <tr style="cursor:pointer" onclick="openOrderDetail('${o.id}')">
+      <td><div class="bold">${o.customer_name||'—'}</div><div style="font-size:10px;color:var(--t3)">${o.customer_email||''}</div>${o.shipping_state?`<div style="font-size:9px;color:var(--t4);margin-top:1px;">${o.shipping_state}</div>`:''}</td>
       <td>${o.product_name||'—'}</td>
       <td class="mono hm">${o.quantity||1}</td>
-      <td><span class="badge b-${(o.status||'pending').toLowerCase()}">
+      <td onclick="event.stopPropagation()"><span class="badge b-${(o.status||'pending').toLowerCase()}">
         <select class="ssel" onchange="updateStatus('${o.id}',this.value)">
           ${['pending','confirmed','shipped','delivered','cancelled'].map(s=>`<option value="${s}"${o.status===s?' selected':''}>${s}</option>`).join('')}
         </select>
@@ -1914,6 +1931,7 @@ function renderOTable(){
       <td class="ht" style="font-size:11px">${o.customer_phone||'—'}</td>
       <td class="ht" style="font-size:10px;color:var(--t3);max-width:160px">${trunc(o.notes||'—',60)}</td>
       <td style="font-size:10px;color:var(--t3)">${$ds(o.created_at)}</td>
+      <td onclick="event.stopPropagation()"><button class="btn-ico" style="color:var(--red)" title="Delete" onclick="deleteOrder('${o.id}','${(o.customer_name||'this order').replace(/'/g,"\\'")}')"><span class="ms" style="font-size:16px">delete</span></button></td>
     </tr>`).join('');
   renderPgn('o',S.fo.length);
 }
@@ -1924,6 +1942,94 @@ async function updateStatus(id,status){
   const fo=S.fo.find(x=>x.id===id);if(fo)fo.status=status;
   toast('Updated',`Order marked as ${status}`,'s');
   renderOTable();renderKPIs();
+  const o=S.orders.find(x=>String(x.id)===String(id));
+  if(activeOid===id&&o)renderOrderDetail(o);
+}
+async function deleteOrder(id,name){
+  if(!confirm(`Delete order from "${name}"?\nThis cannot be undone.`))return;
+  const{error}=await db.from('orders').delete().eq('id',id);
+  if(error){toast('Delete failed',error.message,'e');return;}
+  S.orders=S.orders.filter(x=>String(x.id)!==String(id));
+  S.fo=S.fo.filter(x=>String(x.id)!==String(id));
+  if(activeOid===id)closeOrderDetail();
+  toast('Deleted',`Order from "${name}" removed`,'s');
+  renderOTable();renderKPIs();
+}
+
+// ── ORDER DETAIL PANEL ─────────────────────────────
+let activeOid=null;
+function openOrderDetail(id){
+  const o=S.orders.find(x=>String(x.id)===String(id));if(!o)return;
+  activeOid=id;
+  renderOrderDetail(o);
+  document.getElementById('ord-panel').classList.add('open');
+  document.getElementById('ord-ov').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeOrderDetail(){
+  document.getElementById('ord-panel')?.classList.remove('open');
+  document.getElementById('ord-ov')?.classList.remove('show');
+  document.body.style.overflow='';
+  activeOid=null;
+}
+function copyOrderAddress(id){
+  const o=S.orders.find(x=>String(x.id)===String(id));if(!o)return;
+  const addr=o.shipping_address||(o.shipping_state?o.shipping_state:'')||'No address on file';
+  navigator.clipboard.writeText(addr)
+    .then(()=>toast('Copied','Shipping address copied to clipboard','s'))
+    .catch(()=>toast('Error','Could not copy address','e'));
+}
+function renderOrderDetail(o){
+  const ini=(o.customer_name||o.customer_email||'?').slice(0,2).toUpperCase();
+  const scMap={pending:'var(--amber)',confirmed:'var(--green)',shipped:'var(--blue)',delivered:'var(--green)',cancelled:'var(--red)'};
+  const sc=scMap[o.status]||'var(--t3)';
+  const statusOpts=['pending','confirmed','shipped','delivered','cancelled'].map(s=>`<option value="${s}"${o.status===s?' selected':''}>${s.charAt(0).toUpperCase()+s.slice(1)}</option>`).join('');
+  const addrHtml=o.shipping_address
+    ?`<div class="op-addr">${esc(o.shipping_address)}</div>`
+    :(o.shipping_state?`<div class="cp-info-val">State: ${esc(o.shipping_state)}</div>`:`<div style="font-size:12px;color:var(--t4);font-style:italic;">No address provided</div>`);
+  document.getElementById('op-content').innerHTML=`
+    <div class="cp-hero">
+      <div class="cp-av" style="margin-bottom:10px;"><div class="cp-av-ring"></div>${esc(ini)}</div>
+      <div class="cp-cname">${esc(o.customer_name||'Unknown Customer')}</div>
+      <div class="cp-cemail">${esc(o.customer_email||'')}</div>
+      <div style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;background:var(--bg3);border:1px solid var(--g10);margin-top:8px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:${sc};flex-shrink:0;"></span>
+        <span style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:capitalize;color:${sc};">${esc(o.status||'pending')}</span>
+      </div>
+    </div>
+    <div class="cp-body">
+      <div class="cp-sec">
+        <div class="cp-sec-ttl">Contact</div>
+        <div class="cp-grid">
+          <div><div class="cp-info-lbl">Email</div><div class="cp-info-val">${esc(o.customer_email||'—')}</div></div>
+          <div><div class="cp-info-lbl">Phone</div><div class="cp-info-val">${esc(o.customer_phone||'—')}</div></div>
+        </div>
+      </div>
+      <div class="cp-sec">
+        <div class="cp-sec-ttl">Order</div>
+        <div class="cp-grid">
+          <div><div class="cp-info-lbl">Flavor / Product</div><div class="cp-info-val">${esc(o.product_name||'—')}</div></div>
+          <div><div class="cp-info-lbl">Quantity</div><div class="cp-info-val">${o.quantity||1} bottle${(o.quantity||1)!==1?'s':''}</div></div>
+          <div><div class="cp-info-lbl">Order Date</div><div class="cp-info-val">${$ds(o.created_at)}</div></div>
+          <div><div class="cp-info-lbl">Order ID</div><div class="cp-info-val mono" style="font-size:10px;color:var(--t3);">#${esc(String(o.id).slice(0,8))}</div></div>
+        </div>
+      </div>
+      <div class="cp-sec">
+        <div class="cp-sec-ttl">Shipping Address
+          <button class="cp-sec-edit" onclick="copyOrderAddress('${esc(o.id)}')"><span class="ms" style="font-size:12px;vertical-align:middle;">content_copy</span> Copy</button>
+        </div>
+        ${addrHtml}
+      </div>
+      ${o.notes?`<div class="cp-sec"><div class="cp-sec-ttl">Special Notes</div><div style="background:var(--bg3);border:1px solid var(--g10);border-radius:var(--r8);padding:12px 14px;font-size:12px;color:var(--t2);line-height:1.6;">${esc(o.notes)}</div></div>`:''}
+    </div>
+    <div class="cp-acts">
+      <div style="width:100%;margin-bottom:10px;">
+        <div class="cp-info-lbl" style="margin-bottom:7px;">Update Status</div>
+        <select class="op-ssel" onchange="updateStatus('${esc(o.id)}',this.value)">${statusOpts}</select>
+      </div>
+      <button class="cp-act" onclick="copyOrderAddress('${esc(o.id)}')"><span class="ms">content_copy</span>Copy Address</button>
+      <button class="cp-act cp-act-del" onclick="closeOrderDetail();deleteOrder('${esc(o.id)}','${(o.customer_name||'this order').replace(/'/g,"\\'")}')"><span class="ms">delete</span>Delete</button>
+    </div>`;
 }
 
 // ── INQUIRIES TABLE ───────────────────────────────
