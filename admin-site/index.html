@@ -1555,16 +1555,7 @@ const S = {
 
 // ── DB ─────────────────────────────────────────────
 let db;
-function initDb(){
-  db = supabase.createClient(SURL, SKEY, {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: false,
-      storageKey: 'sandou-admin-auth'
-    }
-  });
-}
+function initDb(){ db = supabase.createClient(SURL, SKEY); }
 
 // ── TOAST ──────────────────────────────────────────
 const TICONS={s:'check_circle',e:'error',w:'warning',i:'info'};
