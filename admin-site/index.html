@@ -1183,6 +1183,9 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
       <button class="mx" onclick="closeMediaModal()"><span class="ms">close</span></button>
     </div>
     <div id="mm-preview-wrap"></div>
+    <div id="mm-adj-row" style="display:none;justify-content:flex-end;padding:0 16px 6px;gap:8px">
+      <button class="btn-ico" onclick="openMMImgEditor()" title="Adjust zoom &amp; position"><span class="ms">tune</span></button>
+    </div>
     <div class="mm-body">
       <div class="field"><label>File Name</label>
         <input id="mm-name" type="text" placeholder="image-name.jpg"/></div>
@@ -1291,6 +1294,9 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
       <button class="mx" onclick="closeGalModal()"><span class="ms">close</span></button>
     </div>
     <div id="gm-preview-wrap"></div>
+    <div id="gm-adj-row" style="display:none;justify-content:flex-end;padding:0 16px 6px;gap:8px">
+      <button class="btn-ico" onclick="openGMImgEditor()" title="Adjust zoom &amp; position"><span class="ms">tune</span></button>
+    </div>
     <div class="gm-body">
       <div class="field"><label>Image URL <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)">(paste a new URL to replace)</span></label>
         <input id="gm-url" type="url" placeholder="https://… or leave blank to keep current"/></div>
@@ -2750,12 +2756,16 @@ function openMLUrlDialog(){
 
 // Media modal
 let mmId=null;
+let mmImgZoom=1;let mmImgPosX=50;let mmImgPosY=50;
 function openMediaModal(id){
   const arr=getMedia();const m=arr.find(x=>x.id===id);if(!m)return;
   mmId=id;
+  mmImgZoom=m.imgZoom||1;mmImgPosX=m.imgPosX!=null?m.imgPosX:50;mmImgPosY=m.imgPosY!=null?m.imgPosY:50;
   const pw=document.getElementById('mm-preview-wrap');
-  pw.innerHTML=m.url?`<img class="mm-preview" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}"/>`:
+  pw.innerHTML=m.url?`<img class="mm-preview" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}" style="${imgEditStyle(mmImgZoom,mmImgPosX,mmImgPosY)}"/>`:
     `<div class="mm-preview-empty"><span class="ms">image</span></div>`;
+  const adjRow=document.getElementById('mm-adj-row');
+  if(adjRow)adjRow.style.display=m.url?'flex':'none';
   document.getElementById('mm-name').value=m.name||'';
   document.getElementById('mm-cat').value=m.category||'';
   document.getElementById('mm-alt').value=m.altText||'';
@@ -2764,7 +2774,7 @@ function openMediaModal(id){
   document.getElementById('mm-url').value=(!m.url||m.url.startsWith('data:'))?'':(m.url||'');
   document.getElementById('media-modal').classList.add('open');
 }
-function closeMediaModal(){document.getElementById('media-modal').classList.remove('open');mmId=null;}
+function closeMediaModal(){document.getElementById('media-modal').classList.remove('open');mmId=null;mmImgZoom=1;mmImgPosX=50;mmImgPosY=50;}
 function saveMediaModal(){
   if(!mmId)return;
   const arr=getMedia();const m=arr.find(x=>x.id===mmId);if(!m)return;
@@ -2775,6 +2785,7 @@ function saveMediaModal(){
   m.usedIn=document.getElementById('mm-used').value.trim();
   const extUrl=document.getElementById('mm-url').value.trim();
   if(extUrl)m.url=extUrl;
+  m.imgZoom=mmImgZoom;m.imgPosX=mmImgPosX;m.imgPosY=mmImgPosY;
   saveMedia(arr);closeMediaModal();renderMediaLibrary();
   toast('Saved',m.name,'s');
 }
@@ -2816,10 +2827,12 @@ function renderPageEditor(slug){
     const val=d[key]||'';
     const isUrl=val&&(val.startsWith('http')||val.startsWith('data:'));
     const urlVal=isUrl&&val.startsWith('http')?esc(val):'';
+    const iz=d[key+'ImgZoom']||1;const ipx=d[key+'ImgPosX']!=null?d[key+'ImgPosX']:50;const ipy=d[key+'ImgPosY']!=null?d[key+'ImgPosY']:50;
+    const thumbStyle=isUrl?imgEditStyle(iz,ipx,ipy):'';
     return`<div class="pe-field pe-full">
       <label>${label}</label>
       <div class="pe-img-row">
-        ${isUrl?`<img class="pe-img-thumb" src="${esc(val)}" alt="${label}" loading="lazy"/>`:
+        ${isUrl?`<img class="pe-img-thumb" src="${esc(val)}" alt="${label}" loading="lazy" style="${thumbStyle}"/>`:
           `<div class="pe-img-thumb-empty"><span class="ms">image</span></div>`}
         ${isUrl?`<span class="pe-img-name" title="${esc(val)}">${esc(val.startsWith('data:')?'(Uploaded image)':val)}</span>`:
           `<span class="pe-img-none">No image set</span>`}
@@ -2830,6 +2843,7 @@ function renderPageEditor(slug){
         <button class="btn-ol" style="white-space:nowrap;padding:6px 10px;font-size:9px" onclick="openImgPicker('pe:${key}')">
           <span class="ms">photo_library</span>Library
         </button>
+        ${isUrl?`<button class="btn-ico" onclick="openPEImgEditor('${key}')" title="Adjust zoom &amp; position"><span class="ms">tune</span></button>`:''}
         ${isUrl?`<button class="btn-ico" onclick="clearPEImg('${key}')" title="Remove"><span class="ms">close</span></button>`:''}
       </div>
       <div style="display:flex;gap:6px;margin-top:6px;align-items:center">
@@ -3166,6 +3180,7 @@ document.getElementById('prod-modal').addEventListener('click',function(e){if(e.
 // ══════════════════════════════════════════════════
 let galCat='';
 let galEditId=null;
+let gmImgZoom=1;let gmImgPosX=50;let gmImgPosY=50;
 
 function setGalCat(cat,btn){
   galCat=cat;
@@ -3257,9 +3272,12 @@ function confirmDeleteGal(id){
 function openGalModal(id){
   galEditId=id;
   const arr=getGallery();const g=arr.find(x=>x.id===id);if(!g)return;
+  gmImgZoom=g.imgZoom||1;gmImgPosX=g.imgPosX!=null?g.imgPosX:50;gmImgPosY=g.imgPosY!=null?g.imgPosY:50;
   const pw=document.getElementById('gm-preview-wrap');
-  pw.innerHTML=g.url?`<img class="gm-preview" src="${esc(g.url)}" alt="${esc(g.altText||'Gallery image')}"/>`:
+  pw.innerHTML=g.url?`<img class="gm-preview" src="${esc(g.url)}" alt="${esc(g.altText||'Gallery image')}" style="${imgEditStyle(gmImgZoom,gmImgPosX,gmImgPosY)}"/>`:
     `<div class="gm-preview-empty"><span class="ms">image</span></div>`;
+  const adjRow=document.getElementById('gm-adj-row');
+  if(adjRow)adjRow.style.display=g.url?'flex':'none';
   document.getElementById('gm-url').value='';
   document.getElementById('gm-cap').value=g.caption||'';
   document.getElementById('gm-alt').value=g.altText||'';
@@ -3270,7 +3288,7 @@ function openGalModal(id){
   else document.getElementById('gm-tog-vis').classList.remove('on');
   document.getElementById('gal-modal').classList.add('open');
 }
-function closeGalModal(){document.getElementById('gal-modal').classList.remove('open');galEditId=null;}
+function closeGalModal(){document.getElementById('gal-modal').classList.remove('open');galEditId=null;gmImgZoom=1;gmImgPosX=50;gmImgPosY=50;}
 function saveGalModal(){
   if(!galEditId)return;
   const arr=getGallery();const g=arr.find(x=>x.id===galEditId);if(!g)return;
@@ -3281,6 +3299,7 @@ function saveGalModal(){
   g.category=document.getElementById('gm-cat').value;
   g.featured=document.getElementById('gm-tog-feat').classList.contains('on');
   g.hidden=!document.getElementById('gm-tog-vis').classList.contains('on');
+  g.imgZoom=gmImgZoom;g.imgPosX=gmImgPosX;g.imgPosY=gmImgPosY;
   saveGallery(arr);closeGalModal();renderGallery();updateGalBadge();
   toast('Saved',g.caption||'Gallery image','s');
 }
@@ -3505,6 +3524,33 @@ function openPMImgEditor(){
   openImgEditor(url,pmImgZoom,pmImgPosX,pmImgPosY,(z,px,py)=>{
     pmImgZoom=z;pmImgPosX=px;pmImgPosY=py;
     _applyImgEditStyle(document.querySelector('#pm-img-preview-wrap img'),z,px,py);
+  });
+}
+function openMMImgEditor(){
+  if(!mmId)return;
+  const m=(getMedia().find(x=>x.id===mmId)||{});
+  openImgEditor(m.url,mmImgZoom,mmImgPosX,mmImgPosY,(z,px,py)=>{
+    mmImgZoom=z;mmImgPosX=px;mmImgPosY=py;
+    _applyImgEditStyle(document.querySelector('#mm-preview-wrap img'),z,px,py);
+  });
+}
+function openGMImgEditor(){
+  if(!galEditId)return;
+  const g=(getGallery().find(x=>x.id===galEditId)||{});
+  openImgEditor(g.url,gmImgZoom,gmImgPosX,gmImgPosY,(z,px,py)=>{
+    gmImgZoom=z;gmImgPosX=px;gmImgPosY=py;
+    _applyImgEditStyle(document.querySelector('#gm-preview-wrap img'),z,px,py);
+  });
+}
+function openPEImgEditor(key){
+  const d=getPageContent(currentPage);
+  const url=d[key]||'';
+  const iz=d[key+'ImgZoom']||1;const ipx=d[key+'ImgPosX']!=null?d[key+'ImgPosX']:50;const ipy=d[key+'ImgPosY']!=null?d[key+'ImgPosY']:50;
+  openImgEditor(url,iz,ipx,ipy,(z,px,py)=>{
+    const dd=getPageContent(currentPage);
+    dd[key+'ImgZoom']=z;dd[key+'ImgPosX']=px;dd[key+'ImgPosY']=py;
+    savePageContent(currentPage,dd);
+    renderPageEditor(currentPage);
   });
 }
 
