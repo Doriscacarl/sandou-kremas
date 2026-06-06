@@ -1803,8 +1803,8 @@ function renderOTable(){
 async function updateStatus(id,status){
   const{error}=await db.from('orders').update({status}).eq('id',id);
   if(error){toast('Update failed',error.message,'e');return;}
-  const o=S.orders.find(x=>x.id===id);if(o)o.status=status;
-  const fo=S.fo.find(x=>x.id===id);if(fo)fo.status=status;
+  const o=S.orders.find(x=>String(x.id)===String(id));if(o)o.status=status;
+  const fo=S.fo.find(x=>String(x.id)===String(id));if(fo)fo.status=status;
   toast('Updated',`Order marked as ${status}`,'s');
   renderOTable();renderKPIs();
 }
@@ -1812,10 +1812,10 @@ async function deleteOrder(id,name){
   if(!confirm(`Delete order from "${name}"? This cannot be undone.`))return;
   const{error}=await db.from('orders').delete().eq('id',id);
   if(error){toast('Delete failed',error.message,'e');return;}
-  S.orders=S.orders.filter(x=>x.id!==id);
-  S.fo=S.fo.filter(x=>x.id!==id);
+  S.orders=S.orders.filter(x=>String(x.id)!==String(id));
+  S.fo=S.fo.filter(x=>String(x.id)!==String(id));
   toast('Deleted',`Order from "${name}" removed`,'s');
-  renderOTable();renderKPIs();
+  renderOTable();renderKPIs();updateBadges();
 }
 
 // ── INQUIRIES TABLE ───────────────────────────────
@@ -2870,11 +2870,10 @@ function setPEUrl(key,url){
 
 function saveCurrentPage(){
   const d=getPageContent(currentPage);
-  // Collect all pe- inputs (skip pe-url-* helper inputs)
-  document.querySelectorAll('[id^="pe-"]').forEach(el=>{
+  document.querySelectorAll('input[id^="pe-"], textarea[id^="pe-"]').forEach(el=>{
     const k=el.id.replace('pe-','');
     if(k.startsWith('url-'))return;
-    d[k]=el.value||el.textContent||'';
+    d[k]=el.value||'';
   });
   savePageContent(currentPage,d);
   toast('Saved',`${PAGE_DEFAULTS[currentPage]?.pageTitle||currentPage} page updated`,'s');
