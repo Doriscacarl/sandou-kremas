@@ -532,6 +532,21 @@ input,select{font-family:inherit}
 .gal-flag{position:absolute;top:5px;left:5px;background:rgba(7,7,10,.82);border:1px solid var(--g15);border-radius:99px;font-size:8px;font-weight:700;letter-spacing:.05em;color:var(--t3);padding:2px 6px;backdrop-filter:blur(4px)}
 .gal-feat-flag{position:absolute;top:5px;right:5px;background:rgba(201,168,76,.15);border:1px solid var(--g25);border-radius:99px;font-size:8px;font-weight:700;letter-spacing:.05em;color:var(--gold);padding:2px 6px;backdrop-filter:blur(4px)}
 
+/* Image editor overlay */
+#img-editor{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
+#img-editor.open{display:flex}
+.ie-card{background:var(--bg2);border:1px solid var(--g15);border-radius:var(--r16);width:min(420px,94vw);max-height:92vh;overflow-y:auto;display:flex;flex-direction:column}
+.ie-hdr{padding:14px 18px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ie-ttl{font-size:14px;font-weight:700;color:var(--t1);letter-spacing:.03em;display:flex;align-items:center;gap:7px}
+.ie-preview-box{position:relative;overflow:hidden;background:var(--bg0);margin:12px 18px 0;border-radius:var(--r8);aspect-ratio:4/3;flex-shrink:0}
+#ie-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform,object-position}
+.ie-body{padding:12px 18px 0;flex-shrink:0}
+.ie-note{font-size:10px;color:var(--t3);margin-bottom:12px;line-height:1.6}
+.ie-ctrl-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ie-ctrl-lbl{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);width:54px;flex-shrink:0}
+.ie-slider{flex:1;accent-color:var(--gold);cursor:pointer;height:4px}
+.ie-ctrl-val{font-size:11px;color:var(--gold);width:40px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.ie-foot{padding:14px 18px;display:flex;gap:8px;flex-shrink:0}
 /* Gallery edit modal */
 #gal-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);z-index:600;align-items:center;justify-content:center;padding:20px}
 #gal-modal.open{display:flex}
@@ -1294,6 +1309,9 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
       <button class="mx" onclick="closeMediaModal()"><span class="ms">close</span></button>
     </div>
     <div id="mm-preview-wrap"></div>
+    <div style="padding:6px 18px 0;display:flex;justify-content:flex-end">
+      <button class="btn-ol" style="font-size:10px;padding:5px 10px" onclick="openMMImgEditor()"><span class="ms" style="font-size:13px">tune</span>Adjust Image</button>
+    </div>
     <div class="mm-body">
       <div class="field"><label>File Name</label>
         <input id="mm-name" type="text" placeholder="image-name.jpg"/></div>
@@ -1345,6 +1363,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
         <button class="btn-ol" style="flex:1;justify-content:center" onclick="openImgPicker('prod-primary')">
           <span class="ms">photo_library</span>Pick from Media Library
         </button>
+        <button class="btn-ico" onclick="openPMImgEditor()" title="Adjust zoom &amp; position"><span class="ms">tune</span></button>
         <button class="btn-ico" onclick="clearProdImg()" title="Remove image"><span class="ms">close</span></button>
       </div>
 
@@ -1401,6 +1420,9 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
       <button class="mx" onclick="closeGalModal()"><span class="ms">close</span></button>
     </div>
     <div id="gm-preview-wrap"></div>
+    <div style="padding:6px 18px 0;display:flex;justify-content:flex-end">
+      <button class="btn-ol" style="font-size:10px;padding:5px 10px" onclick="openGMImgEditor()"><span class="ms" style="font-size:13px">tune</span>Adjust Image</button>
+    </div>
     <div class="gm-body">
       <div class="field"><label>Image URL <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)">(paste a new URL to replace)</span></label>
         <input id="gm-url" type="url" placeholder="https://… or leave blank to keep current"/></div>
@@ -2793,7 +2815,7 @@ function renderMediaLibrary(){
           <button class="mc-btn" onclick="openMediaModal('${esc(m.id)}')" title="Edit"><span class="ms">edit</span></button>
           <button class="mc-btn mc-btn-del" onclick="confirmDeleteMedia('${esc(m.id)}')" title="Delete"><span class="ms">delete</span></button>
         </div>
-        ${m.url?`<img class="mc-thumb" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}" loading="lazy"/>`:
+        ${m.url?`<img class="mc-thumb" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}" loading="lazy" style="${imgEditStyle(m.imgZoom,m.imgPosX,m.imgPosY)}"/>`:
           `<div class="mc-thumb-empty"><span class="ms">image</span></div>`}
         <div class="mc-info">
           <div class="mc-name" title="${esc(m.name)}">${esc(m.name)}</div>
@@ -2862,7 +2884,7 @@ function openMediaModal(id){
   const arr=getMedia();const m=arr.find(x=>x.id===id);if(!m)return;
   mmId=id;
   const pw=document.getElementById('mm-preview-wrap');
-  pw.innerHTML=m.url?`<img class="mm-preview" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}"/>`:
+  pw.innerHTML=m.url?`<img class="mm-preview" src="${esc(m.url)}" alt="${esc(m.altText||m.name)}" style="${imgEditStyle(m.imgZoom,m.imgPosX,m.imgPosY)}"/>`:
     `<div class="mm-preview-empty"><span class="ms">image</span></div>`;
   document.getElementById('mm-name').value=m.name||'';
   document.getElementById('mm-cat').value=m.category||'';
@@ -3111,6 +3133,7 @@ function saveCurrentPage(){
 // ══════════════════════════════════════════════════
 let pmEditId=null;
 let pmImgDataUrl=null;
+let pmImgZoom=1,pmImgPosX=50,pmImgPosY=50;
 
 function renderProducts(){
   const prods=getProducts();
@@ -3154,10 +3177,11 @@ function renderProducts(){
     const invLbl={in_stock:'In Stock',limited:'Limited',out_of_stock:'Out of Stock'}[p.inventory||'in_stock']||'In Stock';
     return`<div class="prod-card${p.hidden?' hidden-prod':''}">
       <div class="prod-img-wrap">
-        ${p.primaryImage?`<img class="prod-img" src="${esc(p.primaryImage)}" alt="${esc(p.name)}" loading="lazy"/>`:
+        ${p.primaryImage?`<img class="prod-img" src="${esc(p.primaryImage)}" alt="${esc(p.name)}" loading="lazy" style="${imgEditStyle(p.imgZoom,p.imgPosX,p.imgPosY)}"/>`:
           `<div class="prod-img-empty"><span class="ms">liquor</span></div>`}
         <div class="prod-img-acts">
           <button class="mc-btn" onclick="openImgPicker('prod:${esc(p.id)}')" title="Pick image"><span class="ms">photo_library</span></button>
+          ${p.primaryImage?`<button class="mc-btn" onclick="openProdCardImgEditor('${esc(p.id)}')" title="Adjust image"><span class="ms">tune</span></button>`:''}
           ${p.primaryImage?`<button class="mc-btn mc-btn-del" onclick="clearProdImgDirect('${esc(p.id)}')" title="Remove image"><span class="ms">close</span></button>`:''}
         </div>
       </div>
@@ -3200,18 +3224,20 @@ function openProdModal(id){
   setTog('pm-tog-founder',p?p.founderFavorite:false);
   setTog('pm-tog-hidden',p?p.hidden:false);
   // Image preview
+  pmImgZoom=p?(p.imgZoom||1):1;pmImgPosX=p?(p.imgPosX!==undefined?p.imgPosX:50):50;pmImgPosY=p?(p.imgPosY!==undefined?p.imgPosY:50):50;
   const pw=document.getElementById('pm-img-preview-wrap');
   const img=p?p.primaryImage:'';
-  pw.innerHTML=img?`<img class="pm-img-preview" src="${esc(img)}" alt="Product image"/>`:
+  pw.innerHTML=img?`<img class="pm-img-preview" src="${esc(img)}" alt="Product image" style="${imgEditStyle(pmImgZoom,pmImgPosX,pmImgPosY)}"/>`:
     `<div style="height:12px"></div>`;
   document.getElementById('prod-modal').classList.add('open');
 }
-function closeProdModal(){document.getElementById('prod-modal').classList.remove('open');pmEditId=null;pmImgDataUrl=null;}
+function closeProdModal(){document.getElementById('prod-modal').classList.remove('open');pmEditId=null;pmImgDataUrl=null;pmImgZoom=1;pmImgPosX=50;pmImgPosY=50;}
 async function handleProdImg(file){
   if(!file)return;
   const pw=document.getElementById('pm-img-preview-wrap');
   pw.innerHTML=`<div style="padding:12px;text-align:center;color:var(--t3);font-size:11px"><div class="spinner" style="margin:0 auto 6px"></div>Uploading…</div>`;
   pmImgDataUrl=await uploadToStorage(file,'products');
+  pmImgZoom=1;pmImgPosX=50;pmImgPosY=50;
   pw.innerHTML=`<img class="pm-img-preview" src="${esc(pmImgDataUrl)}" alt="Product image"/>`;
 }
 function clearProdImg(){
@@ -3240,12 +3266,13 @@ function saveProdModal(){
     p.inventory=document.getElementById('pm-inv').value;
     p.featured=getTog('pm-tog-featured');p.founderFavorite=getTog('pm-tog-founder');p.hidden=getTog('pm-tog-hidden');
     if(pmImgDataUrl)p.primaryImage=pmImgDataUrl;
+    p.imgZoom=pmImgZoom;p.imgPosX=pmImgPosX;p.imgPosY=pmImgPosY;
   }else{
     prods.push({id:uid(),name,tagline:document.getElementById('pm-tagline').value.trim(),
       price:parseFloat(document.getElementById('pm-price').value)||0,
       description:document.getElementById('pm-desc').value.trim(),
       inventory:document.getElementById('pm-inv').value,
-      primaryImage:pmImgDataUrl||'',galleryImages:[],
+      primaryImage:pmImgDataUrl||'',galleryImages:[],imgZoom:pmImgZoom,imgPosX:pmImgPosX,imgPosY:pmImgPosY,
       featured:getTog('pm-tog-featured'),founderFavorite:getTog('pm-tog-founder'),hidden:getTog('pm-tog-hidden')});
   }
   saveProducts(prods);closeProdModal();renderProducts();
@@ -3313,7 +3340,7 @@ function renderGallery(){
   }
   grid.innerHTML=filtered.map(g=>`
     <div class="gal-card${g.hidden?' gal-hidden':''}">
-      ${g.url?`<img class="gal-img" src="${esc(g.url)}" alt="${esc(g.altText||g.caption||'Gallery image')}" loading="lazy"/>`:
+      ${g.url?`<img class="gal-img" src="${esc(g.url)}" alt="${esc(g.altText||g.caption||'Gallery image')}" loading="lazy" style="${imgEditStyle(g.imgZoom,g.imgPosX,g.imgPosY)}"/>`:
         `<div class="gal-img-empty"><span class="ms">image</span></div>`}
       <div class="gal-ov">
         <button class="mc-btn" onclick="toggleGalFeat('${esc(g.id)}')" title="${g.featured?'Unfeature':'Feature'}">
@@ -3364,7 +3391,7 @@ function openGalModal(id){
   galEditId=id;
   const arr=getGallery();const g=arr.find(x=>x.id===id);if(!g)return;
   const pw=document.getElementById('gm-preview-wrap');
-  pw.innerHTML=g.url?`<img class="gm-preview" src="${esc(g.url)}" alt="${esc(g.altText||'Gallery image')}"/>`:
+  pw.innerHTML=g.url?`<img class="gm-preview" src="${esc(g.url)}" alt="${esc(g.altText||'Gallery image')}" style="${imgEditStyle(g.imgZoom,g.imgPosX,g.imgPosY)}"/>`:
     `<div class="gm-preview-empty"><span class="ms">image</span></div>`;
   document.getElementById('gm-url').value='';
   document.getElementById('gm-cap').value=g.caption||'';
@@ -3760,6 +3787,104 @@ async function sendTestPush(){
   }
 }
 
+// ══════════════════════════════════════════════════
+// IMAGE EDITOR
+// ══════════════════════════════════════════════════
+let _ieCb=null;
+
+function openImgEditor(url,zoom,posX,posY,cb){
+  if(!url){toast('No image','Upload an image first','w');return;}
+  _ieCb=cb||null;
+  document.getElementById('ie-img').src=url;
+  document.getElementById('ie-zoom').value=Math.round((zoom||1)*100);
+  document.getElementById('ie-px').value=posX!==undefined&&posX!==null?posX:50;
+  document.getElementById('ie-py').value=posY!==undefined&&posY!==null?posY:50;
+  updateIE();
+  document.getElementById('img-editor').classList.add('open');
+}
+function updateIE(){
+  const z=parseInt(document.getElementById('ie-zoom').value)/100;
+  const px=parseInt(document.getElementById('ie-px').value);
+  const py=parseInt(document.getElementById('ie-py').value);
+  document.getElementById('ie-zoom-v').textContent=z.toFixed(1)+'×';
+  document.getElementById('ie-px-v').textContent=px+'%';
+  document.getElementById('ie-py-v').textContent=py+'%';
+  const img=document.getElementById('ie-img');
+  if(z<1){img.style.objectFit='contain';img.style.objectPosition=px+'% '+py+'%';img.style.transform='';img.style.transformOrigin='';}
+  else{img.style.objectFit='cover';img.style.objectPosition=px+'% '+py+'%';img.style.transform=z>1?'scale('+z+')':'';img.style.transformOrigin=px+'% '+py+'%';}
+}
+function resetIE(){
+  document.getElementById('ie-zoom').value=100;
+  document.getElementById('ie-px').value=50;
+  document.getElementById('ie-py').value=50;
+  updateIE();
+}
+function applyIE(){
+  const z=parseInt(document.getElementById('ie-zoom').value)/100;
+  const px=parseInt(document.getElementById('ie-px').value);
+  const py=parseInt(document.getElementById('ie-py').value);
+  if(_ieCb)_ieCb(z,px,py);
+  closeImgEditor();
+  toast('Saved','Image display adjusted','s');
+}
+function closeImgEditor(){
+  document.getElementById('img-editor').classList.remove('open');
+  _ieCb=null;
+}
+
+// Returns inline style string for stored image adjustments
+function imgEditStyle(zoom,posX,posY){
+  const z=(zoom!==undefined&&zoom!==null)?zoom:1;
+  const px=(posX!==undefined&&posX!==null)?posX:50;
+  const py=(posY!==undefined&&posY!==null)?posY:50;
+  if(z===1&&px===50&&py===50)return'';
+  if(z<1)return'object-fit:contain;object-position:'+px+'% '+py+'%;';
+  let s='object-position:'+px+'% '+py+'%;';
+  if(z!==1)s+='transform:scale('+z+');transform-origin:'+px+'% '+py+'%;';
+  return s;
+}
+function _applyImgEditStyle(img,z,px,py){
+  if(!img)return;
+  if(z<1){img.style.objectFit='contain';img.style.objectPosition=px+'% '+py+'%';img.style.transform='';img.style.transformOrigin='';}
+  else{img.style.objectFit='cover';img.style.objectPosition=px+'% '+py+'%';img.style.transform=z>1?'scale('+z+')':'';img.style.transformOrigin=px+'% '+py+'%';}
+}
+
+// ── Editor openers ──
+function openPMImgEditor(){
+  const url=pmImgDataUrl||(pmEditId?(getProducts().find(x=>x.id===pmEditId)||{}).primaryImage:null);
+  openImgEditor(url,pmImgZoom,pmImgPosX,pmImgPosY,(z,px,py)=>{
+    pmImgZoom=z;pmImgPosX=px;pmImgPosY=py;
+    _applyImgEditStyle(document.querySelector('#pm-img-preview-wrap img'),z,px,py);
+  });
+}
+function openProdCardImgEditor(id){
+  const p=getProducts().find(x=>x.id===id);if(!p||!p.primaryImage)return;
+  openImgEditor(p.primaryImage,p.imgZoom,p.imgPosX,p.imgPosY,(z,px,py)=>{
+    const prods=getProducts();const pp=prods.find(x=>x.id===id);if(!pp)return;
+    pp.imgZoom=z;pp.imgPosX=px;pp.imgPosY=py;saveProducts(prods);renderProducts();
+  });
+}
+function openMMImgEditor(){
+  if(!mmId)return;
+  const m=getMedia().find(x=>x.id===mmId);if(!m||!m.url){toast('No image','This item has no image URL','w');return;}
+  openImgEditor(m.url,m.imgZoom,m.imgPosX,m.imgPosY,(z,px,py)=>{
+    const arr=getMedia();const mm=arr.find(x=>x.id===mmId);if(!mm)return;
+    mm.imgZoom=z;mm.imgPosX=px;mm.imgPosY=py;saveMedia(arr);
+    _applyImgEditStyle(document.querySelector('#mm-preview-wrap img'),z,px,py);
+    renderMediaLibrary();
+  });
+}
+function openGMImgEditor(){
+  if(!galEditId)return;
+  const g=getGallery().find(x=>x.id===galEditId);if(!g||!g.url){toast('No image','This item has no image URL','w');return;}
+  openImgEditor(g.url,g.imgZoom,g.imgPosX,g.imgPosY,(z,px,py)=>{
+    const arr=getGallery();const gg=arr.find(x=>x.id===galEditId);if(!gg)return;
+    gg.imgZoom=z;gg.imgPosX=px;gg.imgPosY=py;saveGallery(arr);
+    _applyImgEditStyle(document.querySelector('#gm-preview-wrap img'),z,px,py);
+    renderGallery();
+  });
+}
+
 // ── INIT ──────────────────────────────────────────
 async function init(){
   initDb();
@@ -3768,5 +3893,41 @@ async function init(){
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
+
+<!-- ══ IMAGE EDITOR OVERLAY ══ -->
+<div id="img-editor">
+  <div class="ie-card">
+    <div class="ie-hdr">
+      <div class="ie-ttl"><span class="ms" style="font-size:17px;color:var(--gold)">tune</span>Adjust Image</div>
+      <button class="mx" onclick="closeImgEditor()"><span class="ms">close</span></button>
+    </div>
+    <div class="ie-preview-box">
+      <img id="ie-img" src="" alt="" draggable="false"/>
+    </div>
+    <div class="ie-body">
+      <p class="ie-note">Drag <b>Zoom</b> left to zoom out &amp; see more of the image, right to zoom in. Use <b>Focus X/Y</b> to pick which part of the image is centered.</p>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Zoom</span>
+        <input type="range" class="ie-slider" id="ie-zoom" min="50" max="300" value="100" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-zoom-v">1.0×</span>
+      </div>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Focus X</span>
+        <input type="range" class="ie-slider" id="ie-px" min="0" max="100" value="50" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-px-v">50%</span>
+      </div>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Focus Y</span>
+        <input type="range" class="ie-slider" id="ie-py" min="0" max="100" value="50" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-py-v">50%</span>
+      </div>
+    </div>
+    <div class="ie-foot">
+      <button class="btn-ol" onclick="resetIE()"><span class="ms">refresh</span>Reset</button>
+      <button class="btn-ol" style="flex:1;justify-content:center" onclick="closeImgEditor()">Cancel</button>
+      <button class="btn-primary" style="width:auto;padding:9px 20px" onclick="applyIE()"><span class="ms">check</span>Apply</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
