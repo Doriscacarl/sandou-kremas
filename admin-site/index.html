@@ -1555,7 +1555,16 @@ const S = {
 
 // ── DB ─────────────────────────────────────────────
 let db;
-function initDb(){ db = supabase.createClient(SURL, SKEY); }
+function initDb(){
+  db = supabase.createClient(SURL, SKEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: false,
+      storageKey: 'sandou-admin-auth'
+    }
+  });
+}
 
 // ── TOAST ──────────────────────────────────────────
 const TICONS={s:'check_circle',e:'error',w:'warning',i:'info'};
@@ -1595,9 +1604,14 @@ function toggleTheme(){applyTheme(S.theme==='dark'?'light':'dark');}
 
 // ── AUTH ──────────────────────────────────────────
 async function checkAuth(){
-  const {data:{user}}=await db.auth.getUser();
-  if(user){showApp(user);await loadAll();}
-  else showLogin();
+  try{
+    const {data:{user}}=await db.auth.getUser();
+    if(user){showApp(user);await loadAll();}
+    else showLogin();
+  }catch(e){
+    console.warn('[Auth] checkAuth error:',e.message);
+    showLogin();
+  }
 }
 async function handleLogin(e){
   e.preventDefault();
@@ -1608,11 +1622,18 @@ async function handleLogin(e){
   err.textContent='';
   btn.disabled=true;
   btn.innerHTML='<div class="spinner"></div>';
-  const {data,error}=await db.auth.signInWithPassword({email,password:pass});
-  btn.disabled=false;
-  btn.innerHTML='<span class="ms">lock_open</span>Sign In';
-  if(error){err.textContent=error.message;return;}
-  if(data.user){showApp(data.user);await loadAll();}
+  try{
+    const {data,error}=await db.auth.signInWithPassword({email,password:pass});
+    if(error){err.textContent=error.message;return;}
+    if(data?.user){showApp(data.user);await loadAll();}
+    else{err.textContent='Sign-in failed. Please check your credentials and try again.';}
+  }catch(e){
+    console.error('[Auth] login error:',e);
+    err.textContent='Connection error — please check your internet and try again.';
+  }finally{
+    btn.disabled=false;
+    btn.innerHTML='<span class="ms">lock_open</span>Sign In';
+  }
 }
 async function doLogout(){
   stopNotifPolling();
