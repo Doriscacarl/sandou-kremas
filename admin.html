@@ -1382,6 +1382,8 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
             <option value="limited">Limited</option>
             <option value="out_of_stock">Out of Stock</option>
           </select></div>
+        <div class="field"><label>Bottle Count <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)">(overrides status above)</span></label>
+          <input id="pm-inv-count" type="number" min="0" step="1" placeholder="e.g. 24 — leave blank to use status"/></div>
         <div class="field pm-full"><label>Description</label>
           <textarea id="pm-desc" placeholder="Full product description…" style="min-height:80px"></textarea></div>
       </div>
@@ -2680,7 +2682,7 @@ async function _upsertProducts(arr){
       id:p.id,name:p.name,tagline:p.tagline||null,description:p.description||null,
       price:p.price||24,image_url:p.primaryImage||null,gallery_images:p.galleryImages||[],
       featured:!!p.featured,founder_favorite:!!p.founderFavorite,hidden:!!p.hidden,
-      inventory:p.inventory||'in_stock',display_order:i,updated_at:new Date().toISOString()
+      inventory:p.inventory||'in_stock',inventory_quantity:(p.inventory_quantity!=null)?p.inventory_quantity:null,display_order:i,updated_at:new Date().toISOString()
     })));
     if(error)toast('Save failed — not signed in?',error.message||'Products save failed','e');
   }catch(e){toast('Save failed',e.message||'Products save failed','e');}
@@ -3219,6 +3221,7 @@ function openProdModal(id){
   document.getElementById('pm-price').value=p?p.price:'';
   document.getElementById('pm-desc').value=p?(p.description||''):'';
   document.getElementById('pm-inv').value=p?(p.inventory||'in_stock'):'in_stock';
+  document.getElementById('pm-inv-count').value=(p&&p.inventory_quantity!=null)?p.inventory_quantity:'';
   // Toggles
   setTog('pm-tog-featured',p?p.featured:false);
   setTog('pm-tog-founder',p?p.founderFavorite:false);
@@ -3264,14 +3267,16 @@ function saveProdModal(){
     p.price=parseFloat(document.getElementById('pm-price').value)||0;
     p.description=document.getElementById('pm-desc').value.trim();
     p.inventory=document.getElementById('pm-inv').value;
+    const _cnt=document.getElementById('pm-inv-count').value;p.inventory_quantity=_cnt!==''?parseInt(_cnt,10):null;
     p.featured=getTog('pm-tog-featured');p.founderFavorite=getTog('pm-tog-founder');p.hidden=getTog('pm-tog-hidden');
     if(pmImgDataUrl)p.primaryImage=pmImgDataUrl;
     p.imgZoom=pmImgZoom;p.imgPosX=pmImgPosX;p.imgPosY=pmImgPosY;
   }else{
+    const _cnt2=document.getElementById('pm-inv-count').value;
     prods.push({id:uid(),name,tagline:document.getElementById('pm-tagline').value.trim(),
       price:parseFloat(document.getElementById('pm-price').value)||0,
       description:document.getElementById('pm-desc').value.trim(),
-      inventory:document.getElementById('pm-inv').value,
+      inventory:document.getElementById('pm-inv').value,inventory_quantity:_cnt2!==''?parseInt(_cnt2,10):null,
       primaryImage:pmImgDataUrl||'',galleryImages:[],imgZoom:pmImgZoom,imgPosX:pmImgPosX,imgPosY:pmImgPosY,
       featured:getTog('pm-tog-featured'),founderFavorite:getTog('pm-tog-founder'),hidden:getTog('pm-tog-hidden')});
   }

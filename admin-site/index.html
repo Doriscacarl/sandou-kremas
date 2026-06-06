@@ -555,6 +555,22 @@ input,select{font-family:inherit}
 /* Generic confirm modal */
 #confirm-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);z-index:750;align-items:center;justify-content:center;padding:20px}
 #confirm-modal.open{display:flex}
+
+/* IMAGE EDITOR OVERLAY */
+#img-editor{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
+#img-editor.open{display:flex}
+.ie-card{background:var(--bg2);border:1px solid var(--g15);border-radius:var(--r16);width:min(440px,96vw);max-height:94vh;overflow-y:auto;display:flex;flex-direction:column}
+.ie-hdr{padding:14px 18px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ie-ttl{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--t1)}
+.ie-preview-box{position:relative;overflow:hidden;background:var(--bg0);margin:12px 18px 0;border-radius:var(--r8);aspect-ratio:4/3;flex-shrink:0}
+.ie-preview-box img{width:100%;height:100%;object-fit:cover;display:block}
+.ie-body{padding:16px 18px 0}
+.ie-note{font-size:10px;color:var(--t3);line-height:1.6;margin-bottom:14px}
+.ie-ctrl-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ie-ctrl-lbl{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);width:54px;flex-shrink:0}
+.ie-slider{flex:1;accent-color:var(--gold);cursor:pointer;height:4px}
+.ie-ctrl-val{font-size:11px;color:var(--gold);width:44px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.ie-foot{display:flex;gap:8px;padding:14px 18px 16px;border-top:1px solid var(--g10);margin-top:14px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -1218,6 +1234,7 @@ CREATE POLICY "admin_select_subscribers" ON public.subscribers FOR SELECT TO aut
         <button class="btn-ol" style="flex:1;justify-content:center" onclick="openImgPicker('prod-primary')">
           <span class="ms">photo_library</span>Pick from Media Library
         </button>
+        <button class="btn-ico" onclick="openPMImgEditor()" title="Adjust zoom &amp; position"><span class="ms">tune</span></button>
         <button class="btn-ico" onclick="clearProdImg()" title="Remove image"><span class="ms">close</span></button>
       </div>
 
@@ -2985,6 +3002,7 @@ function saveCurrentPage(){
 // ══════════════════════════════════════════════════
 let pmEditId=null;
 let pmImgDataUrl=null;
+let pmImgZoom=1;let pmImgPosX=50;let pmImgPosY=50;let _ieCb=null;
 
 function renderProducts(){
   const prods=getProducts();
@@ -3028,7 +3046,7 @@ function renderProducts(){
     const invLbl={in_stock:'In Stock',limited:'Limited',out_of_stock:'Out of Stock'}[p.inventory||'in_stock']||'In Stock';
     return`<div class="prod-card${p.hidden?' hidden-prod':''}">
       <div class="prod-img-wrap">
-        ${p.primaryImage?`<img class="prod-img" src="${esc(p.primaryImage)}" alt="${esc(p.name)}" loading="lazy"/>`:
+        ${p.primaryImage?`<img class="prod-img" src="${esc(p.primaryImage)}" alt="${esc(p.name)}" loading="lazy" style="${imgEditStyle(p.imgZoom,p.imgPosX,p.imgPosY)}"/>`:
           `<div class="prod-img-empty"><span class="ms">liquor</span></div>`}
         <div class="prod-img-acts">
           <button class="mc-btn" onclick="openImgPicker('prod:${esc(p.id)}')" title="Pick image"><span class="ms">photo_library</span></button>
@@ -3073,14 +3091,15 @@ function openProdModal(id){
   setTog('pm-tog-featured',p?p.featured:false);
   setTog('pm-tog-founder',p?p.founderFavorite:false);
   setTog('pm-tog-hidden',p?p.hidden:false);
-  // Image preview
+  // Image preview — restore zoom/position state
+  pmImgZoom=p?(p.imgZoom||1):1;pmImgPosX=p?(p.imgPosX!==undefined?p.imgPosX:50):50;pmImgPosY=p?(p.imgPosY!==undefined?p.imgPosY:50):50;
   const pw=document.getElementById('pm-img-preview-wrap');
   const img=p?p.primaryImage:'';
-  pw.innerHTML=img?`<img class="pm-img-preview" src="${esc(img)}" alt="Product image"/>`:
+  pw.innerHTML=img?`<img class="pm-img-preview" src="${esc(img)}" alt="Product image" style="${imgEditStyle(pmImgZoom,pmImgPosX,pmImgPosY)}"/>`:
     `<div style="height:12px"></div>`;
   document.getElementById('prod-modal').classList.add('open');
 }
-function closeProdModal(){document.getElementById('prod-modal').classList.remove('open');pmEditId=null;pmImgDataUrl=null;}
+function closeProdModal(){document.getElementById('prod-modal').classList.remove('open');pmEditId=null;pmImgDataUrl=null;pmImgZoom=1;pmImgPosX=50;pmImgPosY=50;}
 async function handleProdImg(file){
   if(!file)return;
   const pw=document.getElementById('pm-img-preview-wrap');
@@ -3114,12 +3133,13 @@ function saveProdModal(){
     p.inventory=document.getElementById('pm-inv').value;
     p.featured=getTog('pm-tog-featured');p.founderFavorite=getTog('pm-tog-founder');p.hidden=getTog('pm-tog-hidden');
     if(pmImgDataUrl)p.primaryImage=pmImgDataUrl;
+    p.imgZoom=pmImgZoom;p.imgPosX=pmImgPosX;p.imgPosY=pmImgPosY;
   }else{
     prods.push({id:uid(),name,tagline:document.getElementById('pm-tagline').value.trim(),
       price:parseFloat(document.getElementById('pm-price').value)||0,
       description:document.getElementById('pm-desc').value.trim(),
       inventory:document.getElementById('pm-inv').value,
-      primaryImage:pmImgDataUrl||'',galleryImages:[],
+      primaryImage:pmImgDataUrl||'',galleryImages:[],imgZoom:pmImgZoom,imgPosX:pmImgPosX,imgPosY:pmImgPosY,
       featured:getTog('pm-tog-featured'),founderFavorite:getTog('pm-tog-founder'),hidden:getTog('pm-tog-hidden')});
   }
   saveProducts(prods);closeProdModal();renderProducts();
@@ -3425,6 +3445,69 @@ function openConfirm(ico,ttl,dsc,cb){
 function closeConfirm(){document.getElementById('confirm-modal').classList.remove('open');}
 document.getElementById('confirm-modal').addEventListener('click',function(e){if(e.target===this)closeConfirm();});
 
+// ── IMAGE EDITOR ──────────────────────────────────
+function imgEditStyle(zoom,posX,posY){
+  const z=(zoom!=null)?zoom:1;
+  const px=(posX!=null)?posX:50;
+  const py=(posY!=null)?posY:50;
+  if(z===1&&px===50&&py===50)return'';
+  if(z<1)return'object-fit:contain;object-position:'+px+'% '+py+'%;';
+  let s='object-fit:cover;object-position:'+px+'% '+py+'%;';
+  if(z!==1)s+='transform:scale('+z+');transform-origin:'+px+'% '+py+'%;';
+  return s;
+}
+function _applyImgEditStyle(img,z,px,py){
+  if(!img)return;
+  if(z<1){img.style.objectFit='contain';img.style.objectPosition=px+'% '+py+'%';img.style.transform='';img.style.transformOrigin='';}
+  else{img.style.objectFit='cover';img.style.objectPosition=px+'% '+py+'%';img.style.transform=z>1?'scale('+z+')':'';img.style.transformOrigin=px+'% '+py+'%';}
+}
+function openImgEditor(url,zoom,posX,posY,cb){
+  if(!url){toast('No image','Upload an image first','w');return;}
+  _ieCb=cb||null;
+  document.getElementById('ie-img').src=url;
+  document.getElementById('ie-zoom').value=Math.round((zoom||1)*100);
+  document.getElementById('ie-px').value=posX!=null?posX:50;
+  document.getElementById('ie-py').value=posY!=null?posY:50;
+  updateIE();
+  document.getElementById('img-editor').classList.add('open');
+}
+function updateIE(){
+  const z=parseInt(document.getElementById('ie-zoom').value)/100;
+  const px=parseInt(document.getElementById('ie-px').value);
+  const py=parseInt(document.getElementById('ie-py').value);
+  document.getElementById('ie-zoom-v').textContent=z.toFixed(1)+'×';
+  document.getElementById('ie-px-v').textContent=px+'%';
+  document.getElementById('ie-py-v').textContent=py+'%';
+  const img=document.getElementById('ie-img');
+  if(z<1){img.style.objectFit='contain';img.style.objectPosition=px+'% '+py+'%';img.style.transform='';img.style.transformOrigin='';}
+  else{img.style.objectFit='cover';img.style.objectPosition=px+'% '+py+'%';img.style.transform=z>1?'scale('+z+')':'';img.style.transformOrigin=px+'% '+py+'%';}
+}
+function resetIE(){
+  document.getElementById('ie-zoom').value=100;
+  document.getElementById('ie-px').value=50;
+  document.getElementById('ie-py').value=50;
+  updateIE();
+}
+function applyIE(){
+  const z=parseInt(document.getElementById('ie-zoom').value)/100;
+  const px=parseInt(document.getElementById('ie-px').value);
+  const py=parseInt(document.getElementById('ie-py').value);
+  if(_ieCb)_ieCb(z,px,py);
+  closeImgEditor();
+  toast('Saved','Image display adjusted','s');
+}
+function closeImgEditor(){
+  document.getElementById('img-editor').classList.remove('open');
+  _ieCb=null;
+}
+function openPMImgEditor(){
+  const url=pmImgDataUrl||(pmEditId?(getProducts().find(x=>x.id===pmEditId)||{}).primaryImage:null);
+  openImgEditor(url,pmImgZoom,pmImgPosX,pmImgPosY,(z,px,py)=>{
+    pmImgZoom=z;pmImgPosX=px;pmImgPosY=py;
+    _applyImgEditStyle(document.querySelector('#pm-img-preview-wrap img'),z,px,py);
+  });
+}
+
 // ── INIT ──────────────────────────────────────────
 async function init(){
   initDb();
@@ -3433,5 +3516,41 @@ async function init(){
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
+
+<!-- IMAGE EDITOR OVERLAY -->
+<div id="img-editor">
+  <div class="ie-card">
+    <div class="ie-hdr">
+      <div class="ie-ttl"><span class="ms" style="font-size:17px;color:var(--gold)">tune</span>Adjust Image</div>
+      <button class="mx" onclick="closeImgEditor()"><span class="ms">close</span></button>
+    </div>
+    <div class="ie-preview-box">
+      <img id="ie-img" src="" alt="" draggable="false"/>
+    </div>
+    <div class="ie-body">
+      <p class="ie-note">Drag <b>Zoom</b> left to see more, right to zoom in. Use <b>Focus X/Y</b> to choose which part of the image is centered in the frame.</p>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Zoom</span>
+        <input type="range" class="ie-slider" id="ie-zoom" min="50" max="300" value="100" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-zoom-v">1.0×</span>
+      </div>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Focus X</span>
+        <input type="range" class="ie-slider" id="ie-px" min="0" max="100" value="50" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-px-v">50%</span>
+      </div>
+      <div class="ie-ctrl-row">
+        <span class="ie-ctrl-lbl">Focus Y</span>
+        <input type="range" class="ie-slider" id="ie-py" min="0" max="100" value="50" step="1" oninput="updateIE()"/>
+        <span class="ie-ctrl-val" id="ie-py-v">50%</span>
+      </div>
+    </div>
+    <div class="ie-foot">
+      <button class="btn-ol" onclick="resetIE()"><span class="ms">refresh</span>Reset</button>
+      <button class="btn-ol" style="flex:1;justify-content:center" onclick="closeImgEditor()">Cancel</button>
+      <button class="btn-primary" style="width:auto;padding:9px 20px" onclick="applyIE()"><span class="ms">check</span>Apply</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

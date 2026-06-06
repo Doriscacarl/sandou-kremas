@@ -75,6 +75,24 @@
   .flavor-img { transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
   .founder-badge { background: linear-gradient(135deg, #D8B36A, #765a1a); }
   .sk-badge { position:absolute;top:12px;right:12px;z-index:10;color:white;padding:5px 10px;font-family:Montserrat,sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600; }
+  /* ── Inventory Status Badges ──────────────────────────────────── */
+  .inv-status { display: inline-flex; align-items: center; gap: 6px; font-family: Montserrat, sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+  .inv-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .inv-status.inv-in-stock { color: #6b9c5b; } .inv-status.inv-in-stock::before { background: #6b9c5b; box-shadow: 0 0 5px rgba(107,156,91,0.55); }
+  .inv-status.inv-limited { color: #D8B36A; } .inv-status.inv-limited::before { background: #D8B36A; box-shadow: 0 0 6px rgba(216,179,106,0.7); animation: invPulse 2.2s ease-in-out infinite; }
+  .inv-status.inv-out { color: rgba(186,26,26,0.7); } .inv-status.inv-out::before { background: rgba(186,26,26,0.7); }
+  @keyframes invPulse { 0%,100% { opacity: 1; } 55% { opacity: 0.35; } }
+  /* ── Featured section — reserve button gold fill ─────────────── */
+  .btn-featured-reserve { position: relative; overflow: hidden; transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.55s cubic-bezier(0.16,1,0.3,1); }
+  .btn-featured-reserve::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #D8B36A 0%, #c49a4e 100%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+  .btn-featured-reserve:hover { border-color: #D8B36A; color: #1A0F08; box-shadow: 0 0 42px rgba(216,179,106,0.38), 0 12px 42px rgba(216,179,106,0.18); }
+  .btn-featured-reserve:hover::before { opacity: 1; }
+  .btn-featured-reserve > * { position: relative; z-index: 1; }
+  .btn-featured-reserve:active { transform: scale(0.97); }
+  /* ── Concierge float button — premium glow ───────────────────── */
+  .concierge-glow { transition: box-shadow 0.6s cubic-bezier(0.16,1,0.3,1), border-color 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1) !important; }
+  .concierge-glow:hover { box-shadow: 0 8px 40px rgba(216,179,106,0.42), 0 0 0 4px rgba(216,179,106,0.1), 0 2px 12px rgba(0,0,0,0.08) !important; border-color: rgba(216,179,106,0.8) !important; transform: translateY(-3px) !important; }
+  .concierge-glow:active { transform: scale(0.96) translateY(0) !important; box-shadow: 0 4px 20px rgba(216,179,106,0.25) !important; }
   @media (prefers-reduced-motion: reduce) { .cinematic-zoom, .ambient-glow, .shimmer-gleam, .reveal-soft, .concierge-float, .crawling-light, .bottle-shimmer::after { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; } #loading-logo, #loading-line { animation: none !important; opacity: 1 !important; } }
 </style>
 </head>
@@ -92,7 +110,7 @@
 <div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[70] concierge-float">
   <div class="relative group">
     <div class="absolute inset-0 bg-[#D8B36A]/10 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-    <button id="concierge-trigger" aria-label="Speak with a concierge" class="glass-effect relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full hover:border-[#D8B36A] transition-all duration-500 min-h-[44px]">
+    <button id="concierge-trigger" aria-label="Speak with a concierge" class="glass-effect concierge-glow relative flex items-center gap-3 px-5 py-3 md:px-8 md:py-4 rounded-full min-h-[44px]">
       <span class="material-symbols-outlined text-tertiary text-xl">stylus_note</span>
       <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase hidden sm:block">Sandou Concierge</span>
     </button>
@@ -202,41 +220,50 @@
             <div style="position:absolute;width:80%;height:80%;top:10%;left:10%;background:radial-gradient(circle,rgba(216,179,106,0.15) 0%,transparent 70%);"></div>
           </div>
           <div class="passpartout-frame bottle-shimmer">
-            <img alt="Sandou Kremas Coconut Cream — Alexandra's Favorite" class="w-full h-[420px] sm:h-[560px] object-cover" data-sk-src="founderFavoriteImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArAdasuuqK2zJUsEUuwhq5SfGp5RfrvHUyPfLDj-c9goudcmddIoO7aTOepMB4-_J6W_LdAaxXyobR7fP6Pu1NwW8iJSM31LUzaltIgHnxV5zJjpaumuaxU2TZA2EesCFf9mMKZZ80885mLL0JY9XrPwGDRdNxGA_mS1X07yx5bd_v9E_PH6HL0OUnIqI4Kvur3DlDAfLZCJOZVc15nk9iTQfxGSuJnTASghUM3sKgNyY7cGGlRF8j9lysiw7w4s46Vy0AiLmclpw9"/>
-          </div>
-          <div class="absolute -top-4 -right-4 founder-badge text-white px-4 py-2 text-center" style="font-family:Montserrat,sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; font-weight:600;">
-            Founder's<br/>Favorite
+            <img alt="Sandou Kremas poured into crystal glass — luxury candlelit marble setting, The Founder's Selection" class="w-full h-[420px] sm:h-[560px] object-cover object-center" data-sk-src="founderFavoriteImage" src="stitch-screens/cinematic-cream-pour/screen.png" onerror="this.onerror=null;this.src='https://placehold.co/900x560/1A0F08/D8B36A?text=The+Founder\'s+Selection'"/>
           </div>
         </div>
       </div>
       <!-- Text -->
-      <div class="order-2 space-y-7">
-        <div>
-          <span class="font-label-caps text-label-caps uppercase tracking-[0.5em] block mb-4" style="color:#D8B36A;">Alexandra's Favorite</span>
-          <h2 class="font-display-lg leading-tight mb-2" style="font-size:clamp(32px,4vw,52px); font-family:'Playfair Display',serif; color:#F4E6C1;">
+      <div class="order-2 space-y-8">
+        <div class="space-y-3">
+          <div class="flex items-center gap-4 mb-2">
+            <div style="height:1px;width:28px;background:rgba(216,179,106,0.35);flex-shrink:0;"></div>
+            <span class="font-label-caps text-[9px] uppercase tracking-[0.6em]" style="color:#D8B36A;">The Founder's Selection</span>
+          </div>
+          <h2 class="font-display-lg leading-tight" style="font-size:clamp(36px,4.5vw,56px); font-family:'Playfair Display',serif; color:#F4E6C1; letter-spacing:-0.02em;">
             Coconut Cream
           </h2>
-          <p class="font-label-caps text-label-caps uppercase tracking-[0.3em]" style="color:rgba(216,179,106,0.7);">The Signature Expression</p>
+          <p class="font-label-caps text-[10px] uppercase tracking-[0.35em]" style="color:rgba(216,179,106,0.6);">The Signature Expression</p>
         </div>
-        <blockquote class="border-l-2 border-[#D8B36A] pl-6 py-2" style="font-family:'Playfair Display',serif; font-style:italic; font-size:20px; line-height:1.7; color:rgba(244,230,193,0.9);">
+        <blockquote class="border-l-2 border-[#D8B36A]/45 pl-7 py-1" style="font-family:'Playfair Display',serif; font-style:italic; font-size:19px; line-height:1.8; color:rgba(244,230,193,0.88);">
           "Coconut Cream is the flavor I return to. It's the one that started everything — the one where I knew I had created something truly special. Every sip takes me back to where this all began."
         </blockquote>
-        <p class="font-body-md text-body-md leading-relaxed" style="color:rgba(255,248,246,0.7);">
-          — Alexandra Louis, Founder
+        <p class="font-body-md text-sm" style="color:rgba(255,248,246,0.45); letter-spacing:0.12em;">
+          — Alexandra Louis, Founder &amp; Cellar Master
         </p>
-        <div class="space-y-4">
+        <div class="space-y-3">
           <div class="border border-[#D8B36A]/20 p-5">
-            <p class="font-label-caps text-[10px] uppercase tracking-[0.3em] mb-3" style="color:#D8B36A;">Flavor Profile</p>
-            <p class="font-body-md text-body-md leading-relaxed" style="color:rgba(255,248,246,0.7);">Lush tropical coconut, silky cream, whispers of vanilla and warm spice. Richly textured with a long, gentle finish.</p>
+            <p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-3" style="color:#D8B36A;">Flavor Profile</p>
+            <p class="font-body-md text-sm leading-relaxed" style="color:rgba(255,248,246,0.7);">Lush tropical coconut, silky cream, whispers of vanilla and warm spice. Richly textured with a long, gentle finish.</p>
           </div>
           <div class="border border-[#D8B36A]/20 p-5">
-            <p class="font-label-caps text-[10px] uppercase tracking-[0.3em] mb-3" style="color:#D8B36A;">Best Served</p>
-            <p class="font-body-md text-body-md leading-relaxed" style="color:rgba(255,248,246,0.7);">Chilled over ice. During celebrations. As a gift to someone you love.</p>
+            <p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-3" style="color:#D8B36A;">Best Served</p>
+            <p class="font-body-md text-sm leading-relaxed" style="color:rgba(255,248,246,0.7);">Chilled over ice. During celebrations. As a gift to someone you love.</p>
+          </div>
+          <div class="border border-[#D8B36A]/20 p-5">
+            <p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-4" style="color:#D8B36A;">Crafting Notes</p>
+            <div class="space-y-2">
+              <p class="font-body-md text-sm flex items-start gap-2" style="color:rgba(255,248,246,0.7);"><span style="color:rgba(216,179,106,0.4);flex-shrink:0;">—</span>Crafted with authentic Haitian tradition, small-batch</p>
+              <p class="font-body-md text-sm flex items-start gap-2" style="color:rgba(255,248,246,0.7);"><span style="color:rgba(216,179,106,0.4);flex-shrink:0;">—</span>Silky coconut notes, layered with vanilla warmth and gentle spice</p>
+              <p class="font-body-md text-sm flex items-start gap-2" style="color:rgba(255,248,246,0.7);"><span style="color:rgba(216,179,106,0.4);flex-shrink:0;">—</span>Best served chilled, over ice or neat from the bottle</p>
+            </div>
           </div>
         </div>
-        <button onclick="toggleConcierge()" class="inline-flex items-center gap-3 border border-[#D8B36A] text-[#D8B36A] px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[52px] hover:bg-[#D8B36A] hover:text-[#1A0F08] transition-colors duration-500">
-          Reserve Coconut Cream
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        <div id="featured-inv-status" class="py-1 min-h-[20px]" aria-live="polite"></div>
+        <button onclick="toggleConcierge()" class="inline-flex items-center gap-3 border border-[#D8B36A] text-[#D8B36A] px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest btn-featured-reserve min-h-[52px]">
+          <span>Reserve Coconut Cream</span>
+          <span class="material-symbols-outlined text-sm" style="position:relative;z-index:1;">arrow_forward</span>
         </button>
       </div>
     </div>
@@ -483,12 +510,25 @@
 
     function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
+    function invStatusFromProduct(p){
+      const qty=p.inventory_quantity;
+      if(typeof qty==='number'&&qty!==null){
+        if(qty===0)return{cls:'inv-out',text:'Out of Stock'};
+        if(qty<=10)return{cls:'inv-limited',text:qty+' Bottles Available'};
+        return{cls:'inv-in-stock',text:'In Stock'};
+      }
+      const map={in_stock:{cls:'inv-in-stock',text:'In Stock'},limited:{cls:'inv-limited',text:'Limited Availability'},out_of_stock:{cls:'inv-out',text:'Out of Stock'}};
+      return map[p.inventory]||map['in_stock'];
+    }
+
     function cardHtml(p){
       const isFounder=p.founder_favorite;
       const isHoliday=p.name==='Holiday Collection';
       const imgSrc=p.image_url||'https://placehold.co/600x700/f8f3e8/765a1a?text='+encodeURIComponent(p.name);
       const slug=p.slug||p.id||p.name.toLowerCase().replace(/\s+/g,'-');
       const price=p.price?'$'+p.price:'';
+      const inv=invStatusFromProduct(p);
+      const invBadge=`<div class="mb-5"><span class="inv-status ${inv.cls}">${esc(inv.text)}</span></div>`;
       if(isHoliday){
         return`<article class="group flavor-card bg-[#2C1B12] border border-[#2C1B12] overflow-hidden">
           <div class="overflow-hidden h-[280px] sm:h-[320px] relative">
@@ -500,24 +540,27 @@
             <span class="font-label-caps text-[9px] uppercase tracking-[0.35em] block mb-3" style="color:#D8B36A;">${esc(p.tagline||'The Seasonal')}</span>
             <h3 class="font-headline-sm text-headline-sm mb-2" style="color:#F4E6C1;font-family:'Playfair Display',serif;">${esc(p.name)}</h3>
             ${p.description?`<p class="font-body-md text-body-md leading-relaxed mb-5" style="color:rgba(255,248,246,0.65);">${esc(p.description)}</p>`:''}
-            ${p.serving_notes||p.inventory==='in_stock'?`<div class="border-t border-[#D8B36A]/15 pt-5 mb-6"><p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-2" style="color:rgba(216,179,106,0.6);">Serve</p><p class="font-body-md text-sm" style="color:rgba(255,248,246,0.55);">${esc(p.serving_notes||'Best served chilled')}</p></div>`:''}
+            ${p.serving_notes?`<div class="border-t border-[#D8B36A]/15 pt-5 mb-6"><p class="font-label-caps text-[9px] uppercase tracking-[0.3em] mb-2" style="color:rgba(216,179,106,0.6);">Serve</p><p class="font-body-md text-sm" style="color:rgba(255,248,246,0.55);">${esc(p.serving_notes)}</p></div>`:''}
+            <div class="mb-5"><span class="inv-status ${inv.cls}" style="--tw-text-opacity:1;">${esc(inv.text)}</span></div>
             <button onclick="toggleConcierge()" class="w-full border border-[#D8B36A] text-[#D8B36A] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-[#D8B36A] hover:text-[#2C1B12] transition-colors duration-500">Reserve This Flavor</button>
             <a href="${esc(slug)}.html" class="w-full flex items-center justify-center gap-2 py-3 font-label-caps text-[9px] uppercase tracking-[0.25em] hover:opacity-80 transition-opacity duration-300 mt-3 min-h-[44px]" style="color:rgba(216,179,106,0.6);">Explore This Flavor <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
           </div>
         </article>`;
       }
       const borderColor=isFounder?'border-[#D8B36A]':'border-[#F4E6C1]';
-      return`<article class="group flavor-card bg-white ${borderColor} border overflow-hidden${isFounder?' relative':''}">
-        ${isFounder?`<div class="absolute top-4 right-4 z-10 founder-badge text-white px-3 py-1" style="font-family:Montserrat,sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Founder's Favorite</div>`:''}
+      const founderLabel=isFounder?`<div class="flex items-center gap-2 mb-3"><div style="height:1px;width:18px;background:#D8B36A;flex-shrink:0;"></div><span class="font-label-caps text-[8px] uppercase tracking-[0.35em]" style="color:#D8B36A;">The Founder's Selection</span></div>`:'';
+      return`<article class="group flavor-card bg-white ${borderColor} border overflow-hidden">
         <div class="overflow-hidden h-[280px] sm:h-[320px]">
           <img alt="Sandou Kremas ${esc(p.name)}" class="w-full h-full object-cover flavor-img" loading="lazy" src="${esc(imgSrc)}" onerror="this.src='https://placehold.co/600x700/f8f3e8/765a1a?text=${encodeURIComponent(p.name)}'"/>
         </div>
         <div class="p-8">
+          ${founderLabel}
           <span class="font-label-caps text-[9px] uppercase tracking-[0.35em] text-tertiary block mb-3">${esc(p.tagline||p.category||'')}</span>
           <h3 class="font-headline-sm text-headline-sm mb-2 text-on-background" style="font-family:'Playfair Display',serif;">${esc(p.name)}</h3>
           ${p.description?`<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-5">${esc(p.description)}</p>`:''}
           ${p.serving_notes?`<div class="border-t border-[#F4E6C1] pt-5 mb-6"><p class="font-label-caps text-[9px] uppercase tracking-[0.3em] text-on-surface-variant mb-2">Serve</p><p class="font-body-md text-sm text-on-surface-variant">${esc(p.serving_notes)}</p></div>`:''}
           ${price?`<p class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-tertiary mb-4">${esc(price)}</p>`:''}
+          ${invBadge}
           ${isFounder
             ?`<button onclick="toggleConcierge()" class="w-full bg-[#2C1B12] text-[#F8F3E8] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px]">Reserve This Flavor</button>`
             :`<button onclick="toggleConcierge()" class="w-full border border-[#2C1B12] text-[#2C1B12] py-3 font-label-caps text-label-caps uppercase tracking-widest btn-luxury min-h-[44px] hover:bg-[#2C1B12] hover:text-white transition-colors duration-500">Reserve This Flavor</button>`
@@ -553,6 +596,32 @@
     console.error('[Sandou] Collection load error:', e);
     // Fallback to hardcoded content already in DOM
   }
+})();
+
+// ── Featured section: live inventory status from Supabase ──────
+(async function(){
+  function esc2(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function invLabel(p){
+    const qty=p.inventory_quantity;
+    if(typeof qty==='number'&&qty!==null){
+      if(qty===0)return{cls:'inv-out',text:'Out of Stock'};
+      if(qty<=10)return{cls:'inv-limited',text:qty+' Bottles Available'};
+      return{cls:'inv-in-stock',text:'In Stock'};
+    }
+    const map={in_stock:{cls:'inv-in-stock',text:'In Stock'},limited:{cls:'inv-limited',text:'Limited Availability'},out_of_stock:{cls:'inv-out',text:'Out of Stock'}};
+    return map[p.inventory]||{cls:'inv-in-stock',text:'In Stock'};
+  }
+  try{
+    const SURL='https://lmeszvvlejrfribqveek.supabase.co';
+    const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZXN6dnZsZWpyZnJpYnF2ZWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1ODE4MzUsImV4cCI6MjA5NjE1NzgzNX0.e9_EbR8HuEvYEOdsjFgsezr9F_XwUnGM1HQA35GFln8';
+    if(typeof supabase==='undefined')return;
+    const db2=supabase.createClient(SURL,SKEY);
+    const{data:ff}=await db2.from('products').select('inventory,inventory_quantity').eq('founder_favorite',true).eq('hidden',false).limit(1).maybeSingle();
+    if(!ff)return;
+    const lbl=invLabel(ff);
+    const el=document.getElementById('featured-inv-status');
+    if(el)el.innerHTML=`<span class="inv-status ${esc2(lbl.cls)}">${esc2(lbl.text)}</span>`;
+  }catch(e){/* non-critical — featured inventory */}
 })();
 </script>
 </body>
